@@ -1,0 +1,1695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Company Brain — AI for Your Business</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;450;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gray1: #fcfcfc;
+    --gray2: #f8f8f8;
+    --gray3: #f3f3f3;
+    --gray4: #ededed;
+    --gray5: #e8e8e8;
+    --gray6: #e2e2e2;
+    --gray7: #dbdbdb;
+    --gray8: #c7c7c7;
+    --gray9: #8f8f8f;
+    --gray10: #858585;
+    --gray11: #6f6f6f;
+    --gray12: #171717;
+    --radii-pill: 9999px;
+    --max-w: 1200px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { height: 100%; font-feature-settings: "kern" 1; font-kerning: normal; scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Inter, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: #fff;
+    color: var(--gray12);
+    line-height: 1;
+    overflow-x: hidden;
+  }
+  a { color: inherit; text-decoration: none; }
+
+  /* ─── NAV ─── */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255,255,255,0.90);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    border-bottom: 1px solid var(--gray4);
+  }
+  .nav-inner {
+    max-width: var(--max-w); margin: 0 auto; padding: 0 48px;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 52px;
+  }
+  .brand { font-size: 14px; font-weight: 600; letter-spacing: -0.015em; color: var(--gray12); }
+  .nav-links { display: flex; gap: 28px; font-size: 13px; color: var(--gray10); font-weight: 400; letter-spacing: -0.005em; }
+  .nav-links a:hover { color: var(--gray12); transition: color 0.15s; }
+  .nav-cta { display: flex; gap: 8px; }
+  .btn {
+    font-family: inherit; font-size: 13px; font-weight: 500;
+    padding: 7px 16px; border-radius: var(--radii-pill);
+    cursor: pointer; border: 1px solid transparent;
+    transition: all 0.15s; white-space: nowrap; line-height: 1; letter-spacing: -0.01em;
+  }
+  .btn-outline { background: transparent; border-color: var(--gray6); color: var(--gray12); }
+  .btn-outline:hover { border-color: var(--gray9); }
+  .btn-dark { background: var(--gray12); color: #fff; }
+  .btn-dark:hover { background: #000; }
+
+  /* ─── HERO ─── */
+  .hero { padding: 100px 48px 88px; border-bottom: 1px solid var(--gray4); text-align: center; position: relative; overflow: hidden; }
+  .hero-inner { max-width: 740px; margin: 0 auto; }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 11px; font-weight: 500; letter-spacing: 0.09em; text-transform: uppercase;
+    color: var(--gray9); background: var(--gray2); border: 1px solid var(--gray4);
+    border-radius: var(--radii-pill); padding: 5px 13px; margin-bottom: 28px;
+  }
+  .hero-eyebrow-dot {
+    width: 5px; height: 5px; border-radius: 50%; background: var(--gray7);
+  }
+  .hero-h1 {
+    font-size: clamp(44px, 6.5vw, 78px); font-weight: 700;
+    letter-spacing: -0.05em; line-height: 1.02; color: var(--gray12);
+    margin-bottom: 22px;
+  }
+  .hero-lead {
+    font-size: 17px; color: var(--gray10); line-height: 1.65;
+    font-weight: 400; letter-spacing: -0.01em;
+    max-width: 500px; margin: 0 auto 36px;
+  }
+  .hero-actions { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+  .btn-hero-primary {
+    font-family: inherit; font-size: 14px; font-weight: 600; padding: 11px 22px;
+    background: var(--gray12); color: #fff; border: 1px solid var(--gray12);
+    border-radius: var(--radii-pill); cursor: pointer; letter-spacing: -0.01em; transition: background 0.15s;
+  }
+  .btn-hero-primary:hover { background: #000; }
+  .btn-hero-secondary {
+    font-family: inherit; font-size: 14px; font-weight: 500; padding: 11px 22px;
+    background: transparent; color: var(--gray11); border: 1px solid var(--gray6);
+    border-radius: var(--radii-pill); cursor: pointer; letter-spacing: -0.01em; transition: all 0.15s;
+  }
+  .btn-hero-secondary:hover { border-color: var(--gray9); color: var(--gray12); }
+
+  /* ─── SHARED SECTIONS ─── */
+  .section-white  { padding: 88px 48px; border-bottom: 1px solid var(--gray4); background: #fff; }
+  .section-tinted { padding: 88px 48px; border-bottom: 1px solid var(--gray4); background: var(--gray2); }
+  .section-dark   { padding: 88px 48px; border-bottom: 1px solid #222; background: var(--gray12); color: #fff; }
+  .section-inner  { max-width: var(--max-w); margin: 0 auto; }
+
+  .s-eyebrow {
+    font-size: 11px; font-weight: 500; text-transform: uppercase;
+    letter-spacing: 0.09em; color: var(--gray9); margin-bottom: 14px;
+  }
+  .s-eyebrow-inv {
+    font-size: 11px; font-weight: 500; text-transform: uppercase;
+    letter-spacing: 0.09em; color: rgba(255,255,255,0.32); margin-bottom: 14px;
+  }
+  .s-h2 {
+    font-size: clamp(22px, 3vw, 36px); font-weight: 700;
+    letter-spacing: -0.035em; line-height: 1.15; color: var(--gray12); margin-bottom: 12px;
+  }
+  .s-h2-inv {
+    font-size: clamp(22px, 3vw, 36px); font-weight: 700;
+    letter-spacing: -0.035em; line-height: 1.15; color: #fff; margin-bottom: 12px;
+  }
+  .s-body { font-size: 15px; color: var(--gray10); line-height: 1.65; letter-spacing: -0.005em; }
+  .s-body-inv { font-size: 15px; color: rgba(255,255,255,0.45); line-height: 1.65; letter-spacing: -0.005em; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+
+  /* ─── DIAGRAM SECTION ─── */
+  .diagram-section {
+    background: #000; border-bottom: 1px solid #111;
+    padding: 80px 0 68px; overflow: hidden; position: relative;
+  }
+  .diagram-header {
+    max-width: var(--max-w); margin: 0 auto 52px; padding: 0 48px;
+    display: flex; align-items: flex-end; justify-content: space-between; gap: 40px; flex-wrap: wrap;
+  }
+  .diagram-col-labels {
+    max-width: var(--max-w); margin: 0 auto 10px; padding: 0 64px;
+    display: flex; justify-content: space-between;
+  }
+  .diagram-col-label {
+    font-size: 9px; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.1em; color: rgba(255,255,255,0.18);
+  }
+  .diagram-svg-outer { width: 100%; overflow-x: auto; }
+  .diagram-svg {
+    display: block; width: 100%; min-width: 700px;
+    max-width: 1100px; margin: 0 auto;
+  }
+
+  /* Path draw-in animation */
+  @keyframes drawPath {
+    to { stroke-dashoffset: 0; }
+  }
+  .d-line {
+    stroke-dasharray: 600;
+    stroke-dashoffset: 600;
+    animation: drawPath 1.2s cubic-bezier(0.4,0,0.2,1) forwards;
+  }
+  .d-line:nth-child(1)  { animation-delay: 0.05s; }
+  .d-line:nth-child(2)  { animation-delay: 0.12s; }
+  .d-line:nth-child(3)  { animation-delay: 0.19s; }
+  .d-line:nth-child(4)  { animation-delay: 0.26s; }
+  .d-line:nth-child(5)  { animation-delay: 0.33s; }
+  .d-line:nth-child(6)  { animation-delay: 0.40s; }
+  .d-line:nth-child(7)  { animation-delay: 0.47s; }
+  .d-line:nth-child(8)  { animation-delay: 0.30s; }
+  .d-line:nth-child(9)  { animation-delay: 0.35s; }
+  .d-line:nth-child(10) { animation-delay: 0.40s; }
+  .d-line:nth-child(11) { animation-delay: 0.45s; }
+  .d-line:nth-child(12) { animation-delay: 0.50s; }
+
+  /* ─── DATA GRID ─── */
+  .data-grid {
+    display: grid; grid-template-columns: repeat(4,1fr);
+    gap: 1px; background: var(--gray4);
+    border: 1px solid var(--gray4); border-radius: 16px;
+    overflow: hidden; margin-top: 52px;
+  }
+  .data-cell {
+    background: #fff; padding: 28px 24px;
+    display: flex; flex-direction: column; gap: 13px;
+  }
+  .data-icon { width: 32px; height: 32px; color: var(--gray12); flex-shrink: 0; }
+  .data-icon svg { width: 20px; height: 20px; display: block; }
+  .data-title { font-size: 13px; font-weight: 600; color: var(--gray12); letter-spacing: -0.015em; line-height: 1.35; }
+  .data-body { font-size: 12px; color: var(--gray10); line-height: 1.65; }
+  .data-tags { display: flex; flex-wrap: wrap; gap: 4px; }
+  .data-tag {
+    font-size: 10px; font-weight: 500; color: var(--gray9);
+    background: var(--gray2); border: 1px solid var(--gray4);
+    border-radius: var(--radii-pill); padding: 2px 8px;
+  }
+
+  /* ─── CAPABILITY GRID ─── */
+  .cap-grid {
+    display: grid; grid-template-columns: repeat(5,1fr);
+    gap: 1px; background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px; overflow: hidden; margin-top: 52px;
+  }
+  .cap-card {
+    background: #1c1c1c; padding: 30px 24px;
+    display: flex; flex-direction: column; gap: 14px;
+  }
+  .cap-icon { width: 36px; height: 36px; color: rgba(255,255,255,0.55); }
+  .cap-icon svg { width: 20px; height: 20px; display: block; }
+  .cap-title { font-size: 13px; font-weight: 600; color: #fff; letter-spacing: -0.01em; line-height: 1.3; }
+  .cap-body { font-size: 12px; color: rgba(255,255,255,0.42); line-height: 1.65; }
+  .cap-example {
+    margin-top: auto; padding-top: 16px;
+    border-top: 1px solid rgba(255,255,255,0.07);
+    font-size: 11px; color: rgba(255,255,255,0.26); line-height: 1.55; font-style: italic;
+  }
+
+  /* ─── CHAT MOCKUP ─── */
+  .chat-wrap {
+    margin-top: 52px; border-radius: 16px; overflow: hidden;
+    border: 1px solid var(--gray4);
+    box-shadow: 0 2px 24px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+    background: #0a0a0a;
+  }
+  .chat-titlebar {
+    background: #111; border-bottom: 1px solid #1e1e1e;
+    padding: 11px 20px; display: flex; align-items: center; gap: 7px;
+  }
+  .chat-dot { width: 10px; height: 10px; border-radius: 50%; }
+  .chat-title-text {
+    flex: 1; text-align: center; font-size: 11px; font-weight: 500;
+    color: rgba(255,255,255,0.28); letter-spacing: -0.005em;
+  }
+  .chat-secure { font-size: 10px; color: rgba(255,255,255,0.18); display: flex; align-items: center; gap: 4px; }
+  .chat-secure svg { width: 9px; height: 9px; }
+  .chat-layout { display: grid; grid-template-columns: 196px 1fr; }
+  .chat-sidebar {
+    background: #0d0d0d; border-right: 1px solid #1a1a1a; padding: 12px 0;
+  }
+  .chat-nav-label {
+    font-size: 9px; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.1em; color: rgba(255,255,255,0.18); padding: 10px 14px 5px;
+  }
+  .chat-nav-item {
+    padding: 6px 14px; font-size: 12px; color: rgba(255,255,255,0.35);
+    display: flex; align-items: center; gap: 8px; letter-spacing: -0.005em;
+    cursor: pointer; transition: background 0.1s;
+  }
+  .chat-nav-item.active {
+    color: rgba(255,255,255,0.82); background: rgba(255,255,255,0.06);
+    border-right: 1.5px solid rgba(255,255,255,0.22);
+  }
+  .chat-nav-icon { width: 14px; height: 14px; opacity: 0.45; flex-shrink: 0; }
+  .chat-nav-item.active .chat-nav-icon { opacity: 0.75; }
+  .chat-main { display: flex; flex-direction: column; }
+  .chat-messages { padding: 20px 20px 8px; display: flex; flex-direction: column; gap: 14px; }
+  .msg { display: flex; gap: 9px; align-items: flex-start; }
+  .msg.user { flex-direction: row-reverse; }
+  .msg-avatar {
+    width: 26px; height: 26px; border-radius: 7px; flex-shrink: 0;
+    background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.09);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 9px; font-weight: 700; color: rgba(255,255,255,0.4); letter-spacing: 0.02em;
+  }
+  .msg-avatar svg { width: 13px; height: 13px; }
+  .msg-bubble {
+    max-width: 66%; padding: 11px 14px;
+    font-size: 12px; line-height: 1.62; letter-spacing: -0.005em;
+    border-radius: 11px;
+  }
+  .msg-bubble.user {
+    background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.78);
+    border: 1px solid rgba(255,255,255,0.07); border-top-right-radius: 3px;
+  }
+  .msg-bubble.ai {
+    background: #1a1a1a; color: rgba(255,255,255,0.62);
+    border: 1px solid #262626; border-top-left-radius: 3px;
+  }
+  .msg-bubble strong { color: rgba(255,255,255,0.88); font-weight: 600; }
+  .source-row { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 9px; }
+  .source-chip {
+    font-size: 10px; font-weight: 500;
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.09);
+    border-radius: 5px; padding: 2px 7px; color: rgba(255,255,255,0.28);
+  }
+  .chat-composer {
+    padding: 11px 15px; border-top: 1px solid #1a1a1a;
+    display: flex; gap: 8px; align-items: center;
+  }
+  .chat-input {
+    flex: 1; background: #1a1a1a; border: 1px solid #292929; border-radius: 8px;
+    padding: 8px 13px; font-size: 12px; color: rgba(255,255,255,0.22);
+    font-family: inherit; letter-spacing: -0.005em; outline: none;
+  }
+  .chat-send {
+    width: 30px; height: 30px; border-radius: 7px; flex-shrink: 0;
+    background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.09);
+    display: flex; align-items: center; justify-content: center; cursor: pointer;
+    color: rgba(255,255,255,0.35);
+  }
+  .chat-send svg { width: 11px; height: 11px; }
+
+  /* ─── OUTPUT CARDS ─── */
+  .output-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 52px; }
+  .output-card {
+    background: var(--gray2); border: 1px solid var(--gray4);
+    border-radius: 14px; overflow: hidden;
+  }
+  .output-card-head {
+    padding: 18px 22px; border-bottom: 1px solid var(--gray4);
+    display: flex; align-items: center; gap: 12px; background: #fff;
+  }
+  .output-head-icon {
+    width: 30px; height: 30px; border-radius: 8px; flex-shrink: 0;
+    background: var(--gray2); border: 1px solid var(--gray4);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--gray12);
+  }
+  .output-head-icon svg { width: 15px; height: 15px; }
+  .output-card-title { font-size: 13px; font-weight: 600; color: var(--gray12); letter-spacing: -0.01em; }
+  .output-card-sub { font-size: 11px; color: var(--gray9); margin-top: 1px; }
+  .output-card-body { padding: 18px 22px; }
+  .output-card-body p { font-size: 13px; color: var(--gray10); line-height: 1.65; margin-bottom: 14px; }
+  .preview-box {
+    background: #fff; border: 1px solid var(--gray4); border-radius: 10px; overflow: hidden;
+  }
+  .preview-bar {
+    background: var(--gray2); padding: 8px 13px; border-bottom: 1px solid var(--gray4);
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 10px; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.07em; color: var(--gray9);
+  }
+  .preview-bar-status { font-size: 10px; font-weight: 500; text-transform: none; letter-spacing: 0; }
+  .preview-content { padding: 14px; }
+
+  /* report rows */
+  .report-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 7px 0; border-bottom: 1px solid var(--gray4); font-size: 12px;
+  }
+  .report-row:last-child { border-bottom: none; }
+  .report-label { color: var(--gray11); }
+  .report-val { font-weight: 600; color: var(--gray12); display: flex; align-items: center; gap: 7px; }
+  .badge {
+    font-size: 10px; font-weight: 600; padding: 2px 7px; border-radius: 99px;
+  }
+  .badge-up { background: #f0fdf4; color: #15803d; }
+  .badge-warn { background: #fff1f2; color: #be123c; }
+
+  /* agent steps */
+  .agent-step {
+    display: flex; gap: 10px; align-items: flex-start;
+    padding: 8px 0; border-bottom: 1px solid var(--gray4); font-size: 12px;
+  }
+  .agent-step:last-child { border-bottom: none; }
+  .agent-step-n {
+    width: 18px; height: 18px; border-radius: 5px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 9px; margin-top: 1px; flex-shrink: 0;
+  }
+  .agent-step-n.done { background: #f0fdf4; color: #15803d; }
+  .agent-step-n.next { background: var(--gray3); color: var(--gray9); }
+  .agent-step-text { color: var(--gray11); line-height: 1.5; }
+  .agent-step-text strong { color: var(--gray12); font-weight: 600; }
+
+  /* voice transcript */
+  .voice-line { display: flex; gap: 9px; align-items: flex-start; font-size: 12px; padding: 5px 0; }
+  .voice-speaker {
+    font-size: 9px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.06em; color: var(--gray9); min-width: 44px; padding-top: 2px;
+  }
+  .voice-text { color: var(--gray11); line-height: 1.55; }
+
+  /* sms items */
+  .sms-item {
+    padding: 10px 0; border-bottom: 1px solid var(--gray4); font-size: 12px;
+  }
+  .sms-item:last-child { border-bottom: none; }
+  .sms-meta { display: flex; justify-content: space-between; margin-bottom: 3px; }
+  .sms-sender { font-weight: 600; color: var(--gray12); font-size: 11px; }
+  .sms-time { font-size: 10px; color: var(--gray9); }
+  .sms-body { color: var(--gray11); }
+  .sms-reply { margin-top: 5px; padding-top: 5px; border-top: 1px solid var(--gray4); font-size: 11px; color: var(--gray10); }
+  .sms-reply strong { color: var(--gray12); }
+
+  /* ─── VALUE SECTION ─── */
+  .value-section { padding: 96px 48px; background: var(--gray12); border-bottom: 1px solid #222; }
+  .value-inner { max-width: var(--max-w); margin: 0 auto; display: grid; grid-template-columns: 1.2fr 1fr; gap: 80px; align-items: start; }
+  .value-headline {
+    font-size: clamp(30px, 4.2vw, 52px); font-weight: 700;
+    letter-spacing: -0.04em; line-height: 1.07; color: #fff;
+  }
+  .value-headline span { color: rgba(255,255,255,0.28); }
+  .value-cards { display: flex; flex-direction: column; gap: 12px; }
+  .value-card {
+    background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px; padding: 20px;
+  }
+  .value-card-label {
+    font-size: 10px; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.09em; color: rgba(255,255,255,0.26); margin-bottom: 7px;
+  }
+  .value-card-body { font-size: 13px; color: rgba(255,255,255,0.52); line-height: 1.65; }
+
+  /* ─── WHO GRID ─── */
+  .who-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-top: 52px; }
+  .who-card {
+    background: var(--gray2); border: 1px solid var(--gray4);
+    border-radius: 14px; padding: 26px;
+  }
+  .who-label {
+    font-size: 10px; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.08em; color: var(--gray9); margin-bottom: 12px;
+    display: inline-flex; background: #fff; border: 1px solid var(--gray5);
+    border-radius: var(--radii-pill); padding: 3px 10px;
+  }
+  .who-title { font-size: 15px; font-weight: 600; color: var(--gray12); letter-spacing: -0.02em; margin-bottom: 8px; }
+  .who-body { font-size: 13px; color: var(--gray10); line-height: 1.65; margin-bottom: 18px; }
+  .who-uses { display: flex; flex-direction: column; gap: 7px; }
+  .who-use { display: flex; gap: 8px; align-items: flex-start; font-size: 12px; color: var(--gray11); line-height: 1.5; }
+  .who-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--gray7); flex-shrink: 0; margin-top: 6px; }
+
+  /* ─── PROCESS LIST ─── */
+  .process-list { margin-top: 48px; border-top: 1px solid rgba(255,255,255,0.07); }
+  .process-row {
+    display: flex; gap: 20px; align-items: flex-start;
+    padding: 20px 0; border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .process-row:last-child { border-bottom: none; }
+  .process-num { font-size: 10px; font-weight: 600; color: rgba(255,255,255,0.2); min-width: 22px; padding-top: 2px; }
+  .process-content { flex: 1; }
+  .process-title { font-size: 14px; font-weight: 600; color: #fff; letter-spacing: -0.01em; margin-bottom: 3px; }
+  .process-desc { font-size: 13px; color: rgba(255,255,255,0.38); line-height: 1.6; }
+  .process-week { font-size: 11px; color: rgba(255,255,255,0.22); white-space: nowrap; padding-top: 2px; letter-spacing: -0.005em; }
+
+  /* ─── CTA ─── */
+  .cta-section { padding: 96px 48px; background: #000; text-align: center; border-top: 1px solid #111; position: relative; overflow: hidden; }
+  .cta-h2 {
+    font-size: clamp(30px, 4.5vw, 54px); font-weight: 700;
+    letter-spacing: -0.04em; line-height: 1.08; color: #fff; margin-bottom: 14px;
+  }
+  .cta-p { font-size: 15px; color: rgba(255,255,255,0.38); margin-bottom: 36px; line-height: 1.65; max-width: 420px; margin-left: auto; margin-right: auto; }
+  .cta-btns { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+  .btn-cta-white {
+    font-family: inherit; font-size: 14px; font-weight: 600; padding: 12px 24px;
+    background: #fff; color: #000; border: 1px solid #fff;
+    border-radius: var(--radii-pill); cursor: pointer; transition: background 0.15s; letter-spacing: -0.01em;
+  }
+  .btn-cta-white:hover { background: #f0f0f0; }
+  .btn-cta-ghost {
+    font-family: inherit; font-size: 14px; font-weight: 500; padding: 12px 24px;
+    background: transparent; color: rgba(255,255,255,0.62); border: 1px solid rgba(255,255,255,0.18);
+    border-radius: var(--radii-pill); cursor: pointer; transition: all 0.15s; letter-spacing: -0.01em;
+  }
+  .btn-cta-ghost:hover { border-color: rgba(255,255,255,0.42); color: #fff; }
+
+  /* ─── FOOTER ─── */
+  footer { background: #fff; border-top: 1px solid var(--gray4); padding: 24px 48px; }
+  .footer-inner {
+    max-width: var(--max-w); margin: 0 auto;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 12px; color: var(--gray10); flex-wrap: wrap; gap: 14px;
+  }
+  .footer-brand { font-size: 13px; font-weight: 600; color: var(--gray12); letter-spacing: -0.01em; }
+  .footer-links { display: flex; gap: 20px; }
+  .footer-links a:hover { color: var(--gray12); }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 1024px) {
+    .data-grid { grid-template-columns: repeat(2,1fr); }
+    .cap-grid { grid-template-columns: repeat(3,1fr); }
+    .who-grid { grid-template-columns: 1fr 1fr; }
+    .two-col { grid-template-columns: 1fr; gap: 48px; }
+    .value-inner { grid-template-columns: 1fr; gap: 40px; }
+    .chat-layout { grid-template-columns: 1fr; }
+    .chat-sidebar { display: none; }
+    .output-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .nav-inner { padding: 0 24px; }
+    .hero, .section-white, .section-tinted, .section-dark, .value-section, .cta-section, footer { padding-left: 24px; padding-right: 24px; }
+    .diagram-header { padding-left: 24px; padding-right: 24px; }
+    .diagram-col-labels { padding-left: 24px; padding-right: 24px; }
+    .data-grid { grid-template-columns: 1fr; }
+    .cap-grid { grid-template-columns: 1fr 1fr; }
+    .who-grid { grid-template-columns: 1fr; }
+    .wf-canvas-outer { padding-left: 24px; padding-right: 24px; }
+  }
+
+  /* ─── WORKFLOW CANVAS SYSTEM (n8n node style) ─── */
+  .workflow-canvas {
+    background-color: #111;
+    background-image: radial-gradient(circle, rgba(255,255,255,0.07) 1px, transparent 1px);
+    background-size: 20px 20px;
+    border-radius: 16px;
+    border: 1px solid rgba(255,255,255,0.08);
+    overflow: hidden;
+    position: relative;
+  }
+  /* when inside a light section, ground it with a shadow */
+  .wf-shadow { box-shadow: 0 4px 32px rgba(0,0,0,0.10), 0 1px 4px rgba(0,0,0,0.06); }
+  /* canvas that needs horizontal scroll on small screens */
+  .wf-scroll { overflow-x: auto; }
+  .wf-canvas-outer { margin-top: 52px; }
+  .wf-canvas-label {
+    font-size: 11px; font-weight: 500; letter-spacing: -0.005em;
+    color: var(--gray10); margin-bottom: 14px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .wf-canvas-label-dot {
+    width: 6px; height: 6px; border-radius: 50%; background: #4ade80;
+  }
+  /* mini canvas inside output card — no extra shadow needed */
+  .workflow-canvas-sm {
+    background-color: #111;
+    background-image: radial-gradient(circle, rgba(255,255,255,0.07) 1px, transparent 1px);
+    background-size: 20px 20px;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.08);
+    overflow: hidden;
+  }
+
+  /* ─── NEURAL NETWORK BACKGROUND OVERLAY ─── */
+  .neural-bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+  .neural-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+  /* Light sections: very faint imprint */
+  .neural-bg--light img {
+    opacity: 0.055;
+    mix-blend-mode: multiply;
+  }
+  /* Dark sections: let the neural glow bleed through on black */
+  .neural-bg--dark img {
+    opacity: 0.11;
+    mix-blend-mode: screen;
+  }
+  /* Ensure all direct content children sit above the neural layer */
+  .hero-inner,
+  .diagram-header,
+  .diagram-col-labels,
+  .diagram-svg-outer,
+  .cta-h2,
+  .cta-p,
+  .cta-btns {
+    position: relative;
+    z-index: 1;
+  }
+  .cta-band { background: var(--gray12); color: #fff; padding: 72px 48px; text-align: center; }
+  .cta-band h2 { font-size: clamp(32px, 6vw, 68px); font-weight: 700; letter-spacing: -0.04em; line-height: 1.06; margin-bottom: 16px; }
+  .cta-band p { font-size: 15px; color: rgba(255,255,255,0.5); margin-bottom: 44px; line-height: 1.6; }
+  .cta-band .btns { display: flex; gap: 10px; flex-wrap: wrap; }
+  .btn-white { background: #fff; color: var(--gray12); border-color: #fff; font-size: 14px; padding: 12px 24px; }
+  .btn-white:hover { background: var(--gray2); }
+  .btn-ghost-white { background: transparent; border-color: rgba(255,255,255,0.25); color: rgba(255,255,255,0.8); font-size: 14px; padding: 12px 24px; }
+  .btn-ghost-white:hover { border-color: rgba(255,255,255,0.55); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="brand">Business Solutions & AI</a>
+    <div class="nav-links">
+      <a href="#how-it-works">How it works</a>
+      <a href="#capabilities">Capabilities</a>
+      <a href="#who">Who it's for</a>
+    </div>
+    <div class="nav-cta">
+      <button class="btn btn-outline">Text us</button>
+      <a href="#book" class="btn btn-dark">Book a call</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="neural-bg neural-bg--light">
+    <img src="neural-network-brain-neurone-synapse-connections-lightning-ball-energy-glow-machine-learning_159025-7347.avif" alt="" loading="eager">
+  </div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">
+      <span class="hero-eyebrow-dot"></span>
+      Company Brain
+    </div>
+    <h1 class="hero-h1">Your company,<br>fully searchable.<br>Instantly.</h1>
+    <p class="hero-lead">A custom AI trained on everything your business knows — your brand, your people, your processes — that your whole team can talk to like a colleague who knows it all.</p>
+    <div class="hero-actions">
+      <a href="#book" class="btn-hero-primary">Book a demo</a>
+      <button class="btn-hero-secondary">See how it works</button>
+    </div>
+  </div>
+</section>
+
+<!-- CONNECTION DIAGRAM -->
+<section class="diagram-section" id="how-it-works">
+  <div class="neural-bg neural-bg--dark">
+    <img src="neural-network-brain-neurone-synapse-connections-lightning-ball-energy-glow-machine-learning_159025-7347.avif" alt="" loading="lazy">
+  </div>
+  <div class="diagram-header">
+    <div>
+      <div class="s-eyebrow-inv">How it works</div>
+      <h2 class="s-h2-inv" style="max-width:340px;margin-bottom:0">Everything in.<br>Every answer out.</h2>
+    </div>
+    <p class="s-body-inv" style="max-width:320px">All your data sources flow into one trained intelligence. Every output channel draws from all of it, simultaneously.</p>
+  </div>
+
+  <!-- Column headers above SVG -->
+  <div class="diagram-col-labels">
+    <span class="diagram-col-label">Data Inputs</span>
+    <span class="diagram-col-label">Outputs</span>
+  </div>
+
+  <div class="diagram-svg-outer">
+    <svg class="diagram-svg" viewBox="0 0 1100 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <!-- Input lines: dim on left, brighter near brain -->
+        <linearGradient id="gIn" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%"   stop-color="rgba(255,255,255,0.10)"/>
+          <stop offset="100%" stop-color="rgba(255,255,255,0.28)"/>
+        </linearGradient>
+        <!-- Output lines: brighter near brain, dim on right -->
+        <linearGradient id="gOut" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%"   stop-color="rgba(255,255,255,0.28)"/>
+          <stop offset="100%" stop-color="rgba(255,255,255,0.10)"/>
+        </linearGradient>
+        <!-- Brain node ambient glow -->
+        <filter id="glow" x="-60%" y="-60%" width="220%" height="220%">
+          <feGaussianBlur stdDeviation="14" result="b"/>
+          <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+      </defs>
+
+      <!-- ── INPUT PATHS ──
+           7 inputs at x=205, y positions centered on 250:
+           step ≈ 66.7 → y: 50, 117, 184, 250, 316, 383, 450
+           Brain left edge at x=462, y=250
+           Curve: leave horizontally, arc into brain center
+      -->
+      <path class="d-line" d="M 205,50  C 340,50  435,250 462,250" stroke="url(#gIn)" stroke-width="0.8"/>
+      <path class="d-line" d="M 205,117 C 340,117 435,250 462,250" stroke="url(#gIn)" stroke-width="0.8"/>
+      <path class="d-line" d="M 205,184 C 340,184 435,250 462,250" stroke="url(#gIn)" stroke-width="0.8"/>
+      <path class="d-line" d="M 205,250 C 315,250 415,250 462,250" stroke="url(#gIn)" stroke-width="0.8"/>
+      <path class="d-line" d="M 205,316 C 340,316 435,250 462,250" stroke="url(#gIn)" stroke-width="0.8"/>
+      <path class="d-line" d="M 205,383 C 340,383 435,250 462,250" stroke="url(#gIn)" stroke-width="0.8"/>
+      <path class="d-line" d="M 205,450 C 340,450 435,250 462,250" stroke="url(#gIn)" stroke-width="0.8"/>
+
+      <!-- ── OUTPUT PATHS ──
+           5 outputs at x=895, y: 100, 193, 250, 307, 400
+           Brain right edge at x=638, y=250
+           Curve: leave brain horizontally, fan out to targets
+      -->
+      <path class="d-line" d="M 638,250 C 668,250 775,100  895,100"  stroke="url(#gOut)" stroke-width="0.8"/>
+      <path class="d-line" d="M 638,250 C 668,250 775,193  895,193"  stroke="url(#gOut)" stroke-width="0.8"/>
+      <path class="d-line" d="M 638,250 C 715,250 818,250  895,250"  stroke="url(#gOut)" stroke-width="0.8"/>
+      <path class="d-line" d="M 638,250 C 668,250 775,307  895,307"  stroke="url(#gOut)" stroke-width="0.8"/>
+      <path class="d-line" d="M 638,250 C 668,250 775,400  895,400"  stroke="url(#gOut)" stroke-width="0.8"/>
+
+      <!-- Input endpoint dots -->
+      <circle cx="205" cy="50"  r="2.5" fill="rgba(255,255,255,0.22)"/>
+      <circle cx="205" cy="117" r="2.5" fill="rgba(255,255,255,0.22)"/>
+      <circle cx="205" cy="184" r="2.5" fill="rgba(255,255,255,0.22)"/>
+      <circle cx="205" cy="250" r="2.5" fill="rgba(255,255,255,0.22)"/>
+      <circle cx="205" cy="316" r="2.5" fill="rgba(255,255,255,0.22)"/>
+      <circle cx="205" cy="383" r="2.5" fill="rgba(255,255,255,0.22)"/>
+      <circle cx="205" cy="450" r="2.5" fill="rgba(255,255,255,0.22)"/>
+
+      <!-- Output endpoint dots -->
+      <circle cx="895" cy="100" r="2.5" fill="rgba(255,255,255,0.22)"/>
+      <circle cx="895" cy="193" r="2.5" fill="rgba(255,255,255,0.22)"/>
+      <circle cx="895" cy="250" r="2.5" fill="rgba(255,255,255,0.22)"/>
+      <circle cx="895" cy="307" r="2.5" fill="rgba(255,255,255,0.22)"/>
+      <circle cx="895" cy="400" r="2.5" fill="rgba(255,255,255,0.22)"/>
+
+      <!-- Brain connection dots -->
+      <circle cx="462" cy="250" r="3.5" fill="rgba(255,255,255,0.32)"/>
+      <circle cx="638" cy="250" r="3.5" fill="rgba(255,255,255,0.32)"/>
+
+      <!-- ── BRAIN NODE ── -->
+      <rect x="462" y="214" width="176" height="72" rx="13"
+            fill="#141414" stroke="rgba(255,255,255,0.11)" stroke-width="1"
+            filter="url(#glow)"/>
+      <!-- Subtle inner highlight -->
+      <rect x="463" y="215" width="174" height="70" rx="12"
+            fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+      <!-- Label -->
+      <text x="550" y="244"
+            text-anchor="middle" fill="rgba(255,255,255,0.82)"
+            font-size="12.5" font-weight="600"
+            font-family="-apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif"
+            letter-spacing="-0.3">Company Brain</text>
+      <text x="550" y="265"
+            text-anchor="middle" fill="rgba(255,255,255,0.24)"
+            font-size="9.5" font-weight="500"
+            font-family="-apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif"
+            letter-spacing="0.6">TRAINED ON YOUR DATA</text>
+
+      <!-- ── INPUT LABELS (right-aligned) ── -->
+      <text x="191" y="55"  text-anchor="end" fill="rgba(255,255,255,0.48)" font-size="11.5" font-family="-apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif" letter-spacing="-0.2">Brand &amp; Identity</text>
+      <text x="191" y="122" text-anchor="end" fill="rgba(255,255,255,0.48)" font-size="11.5" font-family="-apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif" letter-spacing="-0.2">Locations &amp; Hours</text>
+      <text x="191" y="189" text-anchor="end" fill="rgba(255,255,255,0.48)" font-size="11.5" font-family="-apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif" letter-spacing="-0.2">SOPs &amp; Processes</text>
+      <text x="191" y="255" text-anchor="end" fill="rgba(255,255,255,0.48)" font-size="11.5" font-family="-apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif" letter-spacing="-0.2">Products &amp; Pricing</text>
+      <text x="191" y="321" text-anchor="end" fill="rgba(255,255,255,0.48)" font-size="11.5" font-family="-apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif" letter-spacing="-0.2">Past Emails &amp; Docs</text>
+      <text x="191" y="388" text-anchor="end" fill="rgba(255,255,255,0.48)" font-size="11.5" font-family="-apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif" letter-spacing="-0.2">Business Reports</text>
+      <text x="191" y="455" text-anchor="end" fill="rgba(255,255,255,0.48)" font-size="11.5" font-family="-apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif" letter-spacing="-0.2">Website &amp; Content</text>
+
+      <!-- ── OUTPUT LABELS (left-aligned) ── -->
+      <text x="908" y="105" fill="rgba(255,255,255,0.48)" font-size="11.5" font-family="-apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif" letter-spacing="-0.2">Chat Interface</text>
+      <text x="908" y="198" fill="rgba(255,255,255,0.48)" font-size="11.5" font-family="-apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif" letter-spacing="-0.2">Report Generation</text>
+      <text x="908" y="255" fill="rgba(255,255,255,0.48)" font-size="11.5" font-family="-apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif" letter-spacing="-0.2">AI Agents</text>
+      <text x="908" y="312" fill="rgba(255,255,255,0.48)" font-size="11.5" font-family="-apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif" letter-spacing="-0.2">Voice Receptionist</text>
+      <text x="908" y="405" fill="rgba(255,255,255,0.48)" font-size="11.5" font-family="-apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif" letter-spacing="-0.2">SMS &amp; Email Reply</text>
+    </svg>
+  </div>
+</section>
+
+<!-- WHAT GOES IN — DATA SOURCES -->
+<section class="section-white">
+  <div class="section-inner">
+    <div class="s-eyebrow">Knowledge base</div>
+    <div class="two-col" style="gap:48px;align-items:start">
+      <div>
+        <h2 class="s-h2">It knows everything your business knows.</h2>
+        <p class="s-body" style="max-width:440px">We connect it to every source of truth you already have. Documents, live systems, structured data — it ingests all of it and stays current as things change.</p>
+      </div>
+      <div style="padding-top:4px">
+        <p class="s-body">The brain isn't limited to a single file type or format. Brand guidelines, spreadsheets, past emails, your website — all of it becomes searchable, referenced knowledge that any output channel can draw from.</p>
+      </div>
+    </div>
+    <div class="data-grid">
+
+      <!-- Brand -->
+      <div class="data-cell">
+        <div class="data-icon">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M10 2l2.2 4.5 5 .7-3.6 3.5.85 4.95L10 13.4l-4.45 2.35.85-4.95L2.8 7.2l5-.7z"/>
+          </svg>
+        </div>
+        <div class="data-title">Brand & Identity</div>
+        <div class="data-body">Logos, tone of voice, color guidelines, mission, taglines, and brand standards embedded in every AI response.</div>
+        <div class="data-tags">
+          <span class="data-tag">Brand guide</span>
+          <span class="data-tag">Style docs</span>
+          <span class="data-tag">Tone rules</span>
+        </div>
+      </div>
+
+      <!-- Locations -->
+      <div class="data-cell">
+        <div class="data-icon">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M10 2C7.24 2 5 4.24 5 7c0 4.5 5 11 5 11s5-6.5 5-11c0-2.76-2.24-5-5-5z"/>
+            <circle cx="10" cy="7" r="2"/>
+          </svg>
+        </div>
+        <div class="data-title">Locations & Operations</div>
+        <div class="data-body">Every location's address, hours, phone, staff, services, and pricing — the brain knows the difference between your locations.</div>
+        <div class="data-tags">
+          <span class="data-tag">Hours</span>
+          <span class="data-tag">Services</span>
+          <span class="data-tag">Pricing</span>
+        </div>
+      </div>
+
+      <!-- SOPs -->
+      <div class="data-cell">
+        <div class="data-icon">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="2" width="14" height="16" rx="2"/>
+            <path d="M6.5 7h7M6.5 10.5h7M6.5 14h4"/>
+          </svg>
+        </div>
+        <div class="data-title">SOPs & Processes</div>
+        <div class="data-body">How things actually get done. Onboarding flows, escalation policies, service procedures — uploaded once, referenced forever.</div>
+        <div class="data-tags">
+          <span class="data-tag">SOPs</span>
+          <span class="data-tag">Playbooks</span>
+          <span class="data-tag">Policies</span>
+        </div>
+      </div>
+
+      <!-- People -->
+      <div class="data-cell">
+        <div class="data-icon">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="10" cy="6.5" r="3"/>
+            <path d="M3 18c0-3.866 3.134-7 7-7s7 3.134 7 7"/>
+          </svg>
+        </div>
+        <div class="data-title">People & Org Structure</div>
+        <div class="data-body">Who owns what, who to contact, department structures, roles, and responsibilities. Reduces the "who do I ask?" tax.</div>
+        <div class="data-tags">
+          <span class="data-tag">Team directory</span>
+          <span class="data-tag">Org chart</span>
+          <span class="data-tag">Roles</span>
+        </div>
+      </div>
+
+      <!-- Products -->
+      <div class="data-cell">
+        <div class="data-icon">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="7" height="7" rx="1.5"/>
+            <rect x="11" y="2" width="7" height="7" rx="1.5"/>
+            <rect x="2" y="11" width="7" height="7" rx="1.5"/>
+            <rect x="11" y="11" width="7" height="7" rx="1.5"/>
+          </svg>
+        </div>
+        <div class="data-title">Products & Pricing</div>
+        <div class="data-body">Full catalog knowledge — every option, price tier, restriction, and FAQ. No staff guessing; no customers waiting for a callback.</div>
+        <div class="data-tags">
+          <span class="data-tag">Catalog</span>
+          <span class="data-tag">Pricing</span>
+          <span class="data-tag">FAQs</span>
+        </div>
+      </div>
+
+      <!-- Emails -->
+      <div class="data-cell">
+        <div class="data-icon">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="4.5" width="16" height="11" rx="2"/>
+            <path d="M2 5.5l8 5.5 8-5.5"/>
+          </svg>
+        </div>
+        <div class="data-title">Past Emails & Docs</div>
+        <div class="data-body">Historical emails, conversations, and resolved tickets. The brain learns from how your team responded before and matches that voice.</div>
+        <div class="data-tags">
+          <span class="data-tag">Emails</span>
+          <span class="data-tag">Tickets</span>
+          <span class="data-tag">Chat logs</span>
+        </div>
+      </div>
+
+      <!-- Reports -->
+      <div class="data-cell">
+        <div class="data-icon">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 16.5h16"/>
+            <path d="M4 16.5V11M8 16.5V8M12 16.5V11.5M16 16.5V5"/>
+          </svg>
+        </div>
+        <div class="data-title">Business Reports & Data</div>
+        <div class="data-body">Sales reports, KPIs, historical performance, and dashboards. Ask for a summary and get an answer — not a spreadsheet.</div>
+        <div class="data-tags">
+          <span class="data-tag">Sales data</span>
+          <span class="data-tag">KPIs</span>
+          <span class="data-tag">Trends</span>
+        </div>
+      </div>
+
+      <!-- Web -->
+      <div class="data-cell">
+        <div class="data-icon">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="10" cy="10" r="8"/>
+            <path d="M2 10h16"/>
+            <path d="M10 2c-2.5 2.5-3.5 5-3.5 8s1 5.5 3.5 8M10 2c2.5 2.5 3.5 5 3.5 8s-1 5.5-3.5 8"/>
+          </svg>
+        </div>
+        <div class="data-title">Website & Public Content</div>
+        <div class="data-body">Your website, blog posts, and public-facing materials — synced automatically so the brain is never out of date.</div>
+        <div class="data-tags">
+          <span class="data-tag">Website</span>
+          <span class="data-tag">Blog</span>
+          <span class="data-tag">Press</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CAPABILITIES -->
+<section class="section-dark" id="capabilities">
+  <div class="section-inner">
+    <div class="s-eyebrow-inv">What it can do</div>
+    <div class="two-col" style="gap:48px;align-items:start;margin-bottom:0">
+      <h2 class="s-h2-inv" style="margin-bottom:0">Five tools.<br>One brain.</h2>
+      <p class="s-body-inv">The Company Brain is not just a search box. It's a full suite of AI interfaces that put your company's knowledge to work — for your team and your customers.</p>
+    </div>
+    <div class="cap-grid">
+
+      <div class="cap-card">
+        <div class="cap-icon">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M16.5 3H3.5A1.5 1.5 0 002 4.5v8A1.5 1.5 0 003.5 14H7l3 3 3-3h3.5A1.5 1.5 0 0018 12.5v-8A1.5 1.5 0 0016.5 3z"/>
+          </svg>
+        </div>
+        <div class="cap-title">Chat Interface</div>
+        <div class="cap-body">Ask anything in plain English. The brain answers with context-aware responses drawn from your actual company data — not generic AI guesses.</div>
+        <div class="cap-example">"What's our refund policy for franchise locations?" — answered in seconds from your actual policy docs.</div>
+      </div>
+
+      <div class="cap-card">
+        <div class="cap-icon">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="2" width="14" height="16" rx="2"/>
+            <path d="M6.5 7h7M6.5 10.5h7M6.5 14h4"/>
+            <path d="M13.5 14.5l1.5 1.5 2.5-2.5" stroke-width="1.2"/>
+          </svg>
+        </div>
+        <div class="cap-title">Report Generation</div>
+        <div class="cap-body">Request a formatted report in plain language. The brain compiles data from multiple sources and delivers a clean, shareable document.</div>
+        <div class="cap-example">"Q2 performance summary for the northeast region" — full report generated from your data in seconds.</div>
+      </div>
+
+      <div class="cap-card">
+        <div class="cap-icon">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="7.5" width="14" height="10" rx="2"/>
+            <path d="M7 7.5V5.5a3 3 0 016 0v2"/>
+            <circle cx="7" cy="12.5" r="1.2" fill="currentColor" stroke="none"/>
+            <circle cx="13" cy="12.5" r="1.2" fill="currentColor" stroke="none"/>
+            <path d="M8.5 15.5h3"/>
+          </svg>
+        </div>
+        <div class="cap-title">AI Agents</div>
+        <div class="cap-body">Autonomous agents that take multi-step actions — pulling data, sending follow-ups, updating records — without any manual input from your team.</div>
+        <div class="cap-example">"Qualify this lead and book a call if they score above 80" — the agent handles the entire flow end to end.</div>
+      </div>
+
+      <div class="cap-card">
+        <div class="cap-icon">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M7 2.5h2l1.5 3.5-2 1.5c.9 1.8 2.1 3 4 4l1.5-2 3.5 1.5v2A1.5 1.5 0 0116 14.5C7 14.5 3.5 8 3.5 5A1.5 1.5 0 015 3.5H7"/>
+          </svg>
+        </div>
+        <div class="cap-title">Voice Receptionist</div>
+        <div class="cap-body">An AI that answers your phone, handles FAQs, routes calls, and books appointments — in your brand voice, 24 hours a day.</div>
+        <div class="cap-example">"Thanks for calling Acme. I can share hours, book a service, or connect you to the team."</div>
+      </div>
+
+      <div class="cap-card">
+        <div class="cap-icon">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 3H2A1.5 1.5 0 00.5 4.5v9A1.5 1.5 0 002 15h5l3 2.5L13 15h5a1.5 1.5 0 001.5-1.5v-9A1.5 1.5 0 0018 3z"/>
+            <path d="M5.5 8.5h9M5.5 11.5h6"/>
+          </svg>
+        </div>
+        <div class="cap-title">SMS & Email Reply</div>
+        <div class="cap-body">Automatically read and respond to incoming texts and emails — in your brand voice, with the right information — around the clock.</div>
+        <div class="cap-example">"What are your Saturday hours?" — auto-reply with location-specific hours within seconds of receiving the message.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- WORKFLOW CANVAS SECTION -->
+<section class="section-white">
+  <div class="section-inner">
+    <div class="s-eyebrow">Under the hood</div>
+    <div class="two-col" style="gap:48px;align-items:start">
+      <div>
+        <h2 class="s-h2">Real automations,<br>running on your data.</h2>
+        <p class="s-body" style="max-width:420px">Every output from the Company Brain is a workflow built on your knowledge. Here's what lead qualification looks like when the brain is wired into your business.</p>
+      </div>
+      <p class="s-body">Each node in the workflow draws from the same central knowledge base. The brain scores the lead using your actual pricing tiers, routes using your own qualification criteria, and books using your real calendar availability.</p>
+    </div>
+
+    <div class="wf-canvas-outer">
+      <div class="wf-canvas-label">
+        <span class="wf-canvas-label-dot"></span>
+        Lead Qualification · Runs on every new form submission
+      </div>
+      <!-- workflow canvas: dot-grid dark background, full SVG inside -->
+      <div class="workflow-canvas wf-shadow wf-scroll" style="min-height:370px">
+        <svg style="display:block;min-width:960px;width:100%" viewBox="0 0 960 370" fill="none" xmlns="http://www.w3.org/2000/svg"
+             font-family="-apple-system,BlinkMacSystemFont,'Helvetica Neue',Inter,sans-serif">
+
+          <!-- ── SUB-CONNECTIONS (dashed) from brain bottom to sub-nodes ── -->
+          <!-- brain bottom center: x=386, y=172 -->
+          <!-- sub-node tops: Chat(316,248), Memory(386,248), Tools(456,248) -->
+          <path d="M 386,172 C 386,210 316,248 316,248" stroke="rgba(255,255,255,0.15)" stroke-width="1" stroke-dasharray="4 4"/>
+          <path d="M 386,172 C 386,210 386,248 386,248"  stroke="rgba(255,255,255,0.15)" stroke-width="1" stroke-dasharray="4 4"/>
+          <path d="M 386,172 C 386,210 456,248 456,248" stroke="rgba(255,255,255,0.15)" stroke-width="1" stroke-dasharray="4 4"/>
+
+          <!-- ── MAIN CONNECTOR LINES ── -->
+          <!-- Node 1 right (212,140) → Node 2 left (292,134) -->
+          <path d="M 212,140 C 252,140 292,134 292,134" stroke="rgba(255,255,255,0.22)" stroke-width="1.5"/>
+          <!-- Node 2 right (482,134) → Node 3 left (552,140) -->
+          <path d="M 482,134 C 517,134 552,140 552,140" stroke="rgba(255,255,255,0.22)" stroke-width="1.5"/>
+          <!-- Node 3 right-top → Node 4 left (Book Meeting, branch true) — exits at x=728 (right edge of widened node 3) -->
+          <path d="M 728,128 C 752,128 776,92  776,92"  stroke="rgba(255,255,255,0.22)" stroke-width="1.5"/>
+          <!-- Node 3 right-bottom → Node 5 left (Nurture Email, branch false) -->
+          <path d="M 728,152 C 752,152 776,218 776,218" stroke="rgba(255,255,255,0.22)" stroke-width="1.5"/>
+
+          <!-- ── ARROWHEADS (small polygons at destination ports) ── -->
+          <polygon points="286,131 292,134 286,137" fill="rgba(255,255,255,0.30)"/>
+          <polygon points="546,137 552,140 546,143" fill="rgba(255,255,255,0.30)"/>
+          <polygon points="770,89  776,92  770,95"  fill="rgba(255,255,255,0.30)"/>
+          <polygon points="770,215 776,218 770,221" fill="rgba(255,255,255,0.30)"/>
+
+          <!-- ── CONNECTION PORT DOTS ── -->
+          <!-- main flow exit/entry ports -->
+          <circle cx="212" cy="140" r="4" fill="rgba(255,255,255,0.28)" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+          <circle cx="292" cy="134" r="4" fill="rgba(255,255,255,0.28)" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+          <circle cx="482" cy="134" r="4" fill="rgba(255,255,255,0.28)" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+          <circle cx="552" cy="140" r="4" fill="rgba(255,255,255,0.28)" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+          <circle cx="728" cy="128" r="4" fill="rgba(255,255,255,0.28)" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+          <circle cx="776" cy="92"  r="4" fill="rgba(255,255,255,0.28)" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+          <circle cx="728" cy="152" r="4" fill="rgba(255,255,255,0.28)" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+          <circle cx="776" cy="218" r="4" fill="rgba(255,255,255,0.28)" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+          <!-- sub-node diamond connectors (rotated squares) -->
+          <rect x="383" y="169" width="6" height="6" rx="1" transform="rotate(45 386 172)" fill="rgba(255,255,255,0.24)"/>
+          <rect x="313" y="245" width="6" height="6" rx="1" transform="rotate(45 316 248)" fill="rgba(255,255,255,0.24)"/>
+          <rect x="383" y="245" width="6" height="6" rx="1" transform="rotate(45 386 248)" fill="rgba(255,255,255,0.24)"/>
+          <rect x="453" y="245" width="6" height="6" rx="1" transform="rotate(45 456 248)" fill="rgba(255,255,255,0.24)"/>
+
+          <!-- ── BRANCH LABELS — positioned 12px past node right edge (x=728+12=740) ── -->
+          <text x="740" y="122" fill="rgba(255,255,255,0.28)" font-size="10" font-weight="500" letter-spacing="-0.005em">true</text>
+          <text x="740" y="160" fill="rgba(255,255,255,0.28)" font-size="10" font-weight="500" letter-spacing="-0.005em">false</text>
+
+          <!-- SUB-CONNECTION CATEGORY LABELS (tiny uppercase, above dashed lines) -->
+          <text x="296" y="210" fill="rgba(255,255,255,0.22)" font-size="9" font-weight="600" letter-spacing="0.06em">CHAT MODEL</text>
+          <text x="370" y="210" fill="rgba(255,255,255,0.22)" font-size="9" font-weight="600" letter-spacing="0.06em">MEMORY</text>
+          <text x="444" y="210" fill="rgba(255,255,255,0.22)" font-size="9" font-weight="600" letter-spacing="0.06em">TOOLS</text>
+
+          <!-- ══ NODE 1: Form Submitted (trigger) ══ -->
+          <!-- trigger indicator dot (green = always-on) -->
+          <circle cx="22" cy="140" r="6" fill="#4ade80" opacity="0.9"/>
+          <!-- node rect -->
+          <rect x="32" y="108" width="180" height="64" rx="12" fill="#2a2a2a" stroke="rgba(255,255,255,0.10)" stroke-width="1"/>
+          <!-- icon box -->
+          <rect x="44" y="120" width="40" height="40" rx="8" fill="rgba(255,255,255,0.06)"/>
+          <!-- icon: document with fold -->
+          <path d="M57,128 h10 l5,5 v14 a1,1 0 01-1,1 h-15 a1,1 0 01-1,-1 v-19 a1,1 0 011,-1z" stroke="rgba(255,255,255,0.65)" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M67,128 v5 h5" stroke="rgba(255,255,255,0.65)" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M59,138 h9 M59,142 h7" stroke="rgba(255,255,255,0.45)" stroke-width="1" stroke-linecap="round"/>
+          <!-- node labels -->
+          <text x="94" y="135" fill="rgba(255,255,255,0.88)" font-size="12" font-weight="600" letter-spacing="-0.01em">Form Submitted</text>
+          <text x="94" y="151" fill="rgba(255,255,255,0.35)" font-size="11" letter-spacing="-0.005em">Webhook trigger</text>
+
+          <!-- ══ NODE 2: Company Brain (AI agent — wider, brighter border) ══ -->
+          <rect x="292" y="96" width="190" height="76" rx="12" fill="#323232" stroke="rgba(255,255,255,0.16)" stroke-width="1"/>
+          <!-- outer glow ring -->
+          <rect x="293" y="97" width="188" height="74" rx="11" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+          <!-- icon box -->
+          <rect x="304" y="112" width="40" height="40" rx="8" fill="rgba(255,255,255,0.06)"/>
+          <!-- icon: bot/agent head -->
+          <rect x="313" y="119" width="22" height="17" rx="3" stroke="rgba(255,255,255,0.70)" stroke-width="1.1" fill="none"/>
+          <circle cx="319" cy="128" r="2" fill="rgba(255,255,255,0.70)"/>
+          <circle cx="329" cy="128" r="2" fill="rgba(255,255,255,0.70)"/>
+          <path d="M320,133 h8" stroke="rgba(255,255,255,0.70)" stroke-width="1.1" stroke-linecap="round"/>
+          <path d="M316,119 v-4 M330,119 v-4" stroke="rgba(255,255,255,0.70)" stroke-width="1.1" stroke-linecap="round"/>
+          <!-- node labels -->
+          <text x="354" y="129" fill="rgba(255,255,255,0.92)" font-size="12" font-weight="600" letter-spacing="-0.01em">Company Brain</text>
+          <text x="354" y="145" fill="rgba(255,255,255,0.38)" font-size="11" letter-spacing="-0.005em">AI Agent · Analyze lead</text>
+
+          <!-- ══ NODE 3: Score & Route ══ -->
+          <!-- width=176 so right edge is x=728; text "Score & Route" @12px ~94px fits in 728-614=114px -->
+          <rect x="552" y="108" width="176" height="64" rx="12" fill="#2a2a2a" stroke="rgba(255,255,255,0.10)" stroke-width="1"/>
+          <rect x="564" y="120" width="40" height="40" rx="8" fill="rgba(255,255,255,0.06)"/>
+          <!-- icon: fork/split -->
+          <circle cx="576" cy="140" r="2.5" fill="rgba(255,255,255,0.65)"/>
+          <path d="M579,140 h6 M585,140 C591,140 595,133 598,133" stroke="rgba(255,255,255,0.65)" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+          <path d="M585,140 C591,140 595,147 598,147" stroke="rgba(255,255,255,0.65)" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+          <text x="614" y="135" fill="rgba(255,255,255,0.88)" font-size="12" font-weight="600" letter-spacing="-0.01em">Score &amp; Route</text>
+          <text x="614" y="151" fill="rgba(255,255,255,0.35)" font-size="11" letter-spacing="-0.005em">Route by intent</text>
+
+          <!-- ══ NODE 4: Book Meeting (branch: true) ══ -->
+          <rect x="776" y="60" width="160" height="64" rx="12" fill="#2a2a2a" stroke="rgba(255,255,255,0.10)" stroke-width="1"/>
+          <rect x="788" y="72" width="40" height="40" rx="8" fill="rgba(255,255,255,0.06)"/>
+          <!-- icon: calendar -->
+          <rect x="796" y="79" width="24" height="22" rx="2" stroke="rgba(255,255,255,0.65)" stroke-width="1.1" fill="none"/>
+          <path d="M796,86 h24" stroke="rgba(255,255,255,0.45)" stroke-width="1"/>
+          <path d="M802,79 v-4 M814,79 v-4" stroke="rgba(255,255,255,0.65)" stroke-width="1.1" stroke-linecap="round"/>
+          <rect x="799" y="90" width="4" height="4" rx="0.5" fill="rgba(255,255,255,0.45)"/>
+          <rect x="808" y="90" width="4" height="4" rx="0.5" fill="rgba(255,255,255,0.45)"/>
+          <text x="838" y="87" fill="rgba(255,255,255,0.88)" font-size="12" font-weight="600" letter-spacing="-0.01em">Book Meeting</text>
+          <text x="838" y="103" fill="rgba(255,255,255,0.35)" font-size="11" letter-spacing="-0.005em">Auto-schedule</text>
+
+          <!-- ══ NODE 5: Nurture Email (branch: false) ══ -->
+          <rect x="776" y="186" width="160" height="64" rx="12" fill="#2a2a2a" stroke="rgba(255,255,255,0.10)" stroke-width="1"/>
+          <rect x="788" y="198" width="40" height="40" rx="8" fill="rgba(255,255,255,0.06)"/>
+          <!-- icon: envelope -->
+          <rect x="796" y="205" width="24" height="18" rx="2" stroke="rgba(255,255,255,0.65)" stroke-width="1.1" fill="none"/>
+          <path d="M796,208 l12,7 12,-7" stroke="rgba(255,255,255,0.65)" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+          <text x="838" y="213" fill="rgba(255,255,255,0.88)" font-size="12" font-weight="600" letter-spacing="-0.01em">Nurture Email</text>
+          <text x="838" y="229" fill="rgba(255,255,255,0.35)" font-size="11" letter-spacing="-0.005em">Send sequence</text>
+
+          <!-- ══ SUB-NODES (circular) below Company Brain ══ -->
+          <!-- Chat Model at (316,280) -->
+          <circle cx="316" cy="280" r="32" fill="#252525" stroke="rgba(255,255,255,0.10)" stroke-width="1"/>
+          <!-- icon: chat bubble -->
+          <path d="M305,273 h22 a2,2 0 012,2 v10 a2,2 0 01-2,2 h-7 l-4,4 -4,-4 h-7 a2,2 0 01-2,-2 v-10 a2,2 0 012,-2z" stroke="rgba(255,255,255,0.55)" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <text x="316" y="324" text-anchor="middle" fill="rgba(255,255,255,0.60)" font-size="11" font-weight="500" letter-spacing="-0.005em">Chat Model</text>
+          <text x="316" y="337" text-anchor="middle" fill="rgba(255,255,255,0.28)" font-size="10" letter-spacing="-0.005em">Claude</text>
+
+          <!-- Memory at (386,280) -->
+          <circle cx="386" cy="280" r="32" fill="#252525" stroke="rgba(255,255,255,0.10)" stroke-width="1"/>
+          <!-- icon: cylinder/database -->
+          <ellipse cx="386" cy="272" rx="9" ry="3" stroke="rgba(255,255,255,0.55)" stroke-width="1.1" fill="none"/>
+          <path d="M377,272 v10 M395,272 v10" stroke="rgba(255,255,255,0.55)" stroke-width="1.1"/>
+          <ellipse cx="386" cy="282" rx="9" ry="3" stroke="rgba(255,255,255,0.55)" stroke-width="1.1" fill="none"/>
+          <text x="386" y="324" text-anchor="middle" fill="rgba(255,255,255,0.60)" font-size="11" font-weight="500" letter-spacing="-0.005em">Memory</text>
+          <text x="386" y="337" text-anchor="middle" fill="rgba(255,255,255,0.28)" font-size="10" letter-spacing="-0.005em">Company data</text>
+
+          <!-- Tools at (456,280) -->
+          <circle cx="456" cy="280" r="32" fill="#252525" stroke="rgba(255,255,255,0.10)" stroke-width="1"/>
+          <!-- icon: wrench -->
+          <path d="M448,272 a8,8 0 0113,7.5 l4,4 a2,2 0 01-3,3 l-4,-4 a8,8 0 01-10,-10.5z" stroke="rgba(255,255,255,0.55)" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <text x="456" y="324" text-anchor="middle" fill="rgba(255,255,255,0.60)" font-size="11" font-weight="500" letter-spacing="-0.005em">Tools</text>
+          <text x="456" y="337" text-anchor="middle" fill="rgba(255,255,255,0.28)" font-size="10" letter-spacing="-0.005em">CRM · Calendar</text>
+
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INTERFACE MOCKUP -->
+<section class="section-tinted">
+  <div class="section-inner">
+    <div class="s-eyebrow">Live interface</div>
+    <div class="two-col" style="gap:48px;align-items:start">
+      <div>
+        <h2 class="s-h2">What it looks like to use it.</h2>
+        <p class="s-body">Your team gets a clean, secure workspace — like a chat interface, but trained entirely on your business. Ask in plain English. Get precise, sourced answers instantly.</p>
+      </div>
+      <div>
+        <p class="s-body">Everything the brain returns is traceable. It cites which documents or data sources it drew from, so your team can verify answers and trust the output before acting on it.</p>
+      </div>
+    </div>
+
+    <div class="chat-wrap">
+      <!-- Title bar -->
+      <div class="chat-titlebar">
+        <div class="chat-dot" style="background:#3a3a3a"></div>
+        <div class="chat-dot" style="background:#3a3a3a"></div>
+        <div class="chat-dot" style="background:#3a3a3a"></div>
+        <div class="chat-title-text">Company Brain — Acme Corp Workspace</div>
+        <div class="chat-secure">
+          <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="5" width="8" height="6" rx="1"/>
+            <path d="M4 5V3.5a2 2 0 014 0V5"/>
+          </svg>
+          Private
+        </div>
+      </div>
+
+      <div class="chat-layout">
+        <!-- Sidebar -->
+        <div class="chat-sidebar">
+          <div class="chat-nav-label">Tools</div>
+          <div class="chat-nav-item active">
+            <svg class="chat-nav-icon" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M11.5 2H2.5A1 1 0 001.5 3v5A1 1 0 002.5 9H5l2 2 2-2h2.5a1 1 0 001-1V3a1 1 0 00-1-1z"/>
+            </svg>
+            Ask the Brain
+          </div>
+          <div class="chat-nav-item">
+            <svg class="chat-nav-icon" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="1.5" width="10" height="11" rx="1.5"/>
+              <path d="M4.5 5h5M4.5 7.5h5M4.5 10h3"/>
+            </svg>
+            Generate Report
+          </div>
+          <div class="chat-nav-item">
+            <svg class="chat-nav-icon" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="5.5" width="10" height="7" rx="1.5"/>
+              <path d="M5 5.5V4a2 2 0 014 0v1.5"/>
+              <circle cx="5" cy="9" r="0.9" fill="currentColor" stroke="none"/>
+              <circle cx="9" cy="9" r="0.9" fill="currentColor" stroke="none"/>
+            </svg>
+            Run an Agent
+          </div>
+          <div class="chat-nav-item">
+            <svg class="chat-nav-icon" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 2h1.5l1 2.5-1.5 1c.6 1.3 1.5 2.2 3 3l1-1.5 2.5 1v1.5a1 1 0 01-1 1C3.5 11.5 1.5 7 1.5 4.5A1 1 0 012.5 3.5H4.5"/>
+            </svg>
+            Voice Activity
+          </div>
+          <div class="chat-nav-item">
+            <svg class="chat-nav-icon" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M13 2.5H1A1 1 0 000 3.5v6A1 1 0 001 10.5H4l3 2 3-2h3a1 1 0 001-1v-6a1 1 0 00-1-1z"/>
+            </svg>
+            SMS & Email Log
+          </div>
+          <div class="chat-nav-label" style="margin-top:8px">Data Sources</div>
+          <div class="chat-nav-item">
+            <svg class="chat-nav-icon" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="1.5" width="10" height="11" rx="1.5"/>
+              <path d="M4.5 5h5M4.5 7.5h5M4.5 10h3"/>
+            </svg>
+            Documents
+          </div>
+          <div class="chat-nav-item">
+            <svg class="chat-nav-icon" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M7 1.5C4.8 1.5 3 3.3 3 5.5c0 3.25 4 7.5 4 7.5s4-4.25 4-7.5c0-2.2-1.8-4-4-4z"/>
+              <circle cx="7" cy="5.5" r="1.5"/>
+            </svg>
+            Locations
+          </div>
+          <div class="chat-nav-item">
+            <svg class="chat-nav-icon" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="1.5" y="1.5" width="5" height="5" rx="1"/>
+              <rect x="7.5" y="1.5" width="5" height="5" rx="1"/>
+              <rect x="1.5" y="7.5" width="5" height="5" rx="1"/>
+              <rect x="7.5" y="7.5" width="5" height="5" rx="1"/>
+            </svg>
+            Products
+          </div>
+        </div>
+
+        <!-- Chat area -->
+        <div class="chat-main">
+          <div class="chat-messages">
+
+            <div class="msg user">
+              <div class="msg-avatar">TM</div>
+              <div class="msg-bubble user">What are the pricing tiers for our enterprise plan and what's included at each level?</div>
+            </div>
+
+            <div class="msg">
+              <div class="msg-avatar">
+                <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M7 1.5C3.96 1.5 1.5 3.96 1.5 7S3.96 12.5 7 12.5 12.5 10.04 12.5 7 10.04 1.5 7 1.5z"/>
+                  <path d="M5 5.5c0-1.1.9-2 2-2s2 .9 2 2c0 .8-.5 1.5-1.2 1.8L7 7.8"/>
+                  <circle cx="7" cy="9.5" r=".7" fill="currentColor" stroke="none"/>
+                </svg>
+              </div>
+              <div class="msg-bubble ai">
+                <strong>Three enterprise tiers:</strong><br><br>
+                <strong>Starter</strong> — $499/mo · Up to 10 users, standard support, core features.<br><br>
+                <strong>Growth</strong> — $1,199/mo · Up to 50 users, priority support, API access, custom branding.<br><br>
+                <strong>Enterprise</strong> — Custom · Unlimited users, dedicated CSM, SLA guarantees, on-prem option.<br><br>
+                Annual plans receive a 15% discount on all tiers.
+                <div class="source-row">
+                  <span class="source-chip">Enterprise Pricing Doc</span>
+                  <span class="source-chip">Sales Playbook v3</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="msg user">
+              <div class="msg-avatar">TM</div>
+              <div class="msg-bubble user">Draft a paragraph I can send to a prospect who asked about enterprise pricing.</div>
+            </div>
+
+            <div class="msg">
+              <div class="msg-avatar">
+                <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M7 1.5C3.96 1.5 1.5 3.96 1.5 7S3.96 12.5 7 12.5 12.5 10.04 12.5 7 10.04 1.5 7 1.5z"/>
+                  <path d="M5 5.5c0-1.1.9-2 2-2s2 .9 2 2c0 .8-.5 1.5-1.2 1.8L7 7.8"/>
+                  <circle cx="7" cy="9.5" r=".7" fill="currentColor" stroke="none"/>
+                </svg>
+              </div>
+              <div class="msg-bubble ai">
+                <strong>Draft — in your brand voice:</strong><br><br>
+                "Our Enterprise plans are built for teams that need scale without friction. Starting at $499/month, you get everything to move fast — and as you grow, so do the capabilities. Our top tier includes unlimited users, a dedicated success manager, and custom SLAs. Annual plans save 15% across the board. Happy to put together a tailored proposal — just let me know your team size and timeline."
+                <div class="source-row">
+                  <span class="source-chip">Brand voice matched</span>
+                  <span class="source-chip">Based on Sales Playbook v3</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="chat-composer">
+            <div class="chat-input">Ask about anything in your company…</div>
+            <div class="chat-send">
+              <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M2 6h8M7 3l3 3-3 3"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OUTPUT DETAIL -->
+<section class="section-white">
+  <div class="section-inner">
+    <div class="s-eyebrow">Output formats</div>
+    <div class="two-col" style="gap:48px;align-items:start">
+      <div>
+        <h2 class="s-h2">Not just a chat.<br>A full operating layer.</h2>
+      </div>
+      <p class="s-body">The brain delivers its knowledge in the format that fits the job — a structured report, an autonomous agent, a live phone call, or an instant text reply.</p>
+    </div>
+
+    <div class="output-grid">
+
+      <!-- REPORT -->
+      <div class="output-card">
+        <div class="output-card-head">
+          <div class="output-head-icon">
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="2" width="14" height="16" rx="2"/>
+              <path d="M6.5 7h7M6.5 10.5h7M6.5 14h4"/>
+            </svg>
+          </div>
+          <div>
+            <div class="output-card-title">Generated Reports</div>
+            <div class="output-card-sub">Plain-language request to formatted output</div>
+          </div>
+        </div>
+        <div class="output-card-body">
+          <p>Ask the brain to compile data from multiple sources. It delivers a clean, shareable summary — no spreadsheets, no analyst required.</p>
+          <div class="preview-box">
+            <div class="preview-bar">
+              Q2 Summary — Northeast Region
+              <span class="preview-bar-status" style="color:var(--gray9)">Generated just now</span>
+            </div>
+            <div class="preview-content">
+              <div class="report-row">
+                <span class="report-label">Total Revenue</span>
+                <span class="report-val">$1.24M <span class="badge badge-up">+14%</span></span>
+              </div>
+              <div class="report-row">
+                <span class="report-label">New Customers</span>
+                <span class="report-val">312 <span class="badge badge-up">+8%</span></span>
+              </div>
+              <div class="report-row">
+                <span class="report-label">Avg. Response Time</span>
+                <span class="report-val">2.4 hrs <span class="badge badge-warn">vs goal</span></span>
+              </div>
+              <div class="report-row">
+                <span class="report-label">Top Location</span>
+                <span class="report-val">Boston — $310K</span>
+              </div>
+              <div class="report-row">
+                <span class="report-label">Churn Rate</span>
+                <span class="report-val">2.1% <span class="badge badge-up">improved</span></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- AGENT -->
+      <div class="output-card">
+        <div class="output-card-head">
+          <div class="output-head-icon">
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="7.5" width="14" height="10" rx="2"/>
+              <path d="M7 7.5V5.5a3 3 0 016 0v2"/>
+              <circle cx="7" cy="12.5" r="1.2" fill="currentColor" stroke="none"/>
+              <circle cx="13" cy="12.5" r="1.2" fill="currentColor" stroke="none"/>
+              <path d="M8.5 15.5h3"/>
+            </svg>
+          </div>
+          <div>
+            <div class="output-card-title">AI Agents</div>
+            <div class="output-card-sub">Multi-step tasks run automatically</div>
+          </div>
+        </div>
+        <div class="output-card-body">
+          <p>Agents monitor triggers and take action — qualifying leads, booking appointments, sending follow-ups — without anyone lifting a finger.</p>
+          <!-- mini n8n workflow canvas -->
+          <!-- viewBox 0 0 440 110: node1 x14-122, node2 x152-280, node3 x310-432, 8px margin to edge -->
+          <!-- text always starts ≥8px inside its node's right boundary to prevent clipping -->
+          <div class="workflow-canvas-sm" style="padding:20px 16px 16px">
+            <svg style="display:block;width:100%" viewBox="0 0 440 110" fill="none"
+                 xmlns="http://www.w3.org/2000/svg"
+                 font-family="-apple-system,BlinkMacSystemFont,'Helvetica Neue',sans-serif">
+
+              <!-- connector: node1 right(122,55) → node2 left(152,55) -->
+              <path d="M 122,55 C 137,55 152,55 152,55"
+                    stroke="rgba(255,255,255,0.22)" stroke-width="1.5"/>
+              <!-- connector: node2 right(280,55) → node3 left(310,55) -->
+              <path d="M 280,55 C 295,55 310,55 310,55"
+                    stroke="rgba(255,255,255,0.22)" stroke-width="1.5"/>
+
+              <!-- arrowheads -->
+              <polygon points="146,52 152,55 146,58" fill="rgba(255,255,255,0.30)"/>
+              <polygon points="304,52 310,55 304,58" fill="rgba(255,255,255,0.30)"/>
+
+              <!-- port dots -->
+              <circle cx="122" cy="55" r="3.5" fill="rgba(255,255,255,0.28)" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+              <circle cx="152" cy="55" r="3.5" fill="rgba(255,255,255,0.28)" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+              <circle cx="280" cy="55" r="3.5" fill="rgba(255,255,255,0.28)" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+              <circle cx="310" cy="55" r="3.5" fill="rgba(255,255,255,0.28)" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+
+              <!-- trigger indicator -->
+              <circle cx="6" cy="55" r="5" fill="#4ade80" opacity="0.9"/>
+
+              <!-- NODE 1: Form Submitted — rect x=14→122, text ends well before x=122 -->
+              <rect x="14" y="28" width="108" height="54" rx="9" fill="#2a2a2a" stroke="rgba(255,255,255,0.10)" stroke-width="1"/>
+              <rect x="22" y="36" width="30" height="30" rx="6" fill="rgba(255,255,255,0.06)"/>
+              <!-- doc icon -->
+              <path d="M29,43 h7 l4,4 v11 a1,1 0 01-1,1 h-11 a1,1 0 01-1,-1 v-15 a1,1 0 011,-1z"
+                    stroke="rgba(255,255,255,0.65)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M36,43 v4 h4" stroke="rgba(255,255,255,0.65)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+              <!-- text: "Form Submitted" split to two 9px lines, starts x=58, max ~60px wide → ends at ~118 ✓ -->
+              <text x="58" y="49" fill="rgba(255,255,255,0.85)" font-size="9" font-weight="600" letter-spacing="-0.01em">Form</text>
+              <text x="58" y="61" fill="rgba(255,255,255,0.85)" font-size="9" font-weight="600" letter-spacing="-0.01em">Submitted</text>
+              <text x="58" y="73" fill="rgba(255,255,255,0.32)" font-size="8" letter-spacing="-0.005em">Webhook</text>
+
+              <!-- NODE 2: Company Brain — rect x=152→280, text starts x=192, ends ~192+56=248 ✓ -->
+              <rect x="152" y="22" width="128" height="66" rx="9" fill="#323232" stroke="rgba(255,255,255,0.16)" stroke-width="1"/>
+              <rect x="162" y="32" width="30" height="30" rx="6" fill="rgba(255,255,255,0.06)"/>
+              <!-- bot icon -->
+              <rect x="168" y="38" width="18" height="13" rx="2.5" stroke="rgba(255,255,255,0.68)" stroke-width="1" fill="none"/>
+              <circle cx="172.5" cy="44.5" r="1.5" fill="rgba(255,255,255,0.68)"/>
+              <circle cx="179.5" cy="44.5" r="1.5" fill="rgba(255,255,255,0.68)"/>
+              <path d="M173,49 h7" stroke="rgba(255,255,255,0.68)" stroke-width="1" stroke-linecap="round"/>
+              <path d="M173,38 v-3 M179,38 v-3" stroke="rgba(255,255,255,0.68)" stroke-width="1" stroke-linecap="round"/>
+              <text x="198" y="46" fill="rgba(255,255,255,0.90)" font-size="9" font-weight="600" letter-spacing="-0.01em">Company Brain</text>
+              <text x="198" y="58" fill="rgba(255,255,255,0.32)" font-size="8" letter-spacing="-0.005em">AI Agent</text>
+
+              <!-- NODE 3: Book Meeting — rect x=310→432 (122px wide), text starts x=350, ends ~350+49=399 ✓ -->
+              <rect x="310" y="28" width="122" height="54" rx="9" fill="#2a2a2a" stroke="rgba(255,255,255,0.10)" stroke-width="1"/>
+              <rect x="318" y="36" width="30" height="30" rx="6" fill="rgba(255,255,255,0.06)"/>
+              <!-- calendar icon -->
+              <rect x="323" y="41" width="20" height="17" rx="1.5" stroke="rgba(255,255,255,0.65)" stroke-width="1" fill="none"/>
+              <path d="M323,47 h20" stroke="rgba(255,255,255,0.40)" stroke-width="1"/>
+              <path d="M328,41 v-3 M338,41 v-3" stroke="rgba(255,255,255,0.65)" stroke-width="1" stroke-linecap="round"/>
+              <rect x="326" y="51" width="3" height="3" rx="0.5" fill="rgba(255,255,255,0.45)"/>
+              <rect x="334" y="51" width="3" height="3" rx="0.5" fill="rgba(255,255,255,0.45)"/>
+              <!-- text: "Book Meeting" as one 9px line, ~77px wide, starts x=354, ends ~431 ✓ within 432 -->
+              <text x="354" y="49" fill="rgba(255,255,255,0.85)" font-size="9" font-weight="600" letter-spacing="-0.01em">Book Meeting</text>
+              <text x="354" y="61" fill="rgba(255,255,255,0.32)" font-size="8" letter-spacing="-0.005em">Auto-schedule</text>
+
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- VOICE -->
+      <div class="output-card">
+        <div class="output-card-head">
+          <div class="output-head-icon">
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M7 2.5h2l1.5 3.5-2 1.5c.9 1.8 2.1 3 4 4l1.5-2 3.5 1.5v2A1.5 1.5 0 0116 14.5C7 14.5 3.5 8 3.5 5A1.5 1.5 0 015 3.5H7"/>
+            </svg>
+          </div>
+          <div>
+            <div class="output-card-title">AI Voice Receptionist</div>
+            <div class="output-card-sub">Answers calls, routes, books, resolves</div>
+          </div>
+        </div>
+        <div class="output-card-body">
+          <p>An AI that picks up every call in your brand voice and handles the 80% of calls that don't need a human — FAQs, hours, bookings, routing — around the clock.</p>
+          <div class="preview-box">
+            <div class="preview-bar">
+              Inbound Call Transcript
+              <span class="preview-bar-status" style="color:var(--gray9)">10:32 AM · 4 min</span>
+            </div>
+            <div class="preview-content">
+              <div class="voice-line">
+                <span class="voice-speaker" style="color:#15803d">Brain</span>
+                <span class="voice-text">Thanks for calling Acme. How can I help you today?</span>
+              </div>
+              <div class="voice-line">
+                <span class="voice-speaker">Caller</span>
+                <span class="voice-text">Do you have Saturday appointments available this week?</span>
+              </div>
+              <div class="voice-line">
+                <span class="voice-speaker" style="color:#15803d">Brain</span>
+                <span class="voice-text">We do — downtown has openings at 9 AM, 11 AM, and 2 PM this Saturday. Can I grab your name and book one?</span>
+              </div>
+              <div class="voice-line">
+                <span class="voice-speaker">Caller</span>
+                <span class="voice-text">Yes, 11 AM. It's James Caldwell.</span>
+              </div>
+              <div class="voice-line">
+                <span class="voice-speaker" style="color:#15803d">Brain</span>
+                <span class="voice-text">Booked. You'll get a confirmation text shortly, James. Anything else?</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SMS & EMAIL -->
+      <div class="output-card">
+        <div class="output-card-head">
+          <div class="output-head-icon">
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 3H2A1.5 1.5 0 00.5 4.5v9A1.5 1.5 0 002 15h5l3 2.5L13 15h5a1.5 1.5 0 001.5-1.5v-9A1.5 1.5 0 0018 3z"/>
+            </svg>
+          </div>
+          <div>
+            <div class="output-card-title">SMS & Email Response</div>
+            <div class="output-card-sub">Auto-replies in your brand voice</div>
+          </div>
+        </div>
+        <div class="output-card-body">
+          <p>Every incoming text and email gets read, understood, and answered with the right information for the right location — every time, instantly.</p>
+          <div class="preview-box">
+            <div class="preview-bar">
+              Incoming Messages
+              <span class="preview-bar-status" style="color:#15803d">3 resolved</span>
+            </div>
+            <div class="preview-content">
+              <div class="sms-item">
+                <div class="sms-meta">
+                  <span class="sms-sender">+1 (617) 555-0141</span>
+                  <span class="sms-time">10:48 AM · SMS</span>
+                </div>
+                <div class="sms-body">What time do you close tonight?</div>
+                <div class="sms-reply"><strong>Auto-replied:</strong> "We're open until 7 PM tonight at all locations."</div>
+              </div>
+              <div class="sms-item">
+                <div class="sms-meta">
+                  <span class="sms-sender">linda.m@gmail.com</span>
+                  <span class="sms-time">11:02 AM · Email</span>
+                </div>
+                <div class="sms-body">Do you offer group discounts for teams of 10+?</div>
+                <div class="sms-reply"><strong>Auto-replied:</strong> "Yes — groups of 10+ receive 20% off. Reply to book."</div>
+              </div>
+              <div class="sms-item">
+                <div class="sms-meta">
+                  <span class="sms-sender">+1 (857) 555-0099</span>
+                  <span class="sms-time">11:19 AM · SMS</span>
+                </div>
+                <div class="sms-body">Can I reschedule my Thursday appointment?</div>
+                <div class="sms-reply"><strong>Auto-replied:</strong> "Of course — here's a link to reschedule, or reply with a preferred time."</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- VALUE -->
+<section class="value-section">
+  <div class="value-inner">
+    <div class="value-headline">
+      Your team spends hours every week<br>
+      <span>searching for answers they already have.</span>
+    </div>
+    <div class="value-cards">
+      <div class="value-card">
+        <div class="value-card-label">The real cost</div>
+        <div class="value-card-body">Every time someone digs through old emails or asks a coworker for information — that's time your business is paying for. The Company Brain eliminates that friction entirely.</div>
+      </div>
+      <div class="value-card">
+        <div class="value-card-label">What changes</div>
+        <div class="value-card-body">New hires onboard in days. Customer questions get answered in seconds. Your best people stop fielding the same questions forty times a week and start doing the work only they can do.</div>
+      </div>
+      <div class="value-card">
+        <div class="value-card-label">Always improving</div>
+        <div class="value-card-body">The brain learns as your company evolves. Add a location, update a policy, launch a product — the brain knows within minutes. No retraining, no IT tickets.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHO IT'S FOR -->
+<section class="section-white" id="who">
+  <div class="section-inner">
+    <div class="s-eyebrow">Who it's for</div>
+    <div class="two-col" style="gap:48px;align-items:start">
+      <h2 class="s-h2" style="margin-bottom:0">Designed for companies<br>with real complexity.</h2>
+      <p class="s-body">Any business with more than one location, more than one team, or more information than people can carry in their heads.</p>
+    </div>
+    <div class="who-grid">
+
+      <div class="who-card">
+        <div class="who-label">Multi-location</div>
+        <div class="who-title">Franchise & Retail Groups</div>
+        <div class="who-body">Different hours, different pricing, different staff — the brain knows every location and answers every question with location-specific accuracy.</div>
+        <div class="who-uses">
+          <div class="who-use"><div class="who-dot"></div>Customer inbound via phone, SMS, and email — handled automatically</div>
+          <div class="who-use"><div class="who-dot"></div>Staff Q&A on policies and procedures</div>
+          <div class="who-use"><div class="who-dot"></div>Owner-level performance reporting on demand</div>
+        </div>
+      </div>
+
+      <div class="who-card">
+        <div class="who-label">Service businesses</div>
+        <div class="who-title">Agencies & Consultancies</div>
+        <div class="who-body">Client histories, deliverable templates, pricing structures, and past work — all searchable, all referenced by your team in seconds.</div>
+        <div class="who-uses">
+          <div class="who-use"><div class="who-dot"></div>Instant access to past client notes and deliverables</div>
+          <div class="who-use"><div class="who-dot"></div>Proposal generation grounded in past wins</div>
+          <div class="who-use"><div class="who-dot"></div>AI agents for lead qualification and follow-up</div>
+        </div>
+      </div>
+
+      <div class="who-card">
+        <div class="who-label">Scaling teams</div>
+        <div class="who-title">Growing Companies</div>
+        <div class="who-body">When you're onboarding faster than your wiki can keep up, the brain becomes the single source of truth that new hires can actually use from day one.</div>
+        <div class="who-uses">
+          <div class="who-use"><div class="who-dot"></div>New hire onboarding and self-serve answers</div>
+          <div class="who-use"><div class="who-dot"></div>Department-specific knowledge without the overhead</div>
+          <div class="who-use"><div class="who-dot"></div>Internal policy and HR question handling</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- GET STARTED -->
+<section class="section-dark">
+  <div class="section-inner">
+    <div class="s-eyebrow-inv">Getting started</div>
+    <div class="two-col" style="gap:48px;align-items:start">
+      <h2 class="s-h2-inv" style="margin-bottom:0">Built and live in weeks,<br>not months.</h2>
+      <p class="s-body-inv">We handle the entire build — data gathering, training, deployment, and ongoing updates. You focus on your business while we build the brain.</p>
+    </div>
+    <div class="process-list">
+      <div class="process-row">
+        <div class="process-num">01</div>
+        <div class="process-content">
+          <div class="process-title">Discovery call</div>
+          <div class="process-desc">30 minutes. We learn your business, your team, and what questions come up most. We leave with a clear picture of what the brain needs to know.</div>
+        </div>
+        <div class="process-week">Day 1</div>
+      </div>
+      <div class="process-row">
+        <div class="process-num">02</div>
+        <div class="process-content">
+          <div class="process-title">Data collection & ingestion</div>
+          <div class="process-desc">You share your docs, spreadsheets, SOPs, and any other sources. We ingest, clean, and structure everything into the brain's knowledge base.</div>
+        </div>
+        <div class="process-week">Week 1</div>
+      </div>
+      <div class="process-row">
+        <div class="process-num">03</div>
+        <div class="process-content">
+          <div class="process-title">Build & configuration</div>
+          <div class="process-desc">We configure the chat interface, voice receptionist, SMS and email handler, and any agents you need — all trained on your data, in your voice.</div>
+        </div>
+        <div class="process-week">Weeks 2–3</div>
+      </div>
+      <div class="process-row">
+        <div class="process-num">04</div>
+        <div class="process-content">
+          <div class="process-title">Review & refinement</div>
+          <div class="process-desc">We test with your team, ask the brain every hard question you can think of, and refine until the responses are indistinguishable from your best employee.</div>
+        </div>
+        <div class="process-week">Week 3–4</div>
+      </div>
+      <div class="process-row">
+        <div class="process-num">05</div>
+        <div class="process-content">
+          <div class="process-title">Go live & hand off</div>
+          <div class="process-desc">We deploy everything, train your team on how to use and update it, and set up ongoing sync so the brain stays current as your business changes.</div>
+        </div>
+        <div class="process-week">Week 4+</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<section class="cta-band" id="book">
+  <div style="max-width:1200px;margin:0 auto;display:flex;gap:64px;align-items:center;text-align:left">
+    <div style="flex:1;min-width:0">
+      <h2>Your personal AI operations team.</h2>
+      <p>Book thirty minutes — or text us a problem right now.</p>
+      <div class="btns" style="justify-content:flex-start">
+        <button class="btn btn-white">Book a call →</button>
+        <button class="btn btn-ghost-white">Text us · +1 (415) 555‑0142</button>
+      </div>
+    </div>
+    <div style="flex:1.2;min-width:0;border-radius:16px;overflow:hidden;background:#fff;box-shadow:0 4px 40px rgba(0,0,0,0.3);height:640px">
+      <div style="transform:scale(0.65);transform-origin:top left;width:153.85%">
+        <iframe src="https://api.leadconnectorhq.com/widget/booking/JyXfpbgMAnJOMOySk5HL" style="width:100%;border:none;overflow:hidden;display:block" scrolling="no" id="JyXfpbgMAnJOMOySk5HL_1781658975912"></iframe>
+        <script src="https://link.msgsndr.com/js/form_embed.js" type="text/javascript"></script>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <a href="index.html" class="footer-brand">Business Solutions & AI</a>
+    <div class="footer-links">
+      <a href="index.html#solutions">Solutions</a>
+      <a href="index.html#workflows">Workflows</a>
+      <a href="index.html#values">Values</a>
+    </div>
+    <div>© 2026 · hello@bsai.co</div>
+  </div>
+</footer>
+
+</body>
+</html>

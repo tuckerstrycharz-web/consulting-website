@@ -1,0 +1,190 @@
+/*
+  AI Identity Component Stylesheet
+  Link this in any page: <link rel="stylesheet" href="ai-components/ai-components.css">
+  All classes are prefixed .ai- to avoid collisions.
+*/
+
+/* ── Color tokens ─────────────────────────────────────── */
+:root {
+  --accent:        #7a5af8;
+  --accent-subtle: rgba(122, 90, 248, 0.10);
+  --accent-border: rgba(122, 90, 248, 0.22);
+  --accent-hover:  rgba(122, 90, 248, 0.16);
+  --accent-light:  #a78bfa; /* for icons on dark/purple backgrounds */
+}
+
+/* ── Sparkle icon (inline SVG path, for currentColor use) */
+/* See sparkle-purple.svg / sparkle-white.svg for <img> use */
+
+/* ── AI Agent pill badge ──────────────────────────────── */
+.ai-agent-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: 9999px;
+  background: var(--accent-subtle);
+  border: 1px solid var(--accent-border);
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+}
+.ai-agent-pill img {
+  width: 13px;
+  height: 13px;
+  flex-shrink: 0;
+}
+
+/* Centered pill with divider lines on each side (chat header use) */
+.ai-agent-pill-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.ai-agent-pill-row hr {
+  flex: 1;
+  border: none;
+  border-top: 1px solid #e8e8e8;
+}
+
+/* ── AI icon box (feature cards) ─────────────────────── */
+.ai-icon-box {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: var(--accent-subtle);
+  border: 1px solid var(--accent-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--accent);
+}
+.ai-icon-box img {
+  width: 20px;
+  height: 20px;
+}
+/* Small variant */
+.ai-icon-box--sm {
+  width: 32px;
+  height: 32px;
+  border-radius: 7px;
+}
+.ai-icon-box--sm img {
+  width: 14px;
+  height: 14px;
+}
+
+/* ── Auto-reply / action badge ───────────────────────── */
+.ai-auto-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 10px;
+  border-radius: 9999px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  white-space: nowrap;
+}
+.ai-auto-badge img {
+  width: 10px;
+  height: 10px;
+  filter: brightness(0) invert(1);
+}
+
+/* ── Chat bubble (AI side) ───────────────────────────── */
+.ai-bubble-label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--accent);
+  margin-bottom: 5px;
+}
+.ai-bubble-label img {
+  width: 12px;
+  height: 12px;
+}
+.ai-bubble {
+  background: var(--accent-subtle);
+  border-radius: 4px 18px 18px 18px;
+  padding: 12px 16px;
+  font-size: 14px;
+  line-height: 1.55;
+  color: #1a1a1a;
+}
+/* Human bubble for contrast */
+.human-bubble {
+  background: #f0f0f0;
+  border-radius: 18px 18px 4px 18px;
+  padding: 12px 16px;
+  font-size: 14px;
+  line-height: 1.55;
+  color: #1a1a1a;
+}
+
+/* ── AI orb ──────────────────────────────────────────── */
+.ai-orb-wrap {
+  position: relative;
+  width: 240px;
+  height: 240px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.ai-orb {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  z-index: 2;
+  position: relative;
+  background: radial-gradient(circle at 38% 38%, #b09afb, #7a5af8 55%, #5b3fd4);
+  box-shadow: 0 8px 40px rgba(122,90,248,0.45), inset 0 -4px 12px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ai-orb img {
+  width: 44px;
+  height: 44px;
+}
+.ai-orb-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px dashed rgba(122,90,248,0.25);
+  pointer-events: none;
+  animation: ai-orb-spin 30s linear infinite;
+}
+.ai-orb-ring--1 { width: 158px; height: 158px; }
+.ai-orb-ring--2 { width: 200px; height: 200px; border-color: rgba(122,90,248,0.14); animation-duration: 50s; animation-direction: reverse; }
+.ai-orb-ring--3 { width: 242px; height: 242px; border-color: rgba(122,90,248,0.07); animation-duration: 80s; }
+@keyframes ai-orb-spin { to { transform: rotate(360deg); } }
+
+/* ── Workflow canvas AI node (applied inline on SVG rects) */
+/* fill="#2d2060" stroke="rgba(122,90,248,0.40)" — use directly in SVG */
+
+/* ── Utility: AI section label ───────────────────────── */
+.ai-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+.ai-eyebrow img {
+  width: 11px;
+  height: 11px;
+}

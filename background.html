@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Background & Track Record — Business Solutions & AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,500;1,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gray1: #fcfcfc;
+    --gray2: #f8f8f8;
+    --gray3: #f3f3f3;
+    --gray4: #ededed;
+    --gray5: #e8e8e8;
+    --gray6: #e2e2e2;
+    --gray7: #dbdbdb;
+    --gray8: #c7c7c7;
+    --gray9: #8f8f8f;
+    --gray10: #858585;
+    --gray11: #6f6f6f;
+    --gray12: #171717;
+    --radii-pill: 9999px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { height: 100%; font-feature-settings: "kern" 1; font-kerning: normal; scroll-behavior: smooth; }
+  body {
+    -webkit-text-size-adjust: 100%;
+    font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    background-color: #ffffff;
+    color: hsl(0, 0%, 9%);
+    line-height: 1;
+    overflow-x: hidden;
+  }
+  a { color: inherit; text-decoration: none; }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255,255,255,0.94);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--gray4);
+  }
+  .nav-inner {
+    max-width: 1200px; margin: 0 auto; padding: 0 48px;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 58px;
+  }
+  .brand { font-size: 14px; font-weight: 600; letter-spacing: -0.015em; color: var(--gray12); }
+  .nav-links { display: flex; gap: 32px; font-size: 14px; color: var(--gray10); font-weight: 450; }
+  .nav-links a:hover { color: var(--gray12); transition: color 0.15s; }
+  .nav-cta { display: flex; gap: 8px; align-items: center; }
+  .btn {
+    font-family: inherit; font-size: 13px; font-weight: 600;
+    padding: 8px 16px; border-radius: var(--radii-pill);
+    cursor: pointer; border: 1px solid transparent;
+    transition: all 0.15s; white-space: nowrap; line-height: 1;
+  }
+  .btn-outline { background: transparent; border-color: var(--gray6); color: var(--gray12); }
+  .btn-outline:hover { border-color: var(--gray9); }
+  .btn-dark { background: var(--gray12); color: #fff; border-color: var(--gray12); }
+  .btn-dark:hover { background: #000; }
+
+  /* PAGE HERO */
+  .page-hero {
+    padding: 72px 48px 64px;
+    border-bottom: 1px solid var(--gray4);
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr auto; gap: 64px; align-items: center;
+  }
+  .page-hero-text {}
+  .breadcrumb {
+    font-size: 12px; color: var(--gray9); font-weight: 500;
+    display: flex; align-items: center; gap: 6px; margin-bottom: 24px;
+  }
+  .breadcrumb a:hover { color: var(--gray12); }
+  .breadcrumb-sep { color: var(--gray7); }
+  .page-eyebrow {
+    font-size: 11px; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.1em; color: var(--gray9); margin-bottom: 16px;
+  }
+  .page-h1 {
+    font-size: clamp(28px, 4vw, 48px); font-weight: 700;
+    letter-spacing: -0.035em; line-height: 1.1; color: var(--gray12);
+    max-width: 640px; margin-bottom: 16px;
+  }
+  .page-lead {
+    font-size: 15px; color: var(--gray10); line-height: 1.7;
+    max-width: 560px; font-weight: 400;
+  }
+  .page-hero-image {
+    width: 260px; height: 260px; object-fit: cover; object-position: center top;
+    border-radius: 50%; flex-shrink: 0;
+    border: 1px solid var(--gray4);
+  }
+
+  /* SHARED SECTION WRAPPERS */
+  .section-light { padding: 80px 48px; border-bottom: 1px solid var(--gray4); background: #fff; }
+  .section-tinted { padding: 80px 48px; border-bottom: 1px solid var(--gray4); background: var(--gray2); }
+  .section-dark  { padding: 80px 48px; border-bottom: 1px solid var(--gray4); background: var(--gray12); color: #fff; }
+  .section-black { padding: 100px 48px; border-bottom: 1px solid #000; background: #000; color: #fff; }
+  .section-inner { max-width: 1200px; margin: 0 auto; }
+
+  .section-label {
+    font-size: 11px; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.1em; color: var(--gray9); margin-bottom: 16px;
+  }
+  .section-label-inv {
+    font-size: 11px; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.1em; color: rgba(255,255,255,0.4); margin-bottom: 16px;
+  }
+  .section-h2 {
+    font-size: clamp(20px, 2.6vw, 28px); font-weight: 600;
+    letter-spacing: -0.025em; line-height: 1.25; color: var(--gray12);
+    margin-bottom: 12px;
+  }
+  .section-h2-inv {
+    font-size: clamp(20px, 2.6vw, 28px); font-weight: 600;
+    letter-spacing: -0.025em; line-height: 1.25; color: #fff;
+    margin-bottom: 12px;
+  }
+  .section-p { font-size: 15px; color: var(--gray10); line-height: 1.7; }
+  .section-p-inv { font-size: 15px; color: rgba(255,255,255,0.55); line-height: 1.7; }
+
+  /* LAST 12 MONTHS KPI BAND */
+  .kpi-band {
+    padding: 80px 48px; background: #000; border-bottom: 1px solid #111;
+  }
+  .kpi-band-inner { max-width: 1200px; margin: 0 auto; }
+  .kpi-band-header { margin-bottom: 48px; }
+  .kpi-band-label {
+    font-size: 11px; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.1em; color: rgba(255,255,255,0.3); margin-bottom: 12px;
+  }
+  .kpi-band-h2 {
+    font-size: clamp(22px, 3vw, 32px); font-weight: 700;
+    letter-spacing: -0.03em; line-height: 1.15; color: #fff; margin-bottom: 10px;
+  }
+  .kpi-band-sub { font-size: 14px; color: rgba(255,255,255,0.4); line-height: 1.6; max-width: 480px; }
+  .kpi-grid {
+    display: grid; grid-template-columns: repeat(6, 1fr); gap: 0;
+    border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; overflow: hidden;
+  }
+  .kpi-cell {
+    padding: 32px 24px; border-right: 1px solid rgba(255,255,255,0.08);
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .kpi-cell:last-child { border-right: none; }
+  .kpi-val {
+    font-size: clamp(36px, 4vw, 52px); font-weight: 800;
+    color: #fff; letter-spacing: -0.05em; line-height: 1;
+  }
+  .kpi-val .kpi-unit { font-size: 0.5em; font-weight: 600; color: rgba(255,255,255,0.35); vertical-align: super; }
+  .kpi-label { font-size: 11px; color: rgba(255,255,255,0.35); line-height: 1.55; font-weight: 400; }
+
+  /* EMPLOYMENT HISTORY */
+  .history-list { margin-top: 40px; border-top: 1px solid var(--gray4); }
+  .history-row {
+    display: grid; grid-template-columns: 120px 1fr;
+    gap: 40px; padding: 32px 0; border-bottom: 1px solid var(--gray4);
+    align-items: start;
+  }
+  .history-row:last-child { border-bottom: none; }
+  .history-date {
+    font-size: 11px; font-weight: 500; color: var(--gray9);
+    line-height: 1.5; letter-spacing: 0.01em;
+    display: flex; flex-direction: column; gap: 10px;
+    align-items: center; text-align: center; justify-content: center;
+  }
+  .history-logo-wrap {
+    display: flex; align-items: center; justify-content: center;
+  }
+  .history-logo {
+    width: 88px; height: 88px; object-fit: contain;
+  }
+  .history-logo-wrap--circle {
+    width: 68px; height: 68px; border-radius: 50%; overflow: hidden; flex-shrink: 0;
+  }
+  .history-logo-wrap--circle .history-logo {
+    width: 100%; height: 100%; object-fit: cover;
+  }
+  .history-content {}
+  .history-title {
+    font-size: 15px; font-weight: 600; color: var(--gray12);
+    letter-spacing: -0.015em; line-height: 1.3; margin-bottom: 10px;
+  }
+  .history-company {
+    font-size: 11px; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.08em; color: var(--gray9); margin-bottom: 4px;
+  }
+  .history-desc { font-size: 13px; color: var(--gray10); line-height: 1.7; }
+  .history-row--edu {
+    background: var(--gray2); margin: 0 -48px; padding-left: 48px; padding-right: 48px;
+    border-bottom: none;
+  }
+  .history-row--edu .history-company { color: var(--gray10); }
+  .history-row--edu .history-title { font-weight: 500; color: var(--gray11); }
+  .history-row--edu .history-desc { color: var(--gray9); }
+
+  /* METRICS GRID — dark section */
+  .metrics-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+    background: rgba(255,255,255,0.08); border-radius: 14px; overflow: hidden;
+    margin-top: 40px; border: 1px solid rgba(255,255,255,0.1);
+  }
+  .metric-cell {
+    background: #1c1c1c; padding: 28px 24px;
+    display: flex; flex-direction: column; gap: 6px;
+  }
+  .metric-val {
+    font-size: clamp(28px, 3.5vw, 40px); font-weight: 700;
+    color: #fff; letter-spacing: -0.04em; line-height: 1;
+  }
+  .metric-val .unit { font-size: 0.55em; font-weight: 600; color: rgba(255,255,255,0.45); }
+  .metric-label { font-size: 12px; color: rgba(255,255,255,0.4); line-height: 1.5; margin-top: 2px; }
+
+  /* BUILT ITEMS */
+  .built-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 40px;
+  }
+  .built-card {
+    background: #fff; border: 1px solid var(--gray4);
+    border-radius: 14px; padding: 24px;
+  }
+  .built-card-num {
+    font-size: 10px; font-weight: 600; color: var(--gray8);
+    text-transform: uppercase; letter-spacing: 0.09em; margin-bottom: 14px;
+  }
+  .built-card-title {
+    font-size: 14px; font-weight: 600; color: var(--gray12);
+    letter-spacing: -0.015em; margin-bottom: 8px; line-height: 1.3;
+  }
+  .built-card-desc {
+    font-size: 12px; color: var(--gray10); line-height: 1.65;
+  }
+
+  /* STACK TAGS */
+  .stack-section { margin-top: 40px; }
+  .stack-group { margin-bottom: 28px; }
+  .stack-group-label {
+    font-size: 10px; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.09em; color: var(--gray9); margin-bottom: 12px;
+  }
+  .tag-cloud { display: flex; flex-wrap: wrap; gap: 8px; }
+  .tag {
+    font-size: 12px; font-weight: 500; color: var(--gray12);
+    background: var(--gray2); border: 1px solid var(--gray5);
+    border-radius: 8px; padding: 7px 14px; line-height: 1;
+  }
+  .tag-primary {
+    font-size: 12px; font-weight: 600; color: #fff;
+    background: var(--gray12); border: 1px solid var(--gray12);
+    border-radius: 8px; padding: 7px 14px; line-height: 1;
+  }
+
+  /* CTA BAND */
+  .cta-band {
+    background: var(--gray12); color: #fff;
+    padding: 96px 48px; text-align: center;
+  }
+  .cta-band h2 {
+    font-size: clamp(28px, 4.5vw, 52px); font-weight: 700;
+    letter-spacing: -0.04em; line-height: 1.08; margin-bottom: 14px;
+  }
+  .cta-band p { font-size: 15px; color: rgba(255,255,255,0.5); margin-bottom: 36px; line-height: 1.6; }
+  .cta-band .btns { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+  .btn-white { background: #fff; color: var(--gray12); border-color: #fff; font-size: 14px; padding: 12px 24px; }
+  .btn-white:hover { background: var(--gray2); }
+  .btn-ghost-white { background: transparent; border-color: rgba(255,255,255,0.25); color: rgba(255,255,255,0.8); font-size: 14px; padding: 12px 24px; }
+  .btn-ghost-white:hover { border-color: rgba(255,255,255,0.55); }
+
+  /* FOOTER */
+  footer { background: #fff; border-top: 1px solid var(--gray4); padding: 28px 48px; }
+  .footer-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 16px; font-size: 13px; color: var(--gray10);
+  }
+  .footer-brand { font-size: 14px; font-weight: 600; color: var(--gray12); }
+  .footer-links { display: flex; gap: 24px; }
+  .footer-links a:hover { color: var(--gray12); }
+
+  /* RESPONSIVE */
+  @media (max-width: 960px) {
+    .metrics-grid { grid-template-columns: repeat(2, 1fr); }
+    .built-grid { grid-template-columns: repeat(2, 1fr); }
+    .history-row { grid-template-columns: 1fr; gap: 8px; }
+    .kpi-grid { grid-template-columns: repeat(3, 1fr); }
+    .kpi-cell { border-bottom: 1px solid rgba(255,255,255,0.08); }
+  }
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .nav-inner { padding: 0 24px; }
+    .page-hero, .section-light, .section-tinted, .section-dark, .section-black, .cta-band, footer { padding-left: 24px; padding-right: 24px; }
+    .kpi-band { padding-left: 24px; padding-right: 24px; }
+    .built-grid { grid-template-columns: 1fr; }
+    .metrics-grid { grid-template-columns: 1fr; }
+    .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+    .page-hero { grid-template-columns: 1fr; }
+    .page-hero-image { width: 180px; height: 180px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="brand">Business Solutions & AI</a>
+    <div class="nav-links">
+      <a href="index.html#solutions">Solutions</a>
+      <a href="index.html#workflows">Workflows</a>
+      <a href="index.html#values">Values</a>
+    </div>
+    <div class="nav-cta">
+      <button class="btn btn-outline">Text us</button>
+      <a href="#book" class="btn btn-dark">Book a call</a>
+    </div>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<div style="border-bottom:1px solid var(--gray4)">
+  <div class="page-hero">
+    <div class="page-hero-text">
+      <div class="breadcrumb">
+        <a href="index.html">Home</a>
+        <span class="breadcrumb-sep">/</span>
+        <span>Background</span>
+      </div>
+      <div class="page-eyebrow">Track Record</div>
+      <h1 class="page-h1">Built at scale.<br>Inside a real business.</h1>
+      <p class="page-lead">Employment history, what I've actually deployed, and where this is going next — not a portfolio of side projects, but a record of systems running at scale with real revenue attached.</p>
+    </div>
+    <div style="display:flex; flex-direction:column; align-items:center; gap:14px;">
+      <img class="page-hero-image" src="Images/headshot.png" alt="Tucker Strycharz">
+      <div style="text-align:center;">
+        <div style="font-size:14px; font-weight:600; color:var(--gray12); letter-spacing:-0.01em;">John Tucker Strycharz</div>
+        <div style="font-size:12px; color:var(--gray9); margin-top:3px; font-weight:400;">Business Development<br>& AI Automation Solutions</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- LAST 12 MONTHS KPIs -->
+<div class="kpi-band">
+  <div class="kpi-band-inner">
+    <div class="kpi-band-header">
+      <div class="kpi-band-label">Brand Manager · Apr 2025 – Jun 2026</div>
+      <div class="kpi-band-h2">Last 12 months — built from zero.</div>
+      <p class="kpi-band-sub">One person. No agency. No outside dev team. The numbers below are what a CRM built from scratch inside a real business produces when it's built right.</p>
+    </div>
+    <div class="kpi-grid">
+      <div class="kpi-cell">
+        <div class="kpi-val">$5.4<span class="kpi-unit">M</span></div>
+        <div class="kpi-label">CRM revenue — 12-month build from zero</div>
+      </div>
+      <div class="kpi-cell">
+        <div class="kpi-val">19.2<span class="kpi-unit">k</span></div>
+        <div class="kpi-label">Reservations via CRM campaigns & automation</div>
+      </div>
+      <div class="kpi-cell">
+        <div class="kpi-val">31<span class="kpi-unit">%</span></div>
+        <div class="kpi-label">New lead conversion — automated nurture workflow</div>
+      </div>
+      <div class="kpi-cell">
+        <div class="kpi-val">10<span class="kpi-unit">%</span></div>
+        <div class="kpi-label">Lapsed customer re-conversion rate</div>
+      </div>
+      <div class="kpi-cell">
+        <div class="kpi-val">29</div>
+        <div class="kpi-label">CRM campaigns — email, SMS, lifecycle automation</div>
+      </div>
+      <div class="kpi-cell">
+        <div class="kpi-val">80<span class="kpi-unit">+</span></div>
+        <div class="kpi-label">Locations — live, at scale, maintained solo</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 1. EMPLOYMENT HISTORY -->
+<section class="section-light">
+  <div class="section-inner">
+    <div class="section-label">Employment History</div>
+    <h2 class="section-h2">Where I've worked and what I built there</h2>
+    <p class="section-p" style="max-width:560px">Every role produced real systems — not decks, not recommendations. Things that ran, generated revenue, and kept working after I moved to the next problem.</p>
+    <div class="history-list">
+
+      <div class="history-row">
+        <div class="history-date">
+          <div class="history-logo-wrap"><img class="history-logo" src="Images/work logos/bestfriendslogo.png" alt="Best Friends Pet Care"></div>
+          Jun 2026 – Present
+        </div>
+        <div class="history-content">
+          <div class="history-company">Best Friends Pet Care</div>
+          <div class="history-title">Head of Business Development</div>
+          <div class="history-desc">Lead for business development, customer acquisition strategy, and AI implementation across an 80+ location pet care portfolio. Responsible for $14M in total revenue across CRM oversight ($9.8M target), B2B partnership expansion (3.5k new customers sourced, $4.2M attributed ACV), and at least one new acquisition channel generating $1M+ annualized run rate — while managing the CRM specialist and deploying AI implementation company-wide. Building a portfolio-wide B2B partnership program with pre-loaded lead databases, smart scoring, and partner-specific playbooks executed across every center — plus driving AI adoption through cross-department efficiency audits and Claude Code-powered tooling.</div>
+        </div>
+      </div>
+
+      <div class="history-row">
+        <div class="history-date">
+          <div class="history-logo-wrap"><img class="history-logo" src="Images/work logos/bestfriendslogo.png" alt="Best Friends Pet Care"></div>
+          Apr 2025 – Jun 2026
+        </div>
+        <div class="history-content">
+          <div class="history-company">Best Friends Pet Care</div>
+          <div class="history-title">Brand Manager</div>
+          <div class="history-desc">Built and launched the company's HubSpot CRM and marketing automation infrastructure from scratch, generating $5.4M in revenue across 80+ locations — 19,200 reservations created, 31% new lead conversion rate, and 10% lapsed customer re-conversion rate across 29 campaigns. Led MoeGo POS software integration and optimization across the portfolio, and owned campaign management for email, SMS, and lifecycle marketing at scale.</div>
+        </div>
+      </div>
+
+      <div class="history-row">
+        <div class="history-date">
+          <div class="history-logo-wrap"><img class="history-logo" src="Images/work logos/Bacardi Logo.jpg" alt="BACARDI"></div>
+          Jun 2023 – Apr 2025
+        </div>
+        <div class="history-content">
+          <div class="history-company">BACARDI — North America</div>
+          <div class="history-title">Assistant Brand Manager, BACARDI Rums</div>
+          <div class="history-desc">Digital marketing and product innovation lead for BACARDI Rums North America — CRM, e-commerce, and data strategy across the brand. Built first-party data programs capturing 200k+ consumer leads, improving email CTR +3% and CTOR +5% year-over-year. Led innovation of a new rum SKU capturing $2MM+ in incremental NSV with 98% sell-through, and delivered 40k+ promotional cans for EDC festival activations at 95% sell-through. Co-led the Almost Friday Media partnership generating 7.4MM impressions and 465k engagements, and managed Casa BACARDI experiential activations across 6 major U.S. music festivals with Live Nation and TEAM Entertainment.</div>
+        </div>
+      </div>
+
+      <div class="history-row">
+        <div class="history-date">
+          <div class="history-logo-wrap"><img class="history-logo" src="Images/work logos/Bacardi Logo.jpg" alt="BACARDI"></div>
+          Jul 2021 – Jun 2023
+        </div>
+        <div class="history-content">
+          <div class="history-company">BACARDI</div>
+          <div class="history-title">Associate – Executive Development Program</div>
+          <div class="history-desc">Rotational management development program spanning Dubai and Miami, focused on financial analysis, brand health reporting, and self-service data infrastructure. Built a PowerPivot demand planning model for the AMEA region projecting margin shifts by SKU across historical and forward-looking data, and developed a new M&E dashboard giving brand and sales leadership direct budget ownership and visibility into growth-driving marketing activities.</div>
+        </div>
+      </div>
+
+      <div class="history-row history-row--edu">
+        <div class="history-date">
+          <div class="history-logo-wrap history-logo-wrap--circle"><img class="history-logo" src="Images/work logos/William & Mary Logo.jpg" alt="William & Mary"></div>
+          2017 – 2021
+        </div>
+        <div class="history-content">
+          <div class="history-company">William & Mary · Williamsburg, VA</div>
+          <div class="history-title">BBA, Business Administration — Finance Concentration</div>
+          <div class="history-desc">Cum Laude · 3.52 GPA · Varsity Football — W&M Athletics Provost Award for academic achievement, 2018 & 2019.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- 3. WHAT I'VE BUILT -->
+<section class="section-tinted">
+  <div class="section-inner">
+    <div class="section-label">Deployed, not prototyped</div>
+    <h2 class="section-h2">What I've actually built</h2>
+    <p class="section-p" style="max-width:560px">These aren't proof-of-concept projects. Every item below is live in a real business, running at scale, and generating measurable output.</p>
+    <div class="built-grid">
+
+      <div class="built-card">
+        <div class="built-card-num">01</div>
+        <div class="built-card-title">Lifecycle Marketing Automation</div>
+        <div class="built-card-desc">Built from scratch with full automation logic, segmentation, revenue attribution, and lifecycle workflows. $5.4M revenue, 19,200 reservations, across 80+ locations — maintained solo.</div>
+      </div>
+
+      <div class="built-card">
+        <div class="built-card-num">02</div>
+        <div class="built-card-title">AI Voice Receptionist</div>
+        <div class="built-card-desc">Handles inbound inquiries, qualifies leads, and routes conversations — live in production. Built to handle the calls humans were missing.</div>
+      </div>
+
+      <div class="built-card">
+        <div class="built-card-num">03</div>
+        <div class="built-card-title">AI SMS Agents</div>
+        <div class="built-card-desc">Automated two-way SMS that moves customers through conversion without human intervention. Connected directly to the CRM lifecycle — not a standalone tool.</div>
+      </div>
+
+      <div class="built-card">
+        <div class="built-card-num">04</div>
+        <div class="built-card-title">Custom Software Agents</div>
+        <div class="built-card-desc">Built on Claude Code and the Anthropic API — purpose-built agents that automate specific business workflows end-to-end. Not wrappers around ChatGPT.</div>
+      </div>
+
+      <div class="built-card">
+        <div class="built-card-num">05</div>
+        <div class="built-card-title">Company Brain / Custom GPT</div>
+        <div class="built-card-desc">Internal knowledge base that gives teams instant answers from company docs, SOPs, and data. Deployed across a 300+ person organization.</div>
+      </div>
+
+      <div class="built-card">
+        <div class="built-card-num">06</div>
+        <div class="built-card-title">Lead Databases & B2B Systems</div>
+        <div class="built-card-desc">Custom lead databases with smart scoring, pipeline tracking, and partner-specific outreach playbooks — built to run without a sales ops team behind them.</div>
+      </div>
+
+      <div class="built-card">
+        <div class="built-card-num">07</div>
+        <div class="built-card-title">AI Time-Back Audits</div>
+        <div class="built-card-desc">Maps where employees lose hours to manual work, then identifies and deploys the fix. Currently running across a 300+ person organization with documented time savings per department.</div>
+      </div>
+
+      <div class="built-card">
+        <div class="built-card-num">08</div>
+        <div class="built-card-title">Custom Websites</div>
+        <div class="built-card-desc">Built to convert — not just exist. Clean, functional, designed around the business goal. The output is measured leads, not compliments on the design.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- 4. TOOLS & STACK -->
+<section class="section-light">
+  <div class="section-inner">
+    <div class="section-label">Tools & Stack</div>
+    <h2 class="section-h2">What I actually work in</h2>
+    <p class="section-p" style="max-width:560px">No stack recommendations from the sideline. Every tool below is something I've shipped production work in — not demoed, not explored, built with.</p>
+
+    <div class="stack-section">
+      <div class="stack-group">
+        <div class="stack-group-label">Primary</div>
+        <div class="tag-cloud">
+          <span class="tag-primary">Claude Code</span>
+          <span class="tag-primary">Anthropic API</span>
+          <span class="tag-primary">HubSpot</span>
+          <span class="tag-primary">n8n</span>
+        </div>
+      </div>
+
+      <div class="stack-group">
+        <div class="stack-group-label">AI & Agents</div>
+        <div class="tag-cloud">
+          <span class="tag">AI Voice Agents</span>
+          <span class="tag">AI SMS Agents</span>
+          <span class="tag">Custom GPTs</span>
+          <span class="tag">Custom Software Agents</span>
+        </div>
+      </div>
+
+      <div class="stack-group">
+        <div class="stack-group-label">CRM & Marketing</div>
+        <div class="tag-cloud">
+          <span class="tag">CRM Automation</span>
+          <span class="tag">Marketing Automation</span>
+          <span class="tag">Email / SMS Marketing</span>
+          <span class="tag">Lifecycle Workflows</span>
+          <span class="tag">Lead Database Design</span>
+        </div>
+      </div>
+
+      <div class="stack-group">
+        <div class="stack-group-label">Strategy & Ops</div>
+        <div class="tag-cloud">
+          <span class="tag">Workflow Architecture</span>
+          <span class="tag">AI Audits</span>
+          <span class="tag">Revenue Attribution</span>
+          <span class="tag">B2B Partnership Programs</span>
+          <span class="tag">Canva / Brand Ops</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<section class="cta-band" id="book">
+  <div style="max-width:1200px;margin:0 auto;display:flex;gap:64px;align-items:center;text-align:left">
+    <div style="flex:1;min-width:0">
+      <h2>Your personal AI operations team.</h2>
+      <p>Book thirty minutes — or text us a problem right now.</p>
+      <div class="btns" style="justify-content:flex-start">
+        <button class="btn btn-white">Book a call →</button>
+        <button class="btn btn-ghost-white">Text us · +1 (415) 555‑0142</button>
+      </div>
+    </div>
+    <div style="flex:1.2;min-width:0;border-radius:16px;overflow:hidden;background:#fff;box-shadow:0 4px 40px rgba(0,0,0,0.3);height:640px">
+      <div style="transform:scale(0.65);transform-origin:top left;width:153.85%">
+        <iframe src="https://api.leadconnectorhq.com/widget/booking/JyXfpbgMAnJOMOySk5HL" style="width:100%;border:none;overflow:hidden;display:block" scrolling="no" id="JyXfpbgMAnJOMOySk5HL_1781658975912"></iframe>
+        <script src="https://link.msgsndr.com/js/form_embed.js" type="text/javascript"></script>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <a href="index.html" class="footer-brand">Business Solutions & AI</a>
+    <div class="footer-links">
+      <a href="index.html#solutions">Solutions</a>
+      <a href="index.html#workflows">Workflows</a>
+      <a href="index.html#values">Values</a>
+    </div>
+    <div>© 2026 · hello@bsai.co</div>
+  </div>
+</footer>
+
+</body>
+</html>

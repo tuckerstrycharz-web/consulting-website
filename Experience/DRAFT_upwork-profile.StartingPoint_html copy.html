@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Upwork Profile — AI & Business Solutions</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0A0A0A;
+    --white: #FAFAF8;
+    --green: #0D9156;
+    --green-light: #E8F5EF;
+    --mid: #5A5A5A;
+    --border: #E2E2DE;
+    --tag-bg: #F0F0EC;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--white);
+    color: var(--black);
+    min-height: 100vh;
+    padding: 48px 20px 80px;
+  }
+
+  .container { max-width: 760px; margin: 0 auto; }
+
+  .header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 40px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .header-left { flex: 1; }
+
+  .eyebrow {
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 10px;
+  }
+
+  .name {
+    font-family: 'Syne', sans-serif;
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--black);
+    line-height: 1.1;
+    margin-bottom: 8px;
+  }
+
+  .title { font-size: 14px; font-weight: 400; color: var(--mid); line-height: 1.6; }
+
+  .header-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+
+  .stat-pill {
+    background: var(--green);
+    color: white;
+    font-family: 'Syne', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 6px 14px;
+    border-radius: 4px;
+    white-space: nowrap;
+  }
+
+  .stat-pill-outline {
+    border: 1.5px solid var(--border);
+    color: var(--mid);
+    font-size: 12px;
+    font-weight: 400;
+    padding: 5px 12px;
+    border-radius: 4px;
+    white-space: nowrap;
+    text-align: right;
+    line-height: 1.4;
+  }
+
+  .section { margin-bottom: 36px; }
+
+  .section-label {
+    font-family: 'Syne', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #ADADAD;
+    margin-bottom: 14px;
+  }
+
+  .headline-block {
+    background: var(--black);
+    color: var(--white);
+    border-radius: 8px;
+    padding: 28px 28px 26px;
+    margin-bottom: 36px;
+  }
+
+  .headline-text {
+    font-family: 'Syne', sans-serif;
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 1.4;
+  }
+
+  .headline-text .hl { color: #4FC98A; }
+
+  .proof-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 36px;
+  }
+
+  .proof-cell {
+    background: var(--white);
+    padding: 20px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .proof-val {
+    font-family: 'Syne', sans-serif;
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--black);
+    line-height: 1;
+  }
+
+  .proof-val .unit { font-size: 15px; font-weight: 600; color: var(--green); }
+
+  .proof-label { font-size: 11px; color: var(--mid); line-height: 1.4; font-weight: 400; }
+
+  .tag-cloud { display: flex; flex-wrap: wrap; gap: 8px; }
+
+  .tag {
+    font-family: 'Syne', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    background: var(--tag-bg);
+    color: var(--black);
+    padding: 6px 14px;
+    border-radius: 4px;
+  }
+
+  .tag.primary { background: var(--black); color: var(--white); }
+
+  .divider { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
+
+  .process-list {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .process-item {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    padding: 18px 20px;
+    border-bottom: 1px solid var(--border);
+    background: var(--white);
+  }
+
+  .process-item:last-child { border-bottom: none; }
+
+  .process-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--green);
+    width: 22px;
+    flex-shrink: 0;
+    padding-top: 2px;
+  }
+
+  .process-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--black);
+    margin-bottom: 3px;
+  }
+
+  .process-desc { font-size: 13px; color: var(--mid); line-height: 1.55; font-weight: 300; }
+
+  .services-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+  .service-card {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 18px 18px 16px;
+    background: var(--white);
+  }
+
+  .service-icon { font-size: 18px; margin-bottom: 8px; }
+
+  .service-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--black);
+    margin-bottom: 5px;
+  }
+
+  .service-desc { font-size: 12px; color: var(--mid); line-height: 1.55; font-weight: 300; }
+
+  .built-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    margin-bottom: 36px;
+  }
+
+  .built-item {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .built-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--green);
+    flex-shrink: 0;
+    margin-top: 6px;
+  }
+
+  .built-content {}
+  .built-title { font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 700; color: var(--black); margin-bottom: 2px; }
+  .built-desc { font-size: 11px; color: var(--mid); line-height: 1.5; font-weight: 300; }
+
+  .cta-block {
+    border: 2px solid var(--black);
+    border-radius: 8px;
+    padding: 24px 24px 22px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+  }
+
+  .cta-title { font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 700; color: var(--black); margin-bottom: 6px; }
+  .cta-desc { font-size: 13px; color: var(--mid); line-height: 1.6; font-weight: 300; }
+  .cta-action { font-family: 'Syne', sans-serif; font-size: 12px; font-weight: 700; color: var(--green); letter-spacing: 0.05em; text-transform: uppercase; flex-shrink: 0; padding-top: 3px; white-space: nowrap; }
+
+  .copy-controls { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
+
+  .copy-btn {
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 8px 16px;
+    border-radius: 4px;
+    border: 1.5px solid var(--border);
+    background: var(--white);
+    color: var(--mid);
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  .copy-btn:hover { border-color: var(--black); color: var(--black); }
+  .copy-btn.active { background: var(--black); color: var(--white); border-color: var(--black); }
+
+  .copy-panel { display: none; }
+  .copy-panel.active { display: block; }
+
+  .copy-box {
+    background: #F5F5F2;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 24px;
+    position: relative;
+    margin-bottom: 10px;
+  }
+
+  .copy-box-text {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    line-height: 1.8;
+    color: var(--black);
+    white-space: pre-wrap;
+    font-weight: 300;
+  }
+
+  .copy-box-label {
+    font-family: 'Syne', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #ADADAD;
+    margin: 18px 0 8px;
+  }
+
+  .copy-to-clipboard {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    font-family: 'Syne', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    background: var(--white);
+    border: 1px solid var(--border);
+    color: var(--mid);
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  .copy-to-clipboard:hover { border-color: var(--black); color: var(--black); }
+  .copy-to-clipboard.copied { background: var(--green); border-color: var(--green); color: white; }
+
+  .note-block {
+    background: #FFFBEB;
+    border: 1px solid #FDE68A;
+    border-radius: 6px;
+    padding: 12px 16px;
+    font-size: 12px;
+    color: #92400E;
+    line-height: 1.6;
+    margin-bottom: 14px;
+  }
+
+  .note-block strong { font-weight: 600; }
+
+  @media (max-width: 600px) {
+    .header { flex-direction: column; }
+    .header-right { align-items: flex-start; flex-direction: row; flex-wrap: wrap; }
+    .proof-grid { grid-template-columns: 1fr 1fr; }
+    .services-grid { grid-template-columns: 1fr; }
+    .built-grid { grid-template-columns: 1fr; }
+    .cta-block { flex-direction: column; gap: 12px; }
+    .name { font-size: 24px; }
+    .headline-text { font-size: 17px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="header-left">
+      <div class="eyebrow">Full-Stack AI Implementation Partner</div>
+      <div class="name">Strategy + Build.<br>One person.</div>
+      <div class="title" style="margin-top:8px;">Custom AI Agents · CRM Automation · Claude Code · HubSpot · n8n</div>
+    </div>
+    <div class="header-right">
+      <div class="stat-pill">$5.4M delivered · $14M mandate</div>
+      <div class="stat-pill-outline">Head of Business Development<br>80+ location portfolio</div>
+    </div>
+  </div>
+
+  <!-- Copy Panels -->
+  <div class="section">
+    <div class="section-label">Upwork Copy — Select a version</div>
+    <div class="copy-controls">
+      <button class="copy-btn active" onclick="switchPanel('bio')">Profile Bio</button>
+      <button class="copy-btn" onclick="switchPanel('title')">Title Options</button>
+      <button class="copy-btn" onclick="switchPanel('proposal')">Proposal Template</button>
+    </div>
+
+    <!-- BIO -->
+    <div class="copy-panel active" id="panel-bio">
+      <div class="note-block">
+        <strong>Framing note:</strong> Your work is 100% internal/corporate — that's positioned below as a strength, not a gap. Real business at scale beats freelance side projects every time. Swap in any external project details as they come.
+      </div>
+      <div class="copy-box">
+        <button class="copy-to-clipboard" onclick="copyText('text-bio', this)">Copy</button>
+        <div class="copy-box-text" id="text-bio">Most AI consultants will audit your business and hand you a slide deck. I build the thing.
+
+In the last 12 months, I built a CRM and marketing automation system from the ground up that generated $5.4M in revenue across an 80+ location business portfolio — 19,200 reservations, a 31% new lead conversion rate, and a 10% lapsed customer re-conversion rate. No agency. No outside dev team. One person, the right tools, and a clear understanding of what the business actually needed. That work earned a promotion to Head of Business Development — where I'm now responsible for a $14M revenue mandate across CRM, B2B partnerships, new acquisition channels, and company-wide AI implementation.
+
+That's how I work on every engagement: identify the real problem, connect it to the bigger business goal, build what fits.
+
+Here's what I've built and deployed at the enterprise level:
+
+— Custom CRM systems built from scratch with full automation logic, segmentation, and revenue attribution
+— AI SMS agents and voice receptionists that handle inbound inquiries and move customers through conversion
+— Custom software agents powered by Claude Code and the Anthropic API
+— Lead databases and B2B outreach systems with smart scoring and pipeline tracking
+— Company knowledge bases and custom GPTs that give teams instant access to internal information
+— AI time-back audits — mapping where employees lose hours to manual work, then automating it away
+— Custom websites built to convert, not just exist
+
+Everything I build lives inside a real business with real stakes. These aren't proof-of-concept projects — they run at scale, they're maintained, and they generate measurable output.
+
+My approach doesn't change by project size: understand the problem first, find the solution that fits your team and your tech stack, build it clean, hand it off so it keeps working.
+
+If you're a small or mid-size business that knows AI can help but isn't sure where to start — or you've started and it's not working — that's exactly the conversation I want to have.
+
+Currently taking select external clients alongside my corporate role.</div>
+      </div>
+    </div>
+
+    <!-- TITLE -->
+    <div class="copy-panel" id="panel-title">
+      <div class="copy-box-label">Primary (leads with proof + breadth)</div>
+      <div class="copy-box">
+        <button class="copy-to-clipboard" onclick="copyText('t1', this)">Copy</button>
+        <div class="copy-box-text" id="t1">Full-Stack AI Consultant | Custom Agents, CRM Automation & Claude Code | $5.4M Delivered</div>
+      </div>
+
+      <div class="copy-box-label">Option 2 (leads with identity)</div>
+      <div class="copy-box">
+        <button class="copy-to-clipboard" onclick="copyText('t2', this)">Copy</button>
+        <div class="copy-box-text" id="t2">AI Implementation Partner | I Build What Others Only Audit | Custom Agents, CRM & Automation</div>
+      </div>
+
+      <div class="copy-box-label">Option 3 (SMB-targeted)</div>
+      <div class="copy-box">
+        <button class="copy-to-clipboard" onclick="copyText('t3', this)">Copy</button>
+        <div class="copy-box-text" id="t3">AI Business Consultant | Custom Agents · Voice AI · CRM Automation · Claude Code | Real Results</div>
+      </div>
+    </div>
+
+    <!-- PROPOSAL -->
+    <div class="copy-panel" id="panel-proposal">
+      <div class="note-block">
+        <strong>Usage note:</strong> Fill in the <strong>[brackets]</strong> per job post. The structure stays the same — lead with proof, mirror their problem, ask before pitching.
+      </div>
+      <div class="copy-box">
+        <button class="copy-to-clipboard" onclick="copyText('text-proposal', this)">Copy</button>
+        <div class="copy-box-text" id="text-proposal">Hey [Name],
+
+I've built this.
+
+Not a version of it — the actual thing you're describing. [One sentence restating their specific problem or project].
+
+In the last 12 months I built a full CRM and automation system from scratch for an 80+ location business portfolio — $5.4M in revenue, 19k reservations created, automated lead nurture and lapsed customer win-backs running at scale. Everything built and maintained by one person using HubSpot, Claude Code, and n8n.
+
+Beyond CRM, I've built and deployed: AI SMS agents, an AI voice receptionist, custom software agents via the Anthropic API, lead databases with scoring and pipeline tracking, a company knowledge base / custom GPT, and an AI time-back audit program currently running across a 300+ person organization.
+
+For your project specifically, here's how I'd approach it:
+
+[2–3 sentences on your specific take on their problem and what you'd build — this is the part that closes.]
+
+Before I scope anything, three quick questions:
+— What does your current [process/system/tool] look like right now?
+— What's the outcome you're actually trying to hit — not the feature, the result?
+— Is your team going to maintain this, or do you need it to run on its own?
+
+Happy to jump on a 20-minute call if that's easier. No pitch — just want to make sure I understand the problem before I recommend anything.
+
+Thanks!</div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- Proof -->
+  <div class="section">
+    <div class="section-label">Last 12 Months — Brand Manager (Built from Zero)</div>
+    <div class="proof-grid">
+      <div class="proof-cell">
+        <div class="proof-val">$5.4<span class="unit">M</span></div>
+        <div class="proof-label">CRM revenue — 12-month build from zero</div>
+      </div>
+      <div class="proof-cell">
+        <div class="proof-val">19.2<span class="unit">k</span></div>
+        <div class="proof-label">Reservations via CRM campaigns & automation</div>
+      </div>
+      <div class="proof-cell">
+        <div class="proof-val">31<span class="unit">%</span></div>
+        <div class="proof-label">New lead conversion — automated nurture workflow</div>
+      </div>
+      <div class="proof-cell">
+        <div class="proof-val">10<span class="unit">%</span></div>
+        <div class="proof-label">Lapsed customer re-conversion rate</div>
+      </div>
+      <div class="proof-cell">
+        <div class="proof-val">29</div>
+        <div class="proof-label">CRM campaigns — email, SMS, lifecycle automation</div>
+      </div>
+      <div class="proof-cell">
+        <div class="proof-val">80<span class="unit">+</span></div>
+        <div class="proof-label">Locations — live, at scale, maintained solo</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Next 12 Months -->
+  <div class="section">
+    <div class="section-label">Next 12 Months — Head of Business Development</div>
+    <div class="proof-grid">
+      <div class="proof-cell">
+        <div class="proof-val">$14<span class="unit">M</span></div>
+        <div class="proof-label">Total revenue mandate — CRM + B2B + new channels</div>
+      </div>
+      <div class="proof-cell">
+        <div class="proof-val">$9.8<span class="unit">M</span></div>
+        <div class="proof-label">CRM campaign target — seasonal + new + lapsed workflows</div>
+      </div>
+      <div class="proof-cell">
+        <div class="proof-val">$4.2<span class="unit">M</span></div>
+        <div class="proof-label">B2B attributed ACV — 3.5k new customers via partnerships</div>
+      </div>
+      <div class="proof-cell">
+        <div class="proof-val">3.5<span class="unit">k</span></div>
+        <div class="proof-label">New customers sourced via B2B partnership program</div>
+      </div>
+      <div class="proof-cell">
+        <div class="proof-val">+13<span class="unit">%</span></div>
+        <div class="proof-label">Total new customer growth target</div>
+      </div>
+      <div class="proof-cell">
+        <div class="proof-val">300<span class="unit">+</span></div>
+        <div class="proof-label">Employees covered by AI time-back audit program</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Employment History -->
+  <div class="section">
+    <div class="section-label">Employment History</div>
+    <div class="process-list">
+      <div class="process-item">
+        <div class="process-num" style="width:auto;padding-right:8px;white-space:nowrap;font-size:10px;color:#ADADAD;font-weight:500;font-family:'DM Sans',sans-serif;">Jun 2026–Present</div>
+        <div class="process-content">
+          <div class="process-title">Head of Business Development | Best Friends Pet Care</div>
+          <div class="process-desc">Lead for Business Development, Customer Acquisition Strategy, and AI Implementation across an 80+ location pet care portfolio. Responsible for $14M in total revenue across CRM oversight ($9.8M target), B2B partnership expansion (3.5k new customers sourced, $4.2M attributed ACV), and at least one new acquisition channel generating $1M+ annualized run rate — while managing the CRM specialist and deploying AI implementation company-wide. Building a portfolio-wide B2B partnership program with pre-loaded lead databases, smart scoring, and partner-specific playbooks executed across every center — plus driving AI adoption through cross-department efficiency audits and Claude Code-powered tooling.</div>
+        </div>
+      </div>
+      <div class="process-item">
+        <div class="process-num" style="width:auto;padding-right:8px;white-space:nowrap;font-size:10px;color:#ADADAD;font-weight:500;font-family:'DM Sans',sans-serif;">Apr 2025–Jun 2026</div>
+        <div class="process-content">
+          <div class="process-title">Brand Manager | Best Friends Pet Care</div>
+          <div class="process-desc">Built and launched the company's HubSpot CRM and marketing automation infrastructure from scratch, generating $5.4M in revenue across 80+ locations — 19,200 reservations created, 31% new lead conversion rate, and 10% lapsed customer re-conversion rate across 29 campaigns. Led MoeGo POS software integration and optimization across the portfolio, and owned campaign management for email, SMS, and lifecycle marketing at scale.</div>
+        </div>
+      </div>
+      <div class="process-item">
+        <div class="process-num" style="width:auto;padding-right:8px;white-space:nowrap;font-size:10px;color:#ADADAD;font-weight:500;font-family:'DM Sans',sans-serif;">Jun 2023–Apr 2025</div>
+        <div class="process-content">
+          <div class="process-title">Assistant Brand Manager | BACARDI Rums — North America</div>
+          <div class="process-desc">Digital marketing and product innovation lead for BACARDI Rums North America, driving CRM, e-commerce, and data strategy across the brand. Built first-party data programs capturing 200k+ consumer leads, improving email CTR +3% and CTOR +5% vs. prior year; led innovation of a new rum SKU capturing $2MM+ in incremental NSV with 98% sell-through, and delivered 40k+ promotional cans for EDC festival activations at 95% sell-through. Co-led the Almost Friday Media partnership generating 7.4MM impressions and 465k engagements, and managed Casa BACARDI experiential activations across 6 major U.S. music festivals with Live Nation and TEAM Entertainment.</div>
+        </div>
+      </div>
+      <div class="process-item">
+        <div class="process-num" style="width:auto;padding-right:8px;white-space:nowrap;font-size:10px;color:#ADADAD;font-weight:500;font-family:'DM Sans',sans-serif;">Jul 2021–Jun 2023</div>
+        <div class="process-content">
+          <div class="process-title">Associate – Executive Development Program | BACARDI</div>
+          <div class="process-desc">Rotational management development program spanning Dubai and Miami, focused on financial analysis, brand health reporting, and self-service data infrastructure. Built a PowerPivot demand planning model for the AMEA region projecting margin shifts by SKU across historical and forward-looking data, and developed a new M&E dashboard giving brand and sales leadership direct budget ownership and visibility into growth-driving marketing activities.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- What I've Built -->
+  <div class="section">
+    <div class="section-label">What I've Actually Built & Deployed</div>
+    <div class="built-grid">
+      <div class="built-item">
+        <div class="built-dot"></div>
+        <div class="built-content">
+          <div class="built-title">Custom CRM</div>
+          <div class="built-desc">Built from scratch with full automation logic, segmentation, revenue attribution, and lifecycle workflows</div>
+        </div>
+      </div>
+      <div class="built-item">
+        <div class="built-dot"></div>
+        <div class="built-content">
+          <div class="built-title">AI Voice Receptionist</div>
+          <div class="built-desc">Handles inbound inquiries, qualifies leads, routes conversations — live in production</div>
+        </div>
+      </div>
+      <div class="built-item">
+        <div class="built-dot"></div>
+        <div class="built-content">
+          <div class="built-title">AI SMS Agents</div>
+          <div class="built-desc">Automated two-way SMS that moves customers through conversion without human intervention</div>
+        </div>
+      </div>
+      <div class="built-item">
+        <div class="built-dot"></div>
+        <div class="built-content">
+          <div class="built-title">Custom Software Agents</div>
+          <div class="built-desc">Claude Code + Anthropic API — purpose-built agents that automate specific business workflows</div>
+        </div>
+      </div>
+      <div class="built-item">
+        <div class="built-dot"></div>
+        <div class="built-content">
+          <div class="built-title">Company Brain / Custom GPT</div>
+          <div class="built-desc">Internal knowledge base that gives teams instant answers from company docs, SOPs, and data</div>
+        </div>
+      </div>
+      <div class="built-item">
+        <div class="built-dot"></div>
+        <div class="built-content">
+          <div class="built-title">Lead Databases & B2B Systems</div>
+          <div class="built-desc">Custom lead databases with smart scoring, pipeline tracking, and partner-specific outreach playbooks</div>
+        </div>
+      </div>
+      <div class="built-item">
+        <div class="built-dot"></div>
+        <div class="built-content">
+          <div class="built-title">AI Time-Back Audits</div>
+          <div class="built-desc">Map where employees lose hours to manual work — then identify and deploy the AI fix</div>
+        </div>
+      </div>
+      <div class="built-item">
+        <div class="built-dot"></div>
+        <div class="built-content">
+          <div class="built-title">Custom Websites</div>
+          <div class="built-desc">Built to convert. Clean, functional, designed around the business goal — not just aesthetics</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Headline -->
+  <div class="headline-block">
+    <div class="headline-text">
+      Most consultants tell you what to build.<br>
+      <span class="hl">I build it, run it at scale, and hand you something that keeps working.</span>
+    </div>
+  </div>
+
+  <!-- How I Work -->
+  <div class="section">
+    <div class="section-label">How I Work</div>
+    <div class="process-list">
+      <div class="process-item">
+        <div class="process-num">01</div>
+        <div class="process-content">
+          <div class="process-title">Identify the real problem</div>
+          <div class="process-desc">Not the surface ask — the actual bottleneck costing time or money. I audit before I recommend.</div>
+        </div>
+      </div>
+      <div class="process-item">
+        <div class="process-num">02</div>
+        <div class="process-content">
+          <div class="process-title">Connect it to the bigger picture</div>
+          <div class="process-desc">An AI agent isn't an AI agent — it's a lead conversion fix, a capacity fix, a cost reduction. I solve the right problem.</div>
+        </div>
+      </div>
+      <div class="process-item">
+        <div class="process-num">03</div>
+        <div class="process-content">
+          <div class="process-title">Build what fits your business</div>
+          <div class="process-desc">Your stack. Your team's actual skill level. Your budget. The right solution — not the most impressive-sounding one.</div>
+        </div>
+      </div>
+      <div class="process-item">
+        <div class="process-num">04</div>
+        <div class="process-content">
+          <div class="process-title">Hand it off so it keeps working</div>
+          <div class="process-desc">Clean builds, real documentation, systems your team can run. I'm not trying to make myself permanent.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stack -->
+  <div class="section">
+    <div class="section-label">Tools & Stack</div>
+    <div class="tag-cloud">
+      <span class="tag primary">Claude Code</span>
+      <span class="tag primary">Anthropic API</span>
+      <span class="tag primary">HubSpot</span>
+      <span class="tag primary">n8n</span>
+      <span class="tag">AI Voice Agents</span>
+      <span class="tag">AI SMS Agents</span>
+      <span class="tag">Custom GPTs</span>
+      <span class="tag">CRM Automation</span>
+      <span class="tag">Marketing Automation</span>
+      <span class="tag">Email / SMS Marketing</span>
+      <span class="tag">Lead Database Design</span>
+      <span class="tag">Canva / Brand Ops</span>
+      <span class="tag">Workflow Architecture</span>
+      <span class="tag">AI Audits</span>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-block">
+    <div>
+      <div class="cta-title">Start with the problem. I'll tell you honestly if I can fix it.</div>
+      <div class="cta-desc">Tell me what's broken or where you're losing time. We'll figure out the right build together — not the biggest one.</div>
+    </div>
+    <div class="cta-action">Message me →</div>
+  </div>
+
+</div>
+
+<script>
+  function switchPanel(id) {
+    document.querySelectorAll('.copy-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.copy-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('panel-' + id).classList.add('active');
+    event.target.classList.add('active');
+  }
+
+  function copyText(id, btn) {
+    const text = document.getElementById(id).innerText;
+    navigator.clipboard.writeText(text).then(() => {
+      btn.textContent = 'Copied!';
+      btn.classList.add('copied');
+      setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
+    });
+  }
+</script>
+</body>
+</html>

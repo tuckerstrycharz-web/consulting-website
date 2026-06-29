@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How to Diagnose a Problem — Business Solutions & AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,500;1,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gray1: #fcfcfc;
+    --gray2: #f8f8f8;
+    --gray3: #f3f3f3;
+    --gray4: #ededed;
+    --gray5: #e8e8e8;
+    --gray6: #e2e2e2;
+    --gray7: #dbdbdb;
+    --gray8: #c7c7c7;
+    --gray9: #8f8f8f;
+    --gray10: #858585;
+    --gray11: #6f6f6f;
+    --gray12: #171717;
+    --radii-pill: 9999px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { height: 100%; font-feature-settings: "kern" 1; font-kerning: normal; scroll-behavior: smooth; }
+  body {
+    -webkit-text-size-adjust: 100%;
+    font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    background-color: #ffffff;
+    color: hsl(0, 0%, 9%);
+    line-height: 1;
+    overflow-x: hidden;
+  }
+  a { color: inherit; text-decoration: none; }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255,255,255,0.94);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--gray4);
+  }
+  .nav-inner {
+    max-width: 1200px; margin: 0 auto; padding: 0 48px;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 58px;
+  }
+  .brand { font-size: 14px; font-weight: 600; letter-spacing: -0.015em; color: var(--gray12); }
+  .nav-links { display: flex; gap: 32px; font-size: 14px; color: var(--gray10); font-weight: 450; }
+  .nav-links a:hover { color: var(--gray12); transition: color 0.15s; }
+  .nav-cta { display: flex; gap: 8px; align-items: center; }
+  .btn {
+    font-family: inherit; font-size: 13px; font-weight: 600;
+    padding: 8px 16px; border-radius: var(--radii-pill);
+    cursor: pointer; border: 1px solid transparent;
+    transition: all 0.15s; white-space: nowrap; line-height: 1;
+  }
+  .btn-outline { background: transparent; border-color: var(--gray6); color: var(--gray12); }
+  .btn-outline:hover { border-color: var(--gray9); }
+  .btn-dark { background: var(--gray12); color: #fff; border-color: var(--gray12); }
+  .btn-dark:hover { background: #000; }
+
+  /* PAGE HERO */
+  .page-hero {
+    padding: 72px 48px 64px;
+    border-bottom: 1px solid var(--gray4);
+    max-width: 1200px; margin: 0 auto;
+  }
+  .breadcrumb {
+    font-size: 12px; color: var(--gray9); font-weight: 500;
+    display: flex; align-items: center; gap: 6px; margin-bottom: 24px;
+  }
+  .breadcrumb a:hover { color: var(--gray12); }
+  .breadcrumb-sep { color: var(--gray7); }
+  .page-eyebrow {
+    font-size: 11px; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.1em; color: var(--gray9); margin-bottom: 16px;
+  }
+  .page-h1 {
+    font-size: clamp(28px, 4vw, 48px); font-weight: 700;
+    letter-spacing: -0.035em; line-height: 1.1; color: var(--gray12);
+    max-width: 640px; margin-bottom: 16px;
+  }
+  .page-lead {
+    font-size: 15px; color: var(--gray10); line-height: 1.7;
+    max-width: 560px; font-weight: 400;
+  }
+
+  /* SHARED SECTION WRAPPERS */
+  .section-light { padding: 80px 48px; border-bottom: 1px solid var(--gray4); background: #fff; }
+  .section-tinted { padding: 80px 48px; border-bottom: 1px solid var(--gray4); background: var(--gray2); }
+  .section-dark  { padding: 80px 48px; border-bottom: 1px solid var(--gray4); background: var(--gray12); color: #fff; }
+  .section-black { padding: 100px 48px; border-bottom: 1px solid #000; background: #000; color: #fff; }
+  .section-inner { max-width: 1200px; margin: 0 auto; }
+
+  .section-label {
+    font-size: 11px; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.1em; color: var(--gray9); margin-bottom: 16px;
+  }
+  .section-label-inv {
+    font-size: 11px; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.1em; color: rgba(255,255,255,0.4); margin-bottom: 16px;
+  }
+  .section-h2 {
+    font-size: clamp(20px, 2.6vw, 28px); font-weight: 600;
+    letter-spacing: -0.025em; line-height: 1.25; color: var(--gray12);
+    margin-bottom: 12px;
+  }
+  .section-h2-inv {
+    font-size: clamp(20px, 2.6vw, 28px); font-weight: 600;
+    letter-spacing: -0.025em; line-height: 1.25; color: #fff;
+    margin-bottom: 12px;
+  }
+  .section-p { font-size: 15px; color: var(--gray10); line-height: 1.7; }
+  .section-p-inv { font-size: 15px; color: rgba(255,255,255,0.55); line-height: 1.7; }
+
+  /* TWO-COL */
+  .two-col-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start;
+  }
+  .three-col-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+  }
+
+  /* FIVE ELEMENTS CARDS — dark section */
+  .five-grid {
+    display: grid; grid-template-columns: repeat(5, 1fr); gap: 1px;
+    background: rgba(255,255,255,0.08); border-radius: 14px; overflow: hidden;
+    margin-top: 40px; border: 1px solid rgba(255,255,255,0.1);
+  }
+  .five-card {
+    background: #1c1c1c; padding: 24px 20px; display: flex; flex-direction: column; gap: 10px;
+  }
+  .five-card-num {
+    font-size: 10px; font-weight: 600; color: rgba(255,255,255,0.3);
+    text-transform: uppercase; letter-spacing: 0.09em;
+  }
+  .five-card-title {
+    font-size: 14px; font-weight: 600; color: #fff; line-height: 1.3;
+  }
+  .five-card-body {
+    font-size: 12px; color: rgba(255,255,255,0.45); line-height: 1.6; margin-top: 2px;
+  }
+
+  /* METHOD CARDS */
+  .method-card {
+    background: var(--gray2); border: 1px solid var(--gray4);
+    border-radius: 14px; padding: 32px;
+  }
+  .method-tag {
+    display: inline-flex; align-items: center;
+    font-size: 10px; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.08em; color: var(--gray9);
+    background: #fff; border: 1px solid var(--gray5);
+    border-radius: var(--radii-pill); padding: 4px 10px; margin-bottom: 16px;
+  }
+  .method-title { font-size: 16px; font-weight: 600; color: var(--gray12); margin-bottom: 10px; }
+  .method-body { font-size: 13px; color: var(--gray10); line-height: 1.65; }
+  .method-steps { margin-top: 20px; display: flex; flex-direction: column; gap: 10px; }
+  .method-step {
+    display: flex; align-items: flex-start; gap: 10px;
+    font-size: 13px; color: var(--gray11); line-height: 1.5;
+  }
+  .method-step-dot {
+    width: 5px; height: 5px; border-radius: 50%; background: var(--gray8);
+    flex-shrink: 0; margin-top: 6px;
+  }
+
+  /* INPUTS SECTION */
+  .inputs-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 40px;
+  }
+  .input-card {
+    background: var(--gray2); border: 1px solid var(--gray4); border-radius: 12px; padding: 24px;
+  }
+  .input-card-label {
+    font-size: 10px; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.09em; color: var(--gray9); margin-bottom: 14px;
+  }
+  .input-item {
+    display: flex; align-items: flex-start; gap: 10px;
+    padding: 8px 0; border-bottom: 1px solid var(--gray4);
+    font-size: 13px; color: var(--gray12); line-height: 1.5;
+  }
+  .input-item:last-child { border-bottom: none; }
+  .input-icon {
+    width: 20px; height: 20px; border-radius: 5px; background: var(--gray4);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; font-size: 10px;
+  }
+  .example-band {
+    margin-top: 24px; background: #fff; border: 1px solid var(--gray4);
+    border-radius: 12px; padding: 24px;
+  }
+  .example-label {
+    font-size: 10px; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.09em; color: var(--gray9); margin-bottom: 16px;
+  }
+  .example-flow {
+    display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+  }
+  .example-chip {
+    font-size: 12px; font-weight: 500; color: var(--gray12);
+    background: var(--gray2); border: 1px solid var(--gray5);
+    border-radius: 8px; padding: 8px 14px; line-height: 1.4;
+  }
+  .example-arrow { font-size: 14px; color: var(--gray8); }
+
+  /* MAPPING STEPS */
+  .step-table { margin-top: 40px; border: 1px solid var(--gray4); border-radius: 12px; overflow: hidden; }
+  .step-table-head {
+    display: grid; grid-template-columns: 40px 1fr 160px 120px;
+    background: var(--gray2); border-bottom: 1px solid var(--gray4);
+    padding: 10px 20px; gap: 16px;
+  }
+  .step-table-hcell { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.09em; color: var(--gray9); }
+  .step-table-row {
+    display: grid; grid-template-columns: 40px 1fr 160px 120px;
+    padding: 14px 20px; gap: 16px; border-bottom: 1px solid var(--gray4);
+    align-items: start;
+  }
+  .step-table-row:last-child { border-bottom: none; }
+  .step-table-row:hover { background: var(--gray2); }
+  .step-num { font-size: 12px; font-weight: 600; color: var(--gray9); }
+  .step-action { font-size: 13px; color: var(--gray12); font-weight: 500; line-height: 1.4; }
+  .step-action span { display: block; font-size: 12px; color: var(--gray10); font-weight: 400; margin-top: 2px; }
+  .step-owner { font-size: 12px; color: var(--gray10); }
+  .step-badge {
+    display: inline-flex; align-items: center; font-size: 10px; font-weight: 600;
+    padding: 2px 9px; border-radius: 99px;
+  }
+  .badge-human { background: #fefce8; color: #92400e; }
+  .badge-auto  { background: #f0fdf4; color: #15803d; }
+  .badge-ai    { background: #eff6ff; color: #1d4ed8; }
+  .badge-decision { background: #fdf4ff; color: #7e22ce; }
+
+  /* DEFINING OUTCOME */
+  .outcome-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 40px;
+  }
+  .outcome-card {
+    background: var(--gray2); border: 1px solid var(--gray4); border-radius: 12px; padding: 24px;
+  }
+  .outcome-card-title { font-size: 13px; font-weight: 600; color: var(--gray12); margin-bottom: 8px; }
+  .outcome-card-body { font-size: 13px; color: var(--gray10); line-height: 1.65; }
+
+  /* RESPONSIBILITY — DARK QUOTE */
+  .quote-section { padding: 96px 48px; border-bottom: 1px solid #1a1a1a; background: var(--gray12); }
+  .quote-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1.4fr 1fr; gap: 80px; align-items: center; }
+  .quote-text {
+    font-size: clamp(28px, 4vw, 52px); font-weight: 700;
+    letter-spacing: -0.04em; line-height: 1.06; color: #fff;
+  }
+  .quote-right { display: flex; flex-direction: column; gap: 16px; }
+  .quote-insight {
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px; padding: 20px;
+  }
+  .quote-insight-label {
+    font-size: 10px; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.09em; color: rgba(255,255,255,0.35); margin-bottom: 8px;
+  }
+  .quote-insight-body { font-size: 13px; color: rgba(255,255,255,0.65); line-height: 1.6; }
+
+  /* DOCUMENT EVERYTHING */
+  .doc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 40px; }
+  .doc-card { background: var(--gray2); border: 1px solid var(--gray4); border-radius: 14px; padding: 28px; }
+  .doc-card-title { font-size: 15px; font-weight: 600; color: var(--gray12); margin-bottom: 6px; }
+  .doc-card-sub { font-size: 13px; color: var(--gray10); margin-bottom: 20px; line-height: 1.55; }
+  .doc-list { display: flex; flex-direction: column; gap: 10px; }
+  .doc-item {
+    display: flex; align-items: flex-start; gap: 10px;
+    font-size: 13px; color: var(--gray11); line-height: 1.5;
+  }
+  .doc-item-icon {
+    width: 22px; height: 22px; border-radius: 6px; background: #fff;
+    border: 1px solid var(--gray5); display: flex; align-items: center;
+    justify-content: center; flex-shrink: 0; font-size: 11px; margin-top: 0px;
+  }
+
+  /* SCOPE CREEP — BLACK */
+  .scope-inner { max-width: 1200px; margin: 0 auto; }
+  .scope-eyebrow {
+    font-size: 11px; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.1em; color: rgba(255,255,255,0.35); margin-bottom: 24px;
+  }
+  .scope-h2 {
+    font-size: clamp(40px, 7vw, 84px); font-weight: 700;
+    letter-spacing: -0.05em; line-height: 1.0; color: #fff; margin-bottom: 24px;
+  }
+  .scope-body { font-size: 15px; color: rgba(255,255,255,0.5); line-height: 1.7; max-width: 560px; margin-bottom: 40px; }
+  .scope-warnings { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .scope-warn-card {
+    background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px; padding: 20px;
+  }
+  .scope-warn-label {
+    font-size: 10px; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.09em; color: #dc2626; margin-bottom: 8px;
+  }
+  .scope-warn-title { font-size: 13px; font-weight: 600; color: #fff; margin-bottom: 6px; }
+  .scope-warn-body { font-size: 12px; color: rgba(255,255,255,0.45); line-height: 1.6; }
+
+  /* TYPICAL PROCESS */
+  .process-list { margin-top: 40px; border-top: 1px solid var(--gray4); }
+  .process-row {
+    display: flex; align-items: flex-start; gap: 20px;
+    padding: 20px 0; border-bottom: 1px solid var(--gray4);
+  }
+  .process-row:hover { background: var(--gray2); padding-left: 8px; padding-right: 8px; margin: 0 -8px; }
+  .process-num {
+    font-size: 10px; font-weight: 600; color: var(--gray9); min-width: 24px;
+    padding-top: 3px; letter-spacing: 0.04em;
+  }
+  .process-content { flex: 1; }
+  .process-title { font-size: 14px; font-weight: 600; color: var(--gray12); margin-bottom: 4px; }
+  .process-desc { font-size: 13px; color: var(--gray10); line-height: 1.6; }
+  .process-tag {
+    font-size: 11px; font-weight: 500; color: var(--gray9);
+    white-space: nowrap; padding-top: 3px;
+  }
+
+  /* CTA BAND */
+  .cta-band {
+    background: var(--gray12); color: #fff;
+    padding: 96px 48px; text-align: center;
+  }
+  .cta-band h2 {
+    font-size: clamp(28px, 4.5vw, 52px); font-weight: 700;
+    letter-spacing: -0.04em; line-height: 1.08; margin-bottom: 14px;
+  }
+  .cta-band p { font-size: 15px; color: rgba(255,255,255,0.5); margin-bottom: 36px; line-height: 1.6; }
+  .cta-band .btns { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+  .btn-white { background: #fff; color: var(--gray12); border-color: #fff; font-size: 14px; padding: 12px 24px; }
+  .btn-white:hover { background: var(--gray2); }
+  .btn-ghost-white { background: transparent; border-color: rgba(255,255,255,0.25); color: rgba(255,255,255,0.8); font-size: 14px; padding: 12px 24px; }
+  .btn-ghost-white:hover { border-color: rgba(255,255,255,0.55); }
+
+  /* FOOTER */
+  footer { background: #fff; border-top: 1px solid var(--gray4); padding: 28px 48px; }
+  .footer-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 16px; font-size: 13px; color: var(--gray10);
+  }
+  .footer-brand { font-size: 14px; font-weight: 600; color: var(--gray12); }
+  .footer-links { display: flex; gap: 24px; }
+  .footer-links a:hover { color: var(--gray12); }
+
+  /* RESPONSIVE */
+  @media (max-width: 960px) {
+    .two-col-grid, .quote-inner, .doc-grid, .inputs-grid, .outcome-grid { grid-template-columns: 1fr; gap: 40px; }
+    .five-grid { grid-template-columns: repeat(2, 1fr); }
+    .scope-warnings { grid-template-columns: 1fr 1fr; }
+    .step-table-head, .step-table-row { grid-template-columns: 32px 1fr 120px; }
+    .step-table-head > *:last-child, .step-table-row > *:last-child { display: none; }
+  }
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .nav-inner { padding: 0 24px; }
+    .page-hero, .section-light, .section-tinted, .section-dark, .section-black, .quote-section, .scope-section, .cta-band, footer { padding-left: 24px; padding-right: 24px; }
+    .five-grid { grid-template-columns: 1fr; }
+    .three-col-grid { grid-template-columns: 1fr; }
+    .scope-warnings { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="brand">Business Solutions & AI</a>
+    <div class="nav-links">
+      <a href="index.html#solutions">Solutions</a>
+      <a href="index.html#workflows">Workflows</a>
+      <a href="index.html#values">Values</a>
+    </div>
+    <div class="nav-cta">
+      <button class="btn btn-outline">Text us</button>
+      <button class="btn btn-dark">Book a call</button>
+    </div>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<div style="border-bottom:1px solid var(--gray4)">
+  <div class="page-hero">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a>
+      <span class="breadcrumb-sep">/</span>
+      <span>Methodology</span>
+    </div>
+    <div class="page-eyebrow">Methodology</div>
+    <h1 class="page-h1">How to Diagnose a Problem</h1>
+    <p class="page-lead">Before you automate anything, you have to understand it. Here's the exact process we use to map a business problem before writing a single line of code.</p>
+  </div>
+</div>
+
+<!-- 1. THE FIVE ESSENTIAL ELEMENTS — dark -->
+<section class="section-dark">
+  <div class="section-inner">
+    <div class="section-label-inv">Step one</div>
+    <h2 class="section-h2-inv">The Five Essential Elements</h2>
+    <p class="section-p-inv" style="max-width:560px">Every business process — no matter how complex — can be broken into five parts. Nail all five and you'll know exactly what to automate, what to leave alone, and what's hiding under the surface.</p>
+    <div class="five-grid">
+      <div class="five-card">
+        <div class="five-card-num">01</div>
+        <div class="five-card-title">The Trigger</div>
+        <div class="five-card-body">What event starts the process? An email, a form submission, a calendar event, a threshold crossed in a report.</div>
+      </div>
+      <div class="five-card">
+        <div class="five-card-num">02</div>
+        <div class="five-card-title">The Inputs</div>
+        <div class="five-card-body">What data, documents, or context does the process need to run? Where does that information come from right now?</div>
+      </div>
+      <div class="five-card">
+        <div class="five-card-num">03</div>
+        <div class="five-card-title">The Steps</div>
+        <div class="five-card-body">The discrete actions someone takes — in order — to move from trigger to outcome. Every handoff, every tool, every click.</div>
+      </div>
+      <div class="five-card">
+        <div class="five-card-num">04</div>
+        <div class="five-card-title">The Decision Points</div>
+        <div class="five-card-body">Where does a human apply judgment? These are the moments that determine whether we automate or augment.</div>
+      </div>
+      <div class="five-card">
+        <div class="five-card-num">05</div>
+        <div class="five-card-title">The Outcome</div>
+        <div class="five-card-body">What does "done" look like? How do you know the process succeeded — and what happens when it doesn't?</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 2. HOW DO YOU DISCOVER THESE ELEMENTS? -->
+<section class="section-light">
+  <div class="section-inner">
+    <div class="section-label">Step two</div>
+    <h2 class="section-h2">How Do You Discover These Elements?</h2>
+    <p class="section-p" style="max-width:560px;margin-bottom:40px">You won't find the real process in a Confluence doc or a slide deck. You find it by talking to people and watching work happen in real time.</p>
+    <div class="two-col-grid">
+      <div class="method-card">
+        <div class="method-tag">Method 01</div>
+        <div class="method-title">The Interview Method</div>
+        <div class="method-body">Sit down with the person who actually does the work — not their manager, not the operations lead. Ask them to walk you through the last time they did this task, step by step.</div>
+        <div class="method-steps">
+          <div class="method-step"><div class="method-step-dot"></div>Ask: "Walk me through the last time you did this."</div>
+          <div class="method-step"><div class="method-step-dot"></div>Follow up: "What did you do right before that?" and "What happens next?"</div>
+          <div class="method-step"><div class="method-step-dot"></div>Probe for exceptions: "When does this process break down?"</div>
+          <div class="method-step"><div class="method-step-dot"></div>Ask about the tools they use at each step — every app, spreadsheet, and inbox.</div>
+        </div>
+      </div>
+      <div class="method-card">
+        <div class="method-tag">Method 02</div>
+        <div class="method-title">The Observation Method</div>
+        <div class="method-body">When possible, watch the process happen. Ask someone to share their screen and do a real task while you take notes. You'll catch steps they forgot to mention in the interview — because they're automatic to them.</div>
+        <div class="method-steps">
+          <div class="method-step"><div class="method-step-dot"></div>Request a screen-share session during an actual work task — not a demo.</div>
+          <div class="method-step"><div class="method-step-dot"></div>Don't interrupt; take notes on every tool, tab, and copy-paste moment.</div>
+          <div class="method-step"><div class="method-step-dot"></div>Ask clarifying questions after, not during.</div>
+          <div class="method-step"><div class="method-step-dot"></div>Note the time stamps — understand how long each step actually takes.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. UNDERSTANDING INPUTS -->
+<section class="section-tinted">
+  <div class="section-inner">
+    <div class="section-label">Step three</div>
+    <h2 class="section-h2">Understanding Inputs</h2>
+    <p class="section-p" style="max-width:560px">Inputs are the raw material of any process. You need to know exactly what enters the workflow, in what format, and from where — because that determines what's automatable.</p>
+    <div class="inputs-grid">
+      <div class="input-card">
+        <div class="input-card-label">What triggers the work?</div>
+        <div class="input-item"><div class="input-icon">📧</div>Incoming email from a customer or vendor</div>
+        <div class="input-item"><div class="input-icon">📋</div>A form submission on your website or tool</div>
+        <div class="input-item"><div class="input-icon">📅</div>A scheduled time or calendar event</div>
+        <div class="input-item"><div class="input-icon">📊</div>A threshold crossed in a report or dashboard</div>
+        <div class="input-item"><div class="input-icon">🔔</div>A notification or alert from an existing system</div>
+      </div>
+      <div class="input-card">
+        <div class="input-card-label">What information flows in?</div>
+        <div class="input-item"><div class="input-icon">👤</div>Customer name, account ID, or contact details</div>
+        <div class="input-item"><div class="input-icon">💰</div>Dollar amounts, quantities, or line items</div>
+        <div class="input-item"><div class="input-icon">📄</div>Documents — invoices, contracts, forms, reports</div>
+        <div class="input-item"><div class="input-icon">🏷️</div>Categories, statuses, or classification tags</div>
+        <div class="input-item"><div class="input-icon">📍</div>Dates, deadlines, or time-sensitive context</div>
+      </div>
+    </div>
+    <div class="example-band">
+      <div class="example-label">Proposed Automation Example — Invoice Processing</div>
+      <div class="example-flow">
+        <div class="example-chip">Vendor email arrives<br><span style="font-size:11px;color:var(--gray9)">Trigger</span></div>
+        <div class="example-arrow">→</div>
+        <div class="example-chip">PDF invoice attached<br><span style="font-size:11px;color:var(--gray9)">Input: document</span></div>
+        <div class="example-arrow">→</div>
+        <div class="example-chip">Vendor name + amount<br><span style="font-size:11px;color:var(--gray9)">Input: structured data</span></div>
+        <div class="example-arrow">→</div>
+        <div class="example-chip">PO number for matching<br><span style="font-size:11px;color:var(--gray9)">Input: reference ID</span></div>
+        <div class="example-arrow">→</div>
+        <div class="example-chip">Routed to AP for approval<br><span style="font-size:11px;color:var(--gray9)">Outcome</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. MAPPING THE STEPS -->
+<section class="section-light">
+  <div class="section-inner">
+    <div class="section-label">Step four</div>
+    <h2 class="section-h2">Mapping the Steps</h2>
+    <p class="section-p" style="max-width:560px">Write out every discrete action in order. Be surgical — "check the spreadsheet" is not a step; "open the revenue tracker, find the row for this client, and verify the balance" is three steps. Granularity reveals automation opportunity.</p>
+    <div class="step-table">
+      <div class="step-table-head">
+        <div class="step-table-hcell">#</div>
+        <div class="step-table-hcell">Action</div>
+        <div class="step-table-hcell">Owner</div>
+        <div class="step-table-hcell">Type</div>
+      </div>
+      <div class="step-table-row">
+        <div class="step-num">01</div>
+        <div class="step-action">Email arrives in shared inbox<span>Vendor sends invoice; it lands in ap@company.com</span></div>
+        <div class="step-owner">External / vendor</div>
+        <div><span class="step-badge badge-auto">Trigger</span></div>
+      </div>
+      <div class="step-table-row">
+        <div class="step-num">02</div>
+        <div class="step-action">PDF extracted and parsed<span>AI reads vendor name, amount, line items, due date</span></div>
+        <div class="step-owner">Automation</div>
+        <div><span class="step-badge badge-ai">AI</span></div>
+      </div>
+      <div class="step-table-row">
+        <div class="step-num">03</div>
+        <div class="step-action">PO number matched to open purchase orders<span>Checks ERP for matching PO; flags if none found</span></div>
+        <div class="step-owner">Automation</div>
+        <div><span class="step-badge badge-auto">Auto</span></div>
+      </div>
+      <div class="step-table-row">
+        <div class="step-num">04</div>
+        <div class="step-action">AP team reviews flagged invoices<span>Any amount over $5k or unmatched PO requires human sign-off</span></div>
+        <div class="step-owner">AP Manager</div>
+        <div><span class="step-badge badge-decision">Decision</span></div>
+      </div>
+      <div class="step-table-row">
+        <div class="step-num">05</div>
+        <div class="step-action">Invoice approved and routed for payment<span>Pushed to payment system with due-date scheduling</span></div>
+        <div class="step-owner">Automation</div>
+        <div><span class="step-badge badge-auto">Auto</span></div>
+      </div>
+      <div class="step-table-row">
+        <div class="step-num">06</div>
+        <div class="step-action">Confirmation logged and vendor notified<span>Receipt confirmation sent; record filed in ERP</span></div>
+        <div class="step-owner">Automation</div>
+        <div><span class="step-badge badge-auto">Auto</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. DEFINING THE OUTCOME -->
+<section class="section-tinted">
+  <div class="section-inner">
+    <div class="section-label">Step five</div>
+    <h2 class="section-h2">Defining the Outcome</h2>
+    <p class="section-p" style="max-width:560px">Most automation projects fail because no one agreed on what "working" looks like before they started. Define success before you build anything.</p>
+    <div class="outcome-grid">
+      <div class="outcome-card">
+        <div class="outcome-card-title">What does "done" look like?</div>
+        <div class="outcome-card-body">Be specific. "Invoice processed" is not a definition. "Invoice approved, payment scheduled, confirmation sent to vendor, and record filed in NetSuite" is a definition you can test against.</div>
+      </div>
+      <div class="outcome-card">
+        <div class="outcome-card-title">How do you measure success?</div>
+        <div class="outcome-card-body">Pick a number before you build. Processing time per invoice, error rate, hours per week saved, cost per transaction. If you can't measure it, you can't prove it worked.</div>
+      </div>
+      <div class="outcome-card">
+        <div class="outcome-card-title">What does failure look like?</div>
+        <div class="outcome-card-body">Define the failure modes explicitly. A double-payment is worse than a delayed one. A missed invoice due date has different consequences than a misrouted approval. Know the blast radius before you automate.</div>
+      </div>
+      <div class="outcome-card">
+        <div class="outcome-card-title">What's out of scope?</div>
+        <div class="outcome-card-body">Write down what this automation does not do. This protects you from scope creep and gives the team a clear boundary to work within. "This does not handle credit notes or multi-currency invoices" is a complete sentence.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. IDENTIFYING WHO'S RESPONSIBLE — dark quote -->
+<section class="quote-section">
+  <div class="quote-inner">
+    <div class="quote-text">Talk to the people doing the work, not just their managers.</div>
+    <div class="quote-right">
+      <div class="quote-insight">
+        <div class="quote-insight-label">Why this matters</div>
+        <div class="quote-insight-body">Managers describe how the process is supposed to work. Workers describe how it actually works. The gap between those two things is where most automation projects derail — and where the best opportunities hide.</div>
+      </div>
+      <div class="quote-insight">
+        <div class="quote-insight-label">Who to talk to</div>
+        <div class="quote-insight-body">The newest person on the team (they actually read the docs). The longest-tenured person (they know every exception). And the person who complains most — they've already mapped the friction for you.</div>
+      </div>
+      <div class="quote-insight">
+        <div class="quote-insight-label">How to assign ownership</div>
+        <div class="quote-insight-body">For every step in your process map, write a name — not a role. "Finance team" owns nothing. Sarah in AP owns the three-way PO match. Hold that level of specificity or the automation will have no one to escalate to when it breaks.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 7. DOCUMENT EVERYTHING -->
+<section class="section-light">
+  <div class="section-inner">
+    <div class="section-label">Step six</div>
+    <h2 class="section-h2">Document Everything</h2>
+    <p class="section-p" style="max-width:560px">Your documentation has two jobs: describe the happy path in enough detail that a machine can follow it, and catalog every exception so you know what falls outside the automation's scope.</p>
+    <div class="doc-grid">
+      <div class="doc-card">
+        <div class="doc-card-title">Processes</div>
+        <div class="doc-card-sub">The happy path — how the work flows when everything goes right. Write this in enough detail that someone who's never done the job could follow it.</div>
+        <div class="doc-list">
+          <div class="doc-item"><div class="doc-item-icon">→</div>Every step, in sequence, with the tool used at each step</div>
+          <div class="doc-item"><div class="doc-item-icon">→</div>Who owns each step — by name, not by title</div>
+          <div class="doc-item"><div class="doc-item-icon">→</div>Average time each step takes in the real world</div>
+          <div class="doc-item"><div class="doc-item-icon">→</div>Where data enters and exits the process</div>
+          <div class="doc-item"><div class="doc-item-icon">→</div>What the final state looks like — in every system of record</div>
+        </div>
+      </div>
+      <div class="doc-card">
+        <div class="doc-card-title">Outliers</div>
+        <div class="doc-card-sub">Edge cases, exceptions, and one-offs. These are the things that make automation hard — and the things you must explicitly decide whether to handle or exclude.</div>
+        <div class="doc-list">
+          <div class="doc-item"><div class="doc-item-icon">⚠</div>Requests that arrive in an unexpected format</div>
+          <div class="doc-item"><div class="doc-item-icon">⚠</div>High-value or high-risk transactions requiring extra review</div>
+          <div class="doc-item"><div class="doc-item-icon">⚠</div>Vendor or customer accounts with special handling rules</div>
+          <div class="doc-item"><div class="doc-item-icon">⚠</div>Processes that split or merge partway through</div>
+          <div class="doc-item"><div class="doc-item-icon">⚠</div>Regulatory or compliance constraints on specific data types</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 8. SCOPE CREEP — black -->
+<section class="section-black" style="padding: 100px 48px;">
+  <div class="scope-inner">
+    <div class="scope-eyebrow">The biggest threat to your project</div>
+    <div class="scope-h2">Scope creep.</div>
+    <p class="scope-body">It is the biggest issue in this business and it will become the bottleneck. You map one process, and three more appear. Someone asks "while we're at it, could it also…" and suddenly a four-week project is a six-month one. The diagnosis phase is where you draw the fence — and hold it.</p>
+    <div class="scope-warnings">
+      <div class="scope-warn-card">
+        <div class="scope-warn-label">Warning sign</div>
+        <div class="scope-warn-title">"While we're at it..."</div>
+        <div class="scope-warn-body">Any sentence that starts with these four words is a scope change in disguise. Log it. Schedule it. Do not build it now.</div>
+      </div>
+      <div class="scope-warn-card">
+        <div class="scope-warn-label">Warning sign</div>
+        <div class="scope-warn-title">The "one more exception"</div>
+        <div class="scope-warn-body">Each exception you add to the automation makes it exponentially harder to test and maintain. Handle the 80% case first. Build the exceptions in phase two — after you've proven the core works.</div>
+      </div>
+      <div class="scope-warn-card">
+        <div class="scope-warn-label">Warning sign</div>
+        <div class="scope-warn-title">Undefined ownership</div>
+        <div class="scope-warn-body">If no one on the client side owns the process being automated, the scope will expand to fill the vacuum. Every automation needs a named human owner who can say no.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 9. THE TYPICAL PROCESS -->
+<section class="section-tinted">
+  <div class="section-inner">
+    <div class="section-label">The checklist</div>
+    <h2 class="section-h2">The Typical Process</h2>
+    <p class="section-p" style="max-width:560px">This is the sequence we follow on every new engagement. Each step produces a deliverable we can both look at before moving forward.</p>
+    <div class="process-list">
+      <div class="process-row">
+        <div class="process-num">01</div>
+        <div class="process-content">
+          <div class="process-title">Kickoff interview with the process owner</div>
+          <div class="process-desc">30 minutes. We want to understand the business context, the pain point, and what a successful outcome means to them — in their words.</div>
+        </div>
+        <div class="process-tag">Day 1</div>
+      </div>
+      <div class="process-row">
+        <div class="process-num">02</div>
+        <div class="process-content">
+          <div class="process-title">Shadow sessions with the people doing the work</div>
+          <div class="process-desc">One to three sessions, 45–60 minutes each. Screen-shares during real tasks. We take notes; they work normally.</div>
+        </div>
+        <div class="process-tag">Days 2–4</div>
+      </div>
+      <div class="process-row">
+        <div class="process-num">03</div>
+        <div class="process-content">
+          <div class="process-title">Draft the process map</div>
+          <div class="process-desc">Every step, every owner, every tool. Trigger, inputs, steps, decision points, and outcome — all five elements accounted for.</div>
+        </div>
+        <div class="process-tag">Day 5</div>
+      </div>
+      <div class="process-row">
+        <div class="process-num">04</div>
+        <div class="process-content">
+          <div class="process-title">Walk through the map with the team</div>
+          <div class="process-desc">We present the process map back to the people who live it. They correct us. We update. We repeat until they say "yes, that's actually how it works."</div>
+        </div>
+        <div class="process-tag">Day 6</div>
+      </div>
+      <div class="process-row">
+        <div class="process-num">05</div>
+        <div class="process-content">
+          <div class="process-title">Catalog the exceptions and edge cases</div>
+          <div class="process-desc">We ask explicitly: "When does this process break?" and document every answer. Then we make explicit decisions about what's in scope versus what's phase two.</div>
+        </div>
+        <div class="process-tag">Day 7</div>
+      </div>
+      <div class="process-row">
+        <div class="process-num">06</div>
+        <div class="process-content">
+          <div class="process-title">Define the success metric</div>
+          <div class="process-desc">One number we're optimizing for — agreed on by both sides. Time saved, error rate reduced, volume processed. We write it down and sign off before building anything.</div>
+        </div>
+        <div class="process-tag">Day 7</div>
+      </div>
+      <div class="process-row">
+        <div class="process-num">07</div>
+        <div class="process-content">
+          <div class="process-title">Scope document delivered</div>
+          <div class="process-desc">A one-page document that covers: what we're building, what we're not building, who owns what, and how we'll measure success. This is the contract that prevents scope creep.</div>
+        </div>
+        <div class="process-tag">Day 8</div>
+      </div>
+      <div class="process-row">
+        <div class="process-num">08</div>
+        <div class="process-content">
+          <div class="process-title">Green light to build</div>
+          <div class="process-desc">Both sides sign off on the scope document. We start building. The diagnosis phase is done.</div>
+        </div>
+        <div class="process-tag">Day 9+</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-band">
+  <h2>Ready to map your first process?</h2>
+  <p>Book thirty minutes and we'll walk through the diagnosis framework together — live, on your actual workflow.</p>
+  <div class="btns">
+    <button class="btn btn-white">Book a call →</button>
+    <button class="btn btn-ghost-white">Text us · +1 (415) 555‑0142</button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <a href="index.html" class="footer-brand">Business Solutions & AI</a>
+    <div class="footer-links">
+      <a href="index.html#solutions">Solutions</a>
+      <a href="index.html#workflows">Workflows</a>
+      <a href="index.html#values">Values</a>
+    </div>
+    <div>© 2026 · hello@bsai.co</div>
+  </div>
+</footer>
+
+</body>
+</html>

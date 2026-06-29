@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Components — Reference</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="ai-components.css">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Inter, sans-serif; -webkit-font-smoothing: antialiased; background: #f8f8f8; color: #171717; line-height: 1; }
+  .page { max-width: 900px; margin: 0 auto; padding: 60px 48px 120px; }
+  h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.035em; margin-bottom: 8px; }
+  .subtitle { font-size: 14px; color: #858585; margin-bottom: 64px; line-height: 1.6; }
+  .subtitle code { font-family: ui-monospace, monospace; background: #ededed; padding: 2px 6px; border-radius: 4px; font-size: 12px; }
+
+  /* Section headers */
+  .comp-section { margin-bottom: 64px; }
+  .comp-title { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: #8f8f8f; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid #ededed; }
+  .comp-row { display: flex; gap: 32px; align-items: flex-start; flex-wrap: wrap; }
+  .comp-item { display: flex; flex-direction: column; gap: 12px; }
+  .comp-label { font-size: 11px; color: #8f8f8f; font-weight: 500; }
+
+  /* Code block */
+  .code-block { background: #1a1a1a; border-radius: 10px; padding: 20px 24px; margin-top: 16px; overflow-x: auto; }
+  .code-block pre { font-family: ui-monospace, 'JetBrains Mono', monospace; font-size: 12px; color: #d4d4d4; line-height: 1.7; white-space: pre; }
+  .c-tag { color: #7dd3fc; }
+  .c-attr { color: #a5b4fc; }
+  .c-val { color: #86efac; }
+  .c-cmt { color: #6b7280; }
+
+  /* Demo areas */
+  .demo-light { background: #fff; border: 1px solid #ededed; border-radius: 12px; padding: 28px; }
+  .demo-dark  { background: #0a0a0a; border: 1px solid #222; border-radius: 12px; padding: 28px; }
+  .demo-chat  { background: #fff; border: 1px solid #ededed; border-radius: 16px; padding: 24px; max-width: 340px; }
+
+  .chat-msg { margin-bottom: 16px; }
+  .chat-msg--human { display: flex; justify-content: flex-end; }
+  .chat-msg--ai {}
+  .usage-note { font-size: 12px; color: #858585; line-height: 1.6; margin-top: 8px; }
+
+  /* SVG icon demos */
+  .icon-grid { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; }
+  .icon-demo { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+  .icon-demo img { display: block; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <h1>AI Identity Components</h1>
+  <p class="subtitle">
+    Add to any page with <code>&lt;link rel="stylesheet" href="ai-components/ai-components.css"&gt;</code><br>
+    Use SVG files directly with <code>&lt;img src="ai-components/sparkle-purple.svg"&gt;</code>
+  </p>
+
+  <!-- ── SPARKLE ICONS ── -->
+  <div class="comp-section">
+    <div class="comp-title">Sparkle Icons — SVG Files</div>
+    <div class="demo-light">
+      <div class="icon-grid">
+        <div class="icon-demo">
+          <img src="sparkle-purple.svg" width="16" height="16">
+          <span class="comp-label">sparkle-purple.svg<br>16×16</span>
+        </div>
+        <div class="icon-demo">
+          <img src="sparkle-purple-lg.svg" width="24" height="24">
+          <span class="comp-label">sparkle-purple-lg.svg<br>24×24</span>
+        </div>
+      </div>
+    </div>
+    <div class="demo-dark" style="margin-top:12px">
+      <div class="icon-grid">
+        <div class="icon-demo">
+          <img src="sparkle-white.svg" width="16" height="16">
+          <span class="comp-label" style="color:#555">sparkle-white.svg<br>16×16</span>
+        </div>
+        <div class="icon-demo">
+          <img src="sparkle-white-lg.svg" width="24" height="24">
+          <span class="comp-label" style="color:#555">sparkle-white-lg.svg<br>24×24</span>
+        </div>
+      </div>
+    </div>
+    <div class="code-block"><pre><span class="c-cmt">&lt;!-- Purple (light backgrounds) --&gt;</span>
+<span class="c-tag">&lt;img</span> <span class="c-attr">src</span>=<span class="c-val">"ai-components/sparkle-purple.svg"</span> <span class="c-attr">width</span>=<span class="c-val">"16"</span> <span class="c-attr">height</span>=<span class="c-val">"16"</span> <span class="c-attr">alt</span>=<span class="c-val">""</span><span class="c-tag">&gt;</span>
+<span class="c-tag">&lt;img</span> <span class="c-attr">src</span>=<span class="c-val">"ai-components/sparkle-purple-lg.svg"</span> <span class="c-attr">width</span>=<span class="c-val">"24"</span> <span class="c-attr">height</span>=<span class="c-val">"24"</span> <span class="c-attr">alt</span>=<span class="c-val">""</span><span class="c-tag">&gt;</span>
+
+<span class="c-cmt">&lt;!-- White (dark/black backgrounds) --&gt;</span>
+<span class="c-tag">&lt;img</span> <span class="c-attr">src</span>=<span class="c-val">"ai-components/sparkle-white.svg"</span> <span class="c-attr">width</span>=<span class="c-val">"16"</span> <span class="c-attr">height</span>=<span class="c-val">"16"</span> <span class="c-attr">alt</span>=<span class="c-val">""</span><span class="c-tag">&gt;</span>
+<span class="c-tag">&lt;img</span> <span class="c-attr">src</span>=<span class="c-val">"ai-components/sparkle-white-lg.svg"</span> <span class="c-attr">width</span>=<span class="c-val">"24"</span> <span class="c-attr">height</span>=<span class="c-val">"24"</span> <span class="c-attr">alt</span>=<span class="c-val">""</span><span class="c-tag">&gt;</span>
+
+<span class="c-cmt">&lt;!-- Inline SVG (color via CSS currentColor) --&gt;</span>
+<span class="c-tag">&lt;svg</span> <span class="c-attr">width</span>=<span class="c-val">"14"</span> <span class="c-attr">height</span>=<span class="c-val">"14"</span> <span class="c-attr">viewBox</span>=<span class="c-val">"0 0 16 16"</span> <span class="c-attr">fill</span>=<span class="c-val">"currentColor"</span> <span class="c-attr">style</span>=<span class="c-val">"color:#7a5af8"</span><span class="c-tag">&gt;</span>
+  <span class="c-tag">&lt;path</span> <span class="c-attr">d</span>=<span class="c-val">"M7.5 1.5C7.8 4.8 9.2 6.2 12.5 6.5C9.2 6.8 7.8 8.2 7.5 11.5C7.2 8.2 5.8 6.8 2.5 6.5C5.8 6.2 7.2 4.8 7.5 1.5Z"</span><span class="c-tag">/&gt;</span>
+  <span class="c-tag">&lt;path</span> <span class="c-attr">d</span>=<span class="c-val">"M12.5 2C12.7 3.4 13.6 4.3 15 4.5C13.6 4.7 12.7 5.6 12.5 7C12.3 5.6 11.4 4.7 10 4.5C11.4 4.3 12.3 3.4 12.5 2Z"</span><span class="c-tag">/&gt;</span>
+<span class="c-tag">&lt;/svg&gt;</span></pre></div>
+  </div>
+
+  <!-- ── AI AGENT PILL ── -->
+  <div class="comp-section">
+    <div class="comp-title">AI Agent Pill Badge</div>
+    <div class="demo-light">
+      <div class="comp-row">
+        <div class="comp-item">
+          <span class="comp-label">Standard</span>
+          <span class="ai-agent-pill">
+            <img src="sparkle-purple.svg" alt="">
+            AI Agent
+          </span>
+        </div>
+        <div class="comp-item">
+          <span class="comp-label">With dividers (chat header)</span>
+          <div class="ai-agent-pill-row" style="max-width:300px">
+            <hr>
+            <span class="ai-agent-pill"><img src="sparkle-purple.svg" alt="">AI Agent</span>
+            <hr>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="code-block"><pre><span class="c-cmt">&lt;!-- Standard pill --&gt;</span>
+<span class="c-tag">&lt;span</span> <span class="c-attr">class</span>=<span class="c-val">"ai-agent-pill"</span><span class="c-tag">&gt;</span>
+  <span class="c-tag">&lt;img</span> <span class="c-attr">src</span>=<span class="c-val">"ai-components/sparkle-purple.svg"</span> <span class="c-attr">alt</span>=<span class="c-val">""</span><span class="c-tag">&gt;</span>
+  AI Agent
+<span class="c-tag">&lt;/span&gt;</span>
+
+<span class="c-cmt">&lt;!-- With divider lines (use in chat widget headers) --&gt;</span>
+<span class="c-tag">&lt;div</span> <span class="c-attr">class</span>=<span class="c-val">"ai-agent-pill-row"</span><span class="c-tag">&gt;</span>
+  <span class="c-tag">&lt;hr&gt;</span>
+  <span class="c-tag">&lt;span</span> <span class="c-attr">class</span>=<span class="c-val">"ai-agent-pill"</span><span class="c-tag">&gt;&lt;img</span> <span class="c-attr">src</span>=<span class="c-val">"ai-components/sparkle-purple.svg"</span> <span class="c-attr">alt</span>=<span class="c-val">""</span><span class="c-tag">&gt;</span>AI Agent<span class="c-tag">&lt;/span&gt;</span>
+  <span class="c-tag">&lt;hr&gt;</span>
+<span class="c-tag">&lt;/div&gt;</span></pre></div>
+  </div>
+
+  <!-- ── AI ICON BOX ── -->
+  <div class="comp-section">
+    <div class="comp-title">AI Icon Box — Feature Cards</div>
+    <div class="demo-light">
+      <div class="comp-row">
+        <div class="comp-item">
+          <span class="comp-label">Standard (44px)</span>
+          <div class="ai-icon-box">
+            <img src="sparkle-purple-lg.svg" alt="">
+          </div>
+        </div>
+        <div class="comp-item">
+          <span class="comp-label">Small (32px)</span>
+          <div class="ai-icon-box ai-icon-box--sm">
+            <img src="sparkle-purple.svg" alt="">
+          </div>
+        </div>
+        <div class="comp-item">
+          <span class="comp-label">With custom stroke icon</span>
+          <div class="ai-icon-box">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#7a5af8" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3.5 4.5c0-.5.4-1 1-1h2l1 3-1.5 1.5a11 11 0 004 4L11.5 10.5l3 1v2c0 .6-.5 1-1 1C6.5 14.5 3.5 9.5 3.5 4.5z"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="usage-note">Use the sparkle for generic AI features. Use a relevant stroke icon (phone, calendar, chat) when the feature is specific — the purple box is what signals "AI-powered."</p>
+    <div class="code-block"><pre><span class="c-cmt">&lt;!-- With sparkle --&gt;</span>
+<span class="c-tag">&lt;div</span> <span class="c-attr">class</span>=<span class="c-val">"ai-icon-box"</span><span class="c-tag">&gt;</span>
+  <span class="c-tag">&lt;img</span> <span class="c-attr">src</span>=<span class="c-val">"ai-components/sparkle-purple-lg.svg"</span> <span class="c-attr">alt</span>=<span class="c-val">""</span><span class="c-tag">&gt;</span>
+<span class="c-tag">&lt;/div&gt;</span>
+
+<span class="c-cmt">&lt;!-- With domain icon (inline SVG, stroke purple) --&gt;</span>
+<span class="c-tag">&lt;div</span> <span class="c-attr">class</span>=<span class="c-val">"ai-icon-box"</span><span class="c-tag">&gt;</span>
+  <span class="c-tag">&lt;svg</span> <span class="c-attr">width</span>=<span class="c-val">"20"</span> <span class="c-attr">height</span>=<span class="c-val">"20"</span> <span class="c-attr">viewBox</span>=<span class="c-val">"0 0 20 20"</span> <span class="c-attr">fill</span>=<span class="c-val">"none"</span>
+       <span class="c-attr">stroke</span>=<span class="c-val">"#7a5af8"</span> <span class="c-attr">stroke-width</span>=<span class="c-val">"1.4"</span> <span class="c-attr">stroke-linecap</span>=<span class="c-val">"round"</span> <span class="c-attr">stroke-linejoin</span>=<span class="c-val">"round"</span><span class="c-tag">&gt;</span>
+    <span class="c-cmt">&lt;!-- your path here --&gt;</span>
+  <span class="c-tag">&lt;/svg&gt;</span>
+<span class="c-tag">&lt;/div&gt;</span>
+
+<span class="c-cmt">&lt;!-- Small variant --&gt;</span>
+<span class="c-tag">&lt;div</span> <span class="c-attr">class</span>=<span class="c-val">"ai-icon-box ai-icon-box--sm"</span><span class="c-tag">&gt;</span>...<span class="c-tag">&lt;/div&gt;</span></pre></div>
+  </div>
+
+  <!-- ── AUTO BADGE ── -->
+  <div class="comp-section">
+    <div class="comp-title">Auto-reply / Action Badge</div>
+    <div class="demo-light">
+      <div class="comp-row">
+        <div class="comp-item">
+          <span class="ai-auto-badge">Auto-reply</span>
+        </div>
+        <div class="comp-item">
+          <span class="ai-auto-badge">Auto-schedule</span>
+        </div>
+        <div class="comp-item">
+          <span class="ai-auto-badge">
+            <img src="sparkle-white.svg" alt="">
+            AI
+          </span>
+        </div>
+      </div>
+    </div>
+    <p class="usage-note">Solid purple pill. Use when AI is taking an autonomous action the user can see — reply sent, booking made, review responded to.</p>
+    <div class="code-block"><pre><span class="c-tag">&lt;span</span> <span class="c-attr">class</span>=<span class="c-val">"ai-auto-badge"</span><span class="c-tag">&gt;</span>Auto-reply<span class="c-tag">&lt;/span&gt;</span>
+<span class="c-tag">&lt;span</span> <span class="c-attr">class</span>=<span class="c-val">"ai-auto-badge"</span><span class="c-tag">&gt;</span>Auto-schedule<span class="c-tag">&lt;/span&gt;</span>
+
+<span class="c-cmt">&lt;!-- With white sparkle icon --&gt;</span>
+<span class="c-tag">&lt;span</span> <span class="c-attr">class</span>=<span class="c-val">"ai-auto-badge"</span><span class="c-tag">&gt;</span>
+  <span class="c-tag">&lt;img</span> <span class="c-attr">src</span>=<span class="c-val">"ai-components/sparkle-white.svg"</span> <span class="c-attr">alt</span>=<span class="c-val">""</span><span class="c-tag">&gt;</span>
+  AI
+<span class="c-tag">&lt;/span&gt;</span></pre></div>
+  </div>
+
+  <!-- ── CHAT BUBBLES ── -->
+  <div class="comp-section">
+    <div class="comp-title">Chat Bubbles</div>
+    <div class="demo-chat">
+      <div class="ai-agent-pill-row">
+        <hr>
+        <span class="ai-agent-pill"><img src="sparkle-purple.svg" alt="">AI Agent</span>
+        <hr>
+      </div>
+      <div class="chat-msg chat-msg--human">
+        <div class="human-bubble">Hey, I need to book a grooming appointment.</div>
+      </div>
+      <div class="chat-msg chat-msg--ai" style="margin-top:16px">
+        <div class="ai-bubble-label">
+          <img src="sparkle-purple.svg" alt="">
+          AI Agent
+        </div>
+        <div class="ai-bubble">We'd love to help! What day works best for you?</div>
+      </div>
+      <div class="chat-msg chat-msg--human" style="margin-top:12px">
+        <div class="human-bubble">Thursday afternoon if possible.</div>
+      </div>
+      <div class="chat-msg chat-msg--ai" style="margin-top:12px">
+        <div class="ai-bubble-label">
+          <img src="sparkle-purple.svg" alt="">
+          AI Agent
+        </div>
+        <div class="ai-bubble">Thursday at 2pm is available. Want me to lock that in?</div>
+      </div>
+    </div>
+    <div class="code-block"><pre><span class="c-cmt">&lt;!-- AI message --&gt;</span>
+<span class="c-tag">&lt;div</span> <span class="c-attr">class</span>=<span class="c-val">"ai-bubble-label"</span><span class="c-tag">&gt;</span>
+  <span class="c-tag">&lt;img</span> <span class="c-attr">src</span>=<span class="c-val">"ai-components/sparkle-purple.svg"</span> <span class="c-attr">alt</span>=<span class="c-val">""</span><span class="c-tag">&gt;</span>
+  AI Agent
+<span class="c-tag">&lt;/div&gt;</span>
+<span class="c-tag">&lt;div</span> <span class="c-attr">class</span>=<span class="c-val">"ai-bubble"</span><span class="c-tag">&gt;</span>Message text here.<span class="c-tag">&lt;/div&gt;</span>
+
+<span class="c-cmt">&lt;!-- Human message --&gt;</span>
+<span class="c-tag">&lt;div</span> <span class="c-attr">style</span>=<span class="c-val">"display:flex;justify-content:flex-end"</span><span class="c-tag">&gt;</span>
+  <span class="c-tag">&lt;div</span> <span class="c-attr">class</span>=<span class="c-val">"human-bubble"</span><span class="c-tag">&gt;</span>Message text here.<span class="c-tag">&lt;/div&gt;</span>
+<span class="c-tag">&lt;/div&gt;</span></pre></div>
+  </div>
+
+  <!-- ── SECTION EYEBROW ── -->
+  <div class="comp-section">
+    <div class="comp-title">AI Eyebrow Label</div>
+    <div class="demo-light">
+      <div class="ai-eyebrow">
+        <img src="sparkle-purple.svg" alt="">
+        AI Agent
+      </div>
+      <div style="font-size:22px;font-weight:600;letter-spacing:-0.025em;color:#171717;margin-top:8px">Never miss a call, ever again.</div>
+    </div>
+    <p class="usage-note">Replace the standard gray section-label with this when the section is specifically about an AI feature.</p>
+    <div class="code-block"><pre><span class="c-tag">&lt;div</span> <span class="c-attr">class</span>=<span class="c-val">"ai-eyebrow"</span><span class="c-tag">&gt;</span>
+  <span class="c-tag">&lt;img</span> <span class="c-attr">src</span>=<span class="c-val">"ai-components/sparkle-purple.svg"</span> <span class="c-attr">alt</span>=<span class="c-val">""</span><span class="c-tag">&gt;</span>
+  Voice AI
+<span class="c-tag">&lt;/div&gt;</span>
+<span class="c-tag">&lt;h2</span> <span class="c-attr">class</span>=<span class="c-val">"section-h2"</span><span class="c-tag">&gt;</span>Never miss a call, ever again.<span class="c-tag">&lt;/h2&gt;</span></pre></div>
+  </div>
+
+  <!-- ── ORB ── -->
+  <div class="comp-section">
+    <div class="comp-title">AI Orb — Hero / Section Emphasis</div>
+    <div class="demo-light" style="display:flex;justify-content:center;padding:48px">
+      <div class="ai-orb-wrap">
+        <div class="ai-orb">
+          <img src="sparkle-white-lg.svg" width="40" height="40" alt="">
+        </div>
+        <div class="ai-orb-ring ai-orb-ring--1"></div>
+        <div class="ai-orb-ring ai-orb-ring--2"></div>
+        <div class="ai-orb-ring ai-orb-ring--3"></div>
+      </div>
+    </div>
+    <div class="code-block"><pre><span class="c-tag">&lt;div</span> <span class="c-attr">class</span>=<span class="c-val">"ai-orb-wrap"</span><span class="c-tag">&gt;</span>
+  <span class="c-tag">&lt;div</span> <span class="c-attr">class</span>=<span class="c-val">"ai-orb"</span><span class="c-tag">&gt;</span>
+    <span class="c-tag">&lt;img</span> <span class="c-attr">src</span>=<span class="c-val">"ai-components/sparkle-white-lg.svg"</span> <span class="c-attr">width</span>=<span class="c-val">"40"</span> <span class="c-attr">height</span>=<span class="c-val">"40"</span> <span class="c-attr">alt</span>=<span class="c-val">""</span><span class="c-tag">&gt;</span>
+  <span class="c-tag">&lt;/div&gt;</span>
+  <span class="c-tag">&lt;div</span> <span class="c-attr">class</span>=<span class="c-val">"ai-orb-ring ai-orb-ring--1"</span><span class="c-tag">&gt;&lt;/div&gt;</span>
+  <span class="c-tag">&lt;div</span> <span class="c-attr">class</span>=<span class="c-val">"ai-orb-ring ai-orb-ring--2"</span><span class="c-tag">&gt;&lt;/div&gt;</span>
+  <span class="c-tag">&lt;div</span> <span class="c-attr">class</span>=<span class="c-val">"ai-orb-ring ai-orb-ring--3"</span><span class="c-tag">&gt;&lt;/div&gt;</span>
+<span class="c-tag">&lt;/div&gt;</span></pre></div>
+  </div>
+
+  <!-- ── WORKFLOW NODE ── -->
+  <div class="comp-section">
+    <div class="comp-title">Workflow Canvas — AI Node Values</div>
+    <div class="demo-dark">
+      <svg viewBox="0 0 440 80" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:440px;display:block">
+        <!-- Standard node -->
+        <rect x="14" y="16" width="118" height="48" rx="10" fill="#2a2a2a" stroke="rgba(255,255,255,0.10)" stroke-width="1"/>
+        <text x="74" y="38" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" font-weight="600" fill="rgba(255,255,255,0.5)" letter-spacing="0.05em">TRIGGER</text>
+        <text x="74" y="54" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="600" fill="#fff">Form Submit</text>
+        <!-- connector -->
+        <path d="M132 40 C147 40 152 40 152 40" stroke="rgba(255,255,255,0.22)" stroke-width="1.5" fill="none"/>
+        <!-- AI node -->
+        <rect x="152" y="12" width="136" height="56" rx="10" fill="#2d2060" stroke="rgba(122,90,248,0.45)" stroke-width="1"/>
+        <text x="220" y="34" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" font-weight="600" fill="rgba(167,139,250,0.7)" letter-spacing="0.05em">AI AGENT</text>
+        <text x="220" y="52" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="600" fill="#fff">Draft Response</text>
+        <!-- connector -->
+        <path d="M288 40 C303 40 310 40 310 40" stroke="rgba(255,255,255,0.22)" stroke-width="1.5" fill="none"/>
+        <!-- Standard node -->
+        <rect x="310" y="16" width="118" height="48" rx="10" fill="#2a2a2a" stroke="rgba(255,255,255,0.10)" stroke-width="1"/>
+        <text x="369" y="38" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" font-weight="600" fill="rgba(255,255,255,0.5)" letter-spacing="0.05em">HUMAN</text>
+        <text x="369" y="54" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="600" fill="#fff">Review &amp; Send</text>
+      </svg>
+    </div>
+    <div class="code-block"><pre><span class="c-cmt">&lt;!-- Standard node --&gt;</span>
+<span class="c-tag">&lt;rect</span> <span class="c-attr">fill</span>=<span class="c-val">"#2a2a2a"</span> <span class="c-attr">stroke</span>=<span class="c-val">"rgba(255,255,255,0.10)"</span> <span class="c-attr">stroke-width</span>=<span class="c-val">"1"</span> ...<span class="c-tag">/&gt;</span>
+
+<span class="c-cmt">&lt;!-- AI node (purple tint) --&gt;</span>
+<span class="c-tag">&lt;rect</span> <span class="c-attr">fill</span>=<span class="c-val">"#2d2060"</span> <span class="c-attr">stroke</span>=<span class="c-val">"rgba(122,90,248,0.45)"</span> <span class="c-attr">stroke-width</span>=<span class="c-val">"1"</span> ...<span class="c-tag">/&gt;</span>
+<span class="c-cmt">&lt;!-- AI node label color: fill="rgba(167,139,250,0.7)" --&gt;</span>
+<span class="c-cmt">&lt;!-- AI node icon color: #a78bfa --&gt;</span></pre></div>
+  </div>
+
+</div>
+</body>
+</html>

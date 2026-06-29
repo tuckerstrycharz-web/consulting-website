@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>iPhone Voice Agent Widget</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;0,900;1,400;1,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --accent:           #7a5af8;
+      --accent-hover:     #6938ef;
+      --accent-light:     #f4f3ff;
+      --accent-border:    rgba(122,90,248,.18);
+      --text-dark:        #101828;
+      --text-body:        #607179;
+      --text-muted:       #6b7280;
+      --text-label:       #667085;
+      --bg-page:          #f2f7fa;
+      --bg-white:         #ffffff;
+      --border:           #e5e7eb;
+      --border-soft:      #eaecf0;
+      --shadow-sm:        0px 1px 2px #1018280d;
+      --shadow-md:        0px 1px 3px #1018281a, 0px 1px 2px #1018280f;
+      --shadow-lg:        0px 12px 16px -4px #10182814, 0px 4px 6px -2px #10182808;
+      --shadow-xl:        0px 20px 24px -4px #10182814, 0px 8px 8px -4px #10182808;
+      --green-check:      #16b364;
+      --green-check-bg:   #dcfce7;
+      --font:             'Roboto', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+      --radius-sm:        6px;
+      --radius-md:        10px;
+      --radius-lg:        14px;
+      --radius-xl:        18px;
+    }
+
+    body { font-family: var(--font); background: var(--bg-page); display: flex; align-items: center; justify-content: center; min-height: 100vh; margin: 0; }
+
+    .feature-demo { flex: 1; display: flex; justify-content: center; align-items: center; }
+    .feature-demo--phone { align-items: flex-start; padding-top: 20px; }
+
+    /* ── iPhone frame ── */
+    .iphone-frame {
+      position: relative;
+      width: 210px;
+      height: 430px;
+      background: #18181b;
+      border-radius: 38px;
+      padding: 14px 11px;
+      box-shadow:
+        0 0 0 1.5px #3f3f46,
+        0 0 0 3px #27272a,
+        0 24px 64px rgba(0,0,0,.45),
+        inset 0 1px 0 rgba(255,255,255,.06);
+    }
+
+    .iphone-notch {
+      position: absolute;
+      top: 0; left: 50%;
+      transform: translateX(-50%);
+      width: 88px; height: 24px;
+      background: #18181b;
+      border-radius: 0 0 16px 16px;
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .iphone-notch-cam {
+      width: 9px; height: 9px;
+      background: #27272a;
+      border-radius: 50%;
+      border: 1.5px solid #3f3f46;
+    }
+
+    .iphone-side-btn {
+      position: absolute;
+      background: #27272a;
+      border-radius: 2px;
+    }
+    .iphone-side-btn--left   { left: -3px; top: 90px;  width: 3px; height: 58px; border-radius: 2px 0 0 2px; }
+    .iphone-side-btn--right1 { right: -3px; top: 80px; width: 3px; height: 36px; border-radius: 0 2px 2px 0; }
+    .iphone-side-btn--right2 { right: -3px; top: 126px; width: 3px; height: 64px; border-radius: 0 2px 2px 0; }
+
+    .call-phone {
+      width: 100%;
+      height: 100%;
+      background: #09090b;
+      border-radius: 28px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* status bar */
+    .phone-status-bar {
+      display: flex;
+      align-items: center;
+      padding: 10px 14px 4px;
+      font-size: 11px;
+      font-weight: 600;
+      color: #fff;
+    }
+    .phone-status-bar--three { justify-content: space-between; }
+    .call-listen-title { font-size: 10.5px; color: #fff; font-weight: 500; }
+    .phone-status-right { display: flex; align-items: center; color: #fff; }
+    .phone-signal { display: block; }
+
+    /* waveform */
+    .call-waveform {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 2.5px;
+      padding: 8px 16px;
+      height: 44px;
+    }
+    .call-waveform-bar {
+      display: inline-block;
+      width: 2.5px;
+      background: var(--accent);
+      border-radius: 2px;
+      animation: wave 1.1s ease-in-out infinite;
+      animation-delay: calc(var(--i) * 55ms);
+    }
+    @keyframes wave {
+      0%, 100% { height: 3px;  opacity: .5; }
+      50%       { height: 18px; opacity: 1;  }
+    }
+
+    /* transcript */
+    .call-transcript-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 14px;
+      font-size: 11.5px;
+      font-weight: 600;
+      color: #fff;
+      border-bottom: 1px solid #27272a;
+      border-top: 1px solid #27272a;
+    }
+    .call-transcript-back { color: var(--accent); cursor: pointer; }
+
+    .call-transcript-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 10px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+      scrollbar-width: none;
+    }
+    .call-transcript-body::-webkit-scrollbar { display: none; }
+
+    .call-transcript-line {
+      line-height: 1.45;
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity .38s ease, transform .38s ease;
+    }
+    .call-transcript-line.msg-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .call-speaker {
+      display: block;
+      font-size: 10.5px;
+      font-weight: 600;
+      color: rgba(255,255,255,.55);
+      margin-bottom: 2px;
+    }
+    .call-speaker--ai { color: var(--accent); }
+    .call-message { font-size: 11.5px; color: #e4e4e7; line-height: 1.52; }
+
+    .call-continue {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 16px;
+      background: #18181b;
+      border-top: 1px solid #27272a;
+      font-size: 12px;
+      font-weight: 500;
+      color: rgba(255,255,255,.8);
+    }
+    .call-mic-btn {
+      width: 32px; height: 32px;
+      background: #3a3a3c;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .call-mic-btn svg { width: 15px; height: 15px; color: #fff; }
+
+    /* Sparkle icon above transcript header */
+    .call-sparkle {
+      display: flex; justify-content: center; align-items: center;
+      padding: 7px 0 5px;
+    }
+    .call-sparkle svg { width: 15px; height: 15px; }
+
+    /* iOS incoming call */
+    .ios-call-wrap {
+      flex: 1; display: flex; flex-direction: column;
+    }
+    .ios-caller-block {
+      display: flex; flex-direction: column; align-items: center;
+      padding-top: 18px; gap: 3px;
+    }
+    .ios-caller-name {
+      font-size: 24px; font-weight: 600; color: #fff;
+      font-family: -apple-system, system-ui, sans-serif; letter-spacing: -.4px;
+    }
+    .ios-caller-type  { font-size: 12px; color: rgba(255,255,255,.55); }
+    .ios-caller-ring  { font-size: 12px; color: #34c759; }
+    .ios-avatar-lg {
+      width: 70px; height: 70px;
+      background: #3a3a3c;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 26px; font-weight: 600;
+      color: rgba(255,255,255,.85);
+      margin: 18px auto 18px;
+      font-family: -apple-system, system-ui, sans-serif;
+    }
+    .ios-call-options {
+      display: flex; gap: 12px; padding: 0 22px; margin-bottom: auto;
+    }
+    .ios-call-opt {
+      flex: 1; background: rgba(255,255,255,.12); border-radius: 13px;
+      padding: 9px 6px 7px;
+      display: flex; flex-direction: column; align-items: center; gap: 3px;
+    }
+    .ios-call-opt i { font-size: 16px; color: #fff; }
+    .ios-call-opt span { font-size: 10px; color: rgba(255,255,255,.6); font-family: -apple-system, system-ui, sans-serif; }
+    .ios-call-actions {
+      display: flex; justify-content: space-around; align-items: center;
+      padding: 16px 20px 22px;
+    }
+    .ios-call-action { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+    .ios-action-btn {
+      width: 54px; height: 54px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px; color: #fff;
+    }
+    .ios-action-btn--decline { background: #ff3b30; }
+    .ios-action-btn--accept  { background: #34c759; }
+    .ios-action-lbl { font-size: 10.5px; color: rgba(255,255,255,.6); font-family: -apple-system, system-ui, sans-serif; }
+
+    /* Active call slide */
+    .ios-active-wrap {
+      flex: 1; display: flex; flex-direction: column; align-items: center; padding: 12px 20px 18px;
+    }
+    .ios-active-name  { font-size: 21px; font-weight: 600; color: #fff; font-family: -apple-system, system-ui, sans-serif; }
+    .ios-active-timer { font-size: 13px; color: rgba(255,255,255,.5); margin-bottom: 14px; font-family: -apple-system, system-ui, sans-serif; }
+    .ios-controls {
+      display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px 10px;
+      width: 100%; margin-top: auto;
+    }
+    .ios-ctrl {
+      display: flex; flex-direction: column; align-items: center; gap: 5px;
+    }
+    .ios-ctrl-btn {
+      width: 46px; height: 46px;
+      background: rgba(255,255,255,.13);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px; color: #fff;
+    }
+    .ios-ctrl-btn--end { background: #ff3b30; }
+    .ios-ctrl-lbl { font-size: 10px; color: rgba(255,255,255,.5); font-family: -apple-system, system-ui, sans-serif; }
+
+    .iphone-home-bar {
+      position: absolute;
+      bottom: 7px; left: 50%;
+      transform: translateX(-50%);
+      width: 80px; height: 4px;
+      background: rgba(255,255,255,.3);
+      border-radius: 3px;
+    }
+
+
+
+    /* ═══════════════════════════════════════════════
+       PHONE SCREEN CAROUSEL
+    ═══════════════════════════════════════════════ */
+    .phone-carousel {
+      position: relative;
+      flex: 1;
+      overflow: hidden;
+      min-height: 0;
+    }
+    .phone-slide {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      opacity: 0;
+      transform: translateY(14px);
+      transition: opacity .48s ease, transform .48s ease;
+      pointer-events: none;
+    }
+    .phone-slide.is-active {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+    .phone-slide.is-exit {
+      opacity: 0;
+      transform: translateY(-14px);
+      transition: opacity .38s ease, transform .38s ease;
+    }
+
+    /* Slide 0 — Incoming call */
+    .call-incoming {
+      flex: 1;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      padding: 0 24px; gap: 6px;
+    }
+    .call-avatar {
+      width: 54px; height: 54px;
+      background: linear-gradient(135deg,var(--accent),#0ba5ec);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 19px; font-weight: 700; color: #fff;
+      margin-bottom: 8px;
+      box-shadow: 0 0 0 6px rgba(122,90,248,.18), 0 0 0 12px rgba(122,90,248,.07);
+    }
+    .call-incoming-name  { font-size: 16px; font-weight: 700; color: #fff; }
+    .call-incoming-num   { font-size: 11px; color: #a1a1aa; }
+    .call-incoming-status{ font-size: 10.5px; color: #22c55e; font-weight: 700; margin-top: 4px; letter-spacing:.03em; }
+    .call-incoming-btns  { display: flex; gap: 44px; margin-top: 22px; }
+    .call-btn {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: #fff; font-size: 16px;
+    }
+    .call-btn--decline { background: #ef4444; }
+    .call-btn--answer  { background: #22c55e; }
+
+    /* Slide 1 — AI Listening */
+    .call-listening-wrap {
+      flex: 1;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 10px;
+    }
+    .call-listening-chip {
+      font-size: 9.5px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+      color: var(--accent);
+      background: rgba(122,90,248,.12);
+      padding: 4px 10px; border-radius: 20px;
+    }
+    .call-timer { font-size: 24px; font-weight: 700; color: #fff; letter-spacing:.04em; font-variant-numeric:tabular-nums; }
+    .call-listening-sub { font-size: 10px; color: #71717a; }
+
+    /* Slide 4 — Confirmed */
+    .call-confirmed-wrap {
+      flex: 1; width: 100%;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 8px; padding: 16px; box-sizing: border-box;
+    }
+    .call-confirmed-icon {
+      width: 52px; height: 52px;
+      background: rgba(22,179,100,.18);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px; color: #16b364;
+      margin-bottom: 6px;
+    }
+    .call-confirmed-title  { font-size: 15px; font-weight: 700; color: #fff; text-align: center; }
+    .call-confirmed-sub    { font-size: 11px; color: #a1a1aa; line-height: 1.6; text-align: center; }
+    .call-confirmed-sms {
+      margin-top: 10px;
+      background: rgba(22,179,100,.12);
+      border-radius: 8px; padding: 7px 16px;
+      font-size: 10.5px; color: #22c55e; font-weight: 700;
+      display: flex; align-items: center; justify-content: center; gap: 6px;
+      white-space: nowrap;
+
+  </style>
+</head>
+<body>
+
+      <div class="feature-demo feature-demo--phone">
+        <div class="iphone-frame">
+          <div class="iphone-notch"><span class="iphone-notch-cam"></span></div>
+          <div class="iphone-side-btn iphone-side-btn--left"></div>
+          <div class="iphone-side-btn iphone-side-btn--right1"></div>
+          <div class="iphone-side-btn iphone-side-btn--right2"></div>
+
+          <div class="call-phone">
+            <div class="phone-carousel" id="phoneCarousel">
+
+              <!-- ══ Slide 0: iOS Incoming Call ══ -->
+              <div class="phone-slide is-active" id="pslide-0">
+                <div class="phone-status-bar phone-status-bar--three">
+                  <span class="phone-status-time">9:41</span>
+                  <span></span>
+                  <span class="phone-status-right">
+                    <svg class="phone-signal" width="18" height="12" viewBox="0 0 18 12" fill="currentColor"><rect x="0" y="6" width="3" height="6" rx=".5"/><rect x="5" y="4" width="3" height="8" rx=".5"/><rect x="10" y="2" width="3" height="10" rx=".5"/><rect x="15" y="0" width="3" height="12" rx=".5"/></svg>
+                  </span>
+                </div>
+                <div class="ios-call-wrap">
+                  <div class="ios-caller-block">
+                    <div class="ios-caller-name">Sean Kim</div>
+                    <div class="ios-caller-type">iPhone</div>
+                    <div class="ios-caller-ring">incoming call</div>
+                    <div class="ios-avatar-lg">SK</div>
+                  </div>
+                  <div class="ios-call-options">
+                    <div class="ios-call-opt">
+                      <i class="fa-regular fa-clock"></i>
+                      <span>Remind Me</span>
+                    </div>
+                    <div class="ios-call-opt">
+                      <i class="fa-regular fa-message"></i>
+                      <span>Message</span>
+                    </div>
+                  </div>
+                  <div class="ios-call-actions">
+                    <div class="ios-call-action">
+                      <div class="ios-action-btn ios-action-btn--decline">
+                        <i class="fa-solid fa-phone-slash" style="font-size:18px"></i>
+                      </div>
+                      <span class="ios-action-lbl">Decline</span>
+                    </div>
+                    <div class="ios-call-action">
+                      <div class="ios-action-btn ios-action-btn--accept">
+                        <i class="fa-solid fa-phone" style="font-size:18px"></i>
+                      </div>
+                      <span class="ios-action-lbl">Accept</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- ══ Slide 1: Active Call + Waveform ══ -->
+              <div class="phone-slide" id="pslide-1">
+                <div class="phone-status-bar phone-status-bar--three">
+                  <span class="phone-status-time">9:41</span>
+                  <span class="call-listen-title">Voice Agent</span>
+                  <span class="phone-status-right">
+                    <svg class="phone-signal" width="18" height="12" viewBox="0 0 18 12" fill="currentColor"><rect x="0" y="6" width="3" height="6" rx=".5"/><rect x="5" y="4" width="3" height="8" rx=".5"/><rect x="10" y="2" width="3" height="10" rx=".5"/><rect x="15" y="0" width="3" height="12" rx=".5"/></svg>
+                  </span>
+                </div>
+                <div class="ios-active-wrap">
+                  <div class="ios-active-name">Sean Kim</div>
+                  <div class="ios-active-timer">0:08</div>
+                  <div class="call-waveform" aria-hidden="true" style="margin-bottom:18px;">
+                    <span class="call-waveform-bar" style="--i:1"></span><span class="call-waveform-bar" style="--i:2"></span>
+                    <span class="call-waveform-bar" style="--i:3"></span><span class="call-waveform-bar" style="--i:4"></span>
+                    <span class="call-waveform-bar" style="--i:5"></span><span class="call-waveform-bar" style="--i:6"></span>
+                    <span class="call-waveform-bar" style="--i:7"></span><span class="call-waveform-bar" style="--i:8"></span>
+                    <span class="call-waveform-bar" style="--i:9"></span><span class="call-waveform-bar" style="--i:10"></span>
+                    <span class="call-waveform-bar" style="--i:11"></span><span class="call-waveform-bar" style="--i:12"></span>
+                    <span class="call-waveform-bar" style="--i:13"></span><span class="call-waveform-bar" style="--i:14"></span>
+                    <span class="call-waveform-bar" style="--i:15"></span><span class="call-waveform-bar" style="--i:16"></span>
+                    <span class="call-waveform-bar" style="--i:17"></span><span class="call-waveform-bar" style="--i:18"></span>
+                    <span class="call-waveform-bar" style="--i:19"></span><span class="call-waveform-bar" style="--i:20"></span>
+                  </div>
+                  <div class="ios-controls">
+                    <div class="ios-ctrl">
+                      <div class="ios-ctrl-btn"><i class="fa-solid fa-volume-high"></i></div>
+                      <span class="ios-ctrl-lbl">Speaker</span>
+                    </div>
+                    <div class="ios-ctrl">
+                      <div class="ios-ctrl-btn"><i class="fa-solid fa-video"></i></div>
+                      <span class="ios-ctrl-lbl">FaceTime</span>
+                    </div>
+                    <div class="ios-ctrl">
+                      <div class="ios-ctrl-btn"><i class="fa-solid fa-microphone-slash"></i></div>
+                      <span class="ios-ctrl-lbl">Mute</span>
+                    </div>
+                    <div class="ios-ctrl">
+                      <div class="ios-ctrl-btn"><i class="fa-solid fa-user-plus"></i></div>
+                      <span class="ios-ctrl-lbl">Add</span>
+                    </div>
+                    <div class="ios-ctrl">
+                      <div class="ios-ctrl-btn ios-ctrl-btn--end"><i class="fa-solid fa-phone" style="transform:rotate(135deg);display:block"></i></div>
+                      <span class="ios-ctrl-lbl">End</span>
+                    </div>
+                    <div class="ios-ctrl">
+                      <div class="ios-ctrl-btn"><i class="fa-solid fa-grip"></i></div>
+                      <span class="ios-ctrl-lbl">Keypad</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- ══ Slide 2: Transcript — messages appear one by one ══ -->
+              <div class="phone-slide" id="pslide-2">
+                <div class="phone-status-bar phone-status-bar--three">
+                  <span class="phone-status-time">9:41</span>
+                  <span class="call-listen-title">Listening</span>
+                  <span class="phone-status-right">
+                    <svg class="phone-signal" width="18" height="12" viewBox="0 0 18 12" fill="currentColor"><rect x="0" y="6" width="3" height="6" rx=".5"/><rect x="5" y="4" width="3" height="8" rx=".5"/><rect x="10" y="2" width="3" height="10" rx=".5"/><rect x="15" y="0" width="3" height="12" rx=".5"/></svg>
+                  </span>
+                </div>
+                <div class="call-sparkle">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="color:#fff;width:15px;height:15px">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456Z"/>
+                  </svg>
+                </div>
+                <div class="call-transcript-header">
+                  <span class="call-transcript-back">←</span> Call Transcript
+                </div>
+                <div class="call-transcript-body">
+                  <div class="call-transcript-line">
+                    <span class="call-speaker">Sean Kim:</span>
+                    <span class="call-message">"Hi, I'd like to make a reservation for two people next Saturday evening."</span>
+                  </div>
+                  <div class="call-transcript-line">
+                    <span class="call-speaker call-speaker--ai">Voice Agent</span>
+                    <span class="call-message">"Of course! I have availability at 6:30 PM and 8:00 PM. Which works better for you?"</span>
+                  </div>
+                  <div class="call-transcript-line">
+                    <span class="call-speaker">Sean Kim:</span>
+                    <span class="call-message">"8 PM would be great."</span>
+                  </div>
+                  <div class="call-transcript-line">
+                    <span class="call-speaker call-speaker--ai">Voice Agent</span>
+                    <span class="call-message">"Perfect. Table for two at 8:00 PM next Saturday for Sean Kim is confirmed. We'll send you a confirmation text shortly!"</span>
+                  </div>
+                </div>
+                <div class="call-continue">
+                  <span>Continue call</span>
+                  <div class="call-mic-btn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+                  </div>
+                </div>
+              </div>
+
+              <!-- ══ Slide 3: Booking Confirmed ══ -->
+              <div class="phone-slide" id="pslide-3">
+                <div class="phone-status-bar phone-status-bar--three">
+                  <span class="phone-status-time">9:42</span>
+                  <span></span>
+                  <span class="phone-status-right">
+                    <svg class="phone-signal" width="18" height="12" viewBox="0 0 18 12" fill="currentColor"><rect x="0" y="6" width="3" height="6" rx=".5"/><rect x="5" y="4" width="3" height="8" rx=".5"/><rect x="10" y="2" width="3" height="10" rx=".5"/><rect x="15" y="0" width="3" height="12" rx=".5"/></svg>
+                  </span>
+                </div>
+                <div class="call-confirmed-wrap">
+                  <div class="call-confirmed-icon"><i class="fa-solid fa-check"></i></div>
+                  <div class="call-confirmed-title">Reservation Confirmed!</div>
+                  <div class="call-confirmed-sub">
+                    Saturday · 8:00 PM<br>
+                    Kim — Party of 2
+                  </div>
+                  <div class="call-confirmed-sms">
+                    <i class="fa-regular fa-message"></i>
+                    <span>Text confirmation sent ✓</span>
+                  </div>
+                </div>
+                <div class="call-continue" style="justify-content:center;gap:8px;">
+                  <i class="fa-solid fa-check" style="color:#22c55e;"></i>
+                  <span>Booking complete</span>
+                </div>
+              </div>
+
+            </div><!-- /.phone-carousel -->
+          </div><!-- /.call-phone -->
+
+          <div class="iphone-home-bar"></div>
+        </div><!-- /.iphone-frame -->
+      </div><!-- /.feature-demo -->
+
+
+<script>
+  (function() {
+  (function() {
+    var slides    = document.querySelectorAll('#phoneCarousel .phone-slide');
+    /* slide 2 = transcript; must be long enough for all 4 messages to appear */
+    var durations = [2600, 2800, 8200, 2800];
+    var current   = 0;
+    var timers    = [];
+
+    function clearTimers() {
+      timers.forEach(clearTimeout);
+      timers = [];
+    }
+
+    function resetTranscript() {
+      document.querySelectorAll('#pslide-2 .call-transcript-line')
+        .forEach(function(l) { l.classList.remove('msg-visible'); });
+    }
+
+    function animateTranscript() {
+      resetTranscript();
+      var lines = document.querySelectorAll('#pslide-2 .call-transcript-line');
+      /* stagger: 400ms, 1900ms, 3400ms, 5000ms */
+      [400, 1900, 3400, 5000].forEach(function(delay, i) {
+        timers.push(setTimeout(function() {
+          if (lines[i]) lines[i].classList.add('msg-visible');
+        }, delay));
+      });
+    }
+
+    function advance() {
+      clearTimers();
+      var prev = current;
+      current  = (current + 1) % slides.length;
+
+      slides[prev].classList.remove('is-active');
+      slides[prev].classList.add('is-exit');
+      setTimeout(function() { slides[prev].classList.remove('is-exit'); }, 500);
+
+      slides[current].classList.add('is-active');
+      if (current === 2) animateTranscript();
+
+      setTimeout(advance, durations[current]);
+    }
+
+    /* kick off */
+    setTimeout(advance, durations[0]);
+  })();
+  })();
+</script>
+
+</body>
+</html>
